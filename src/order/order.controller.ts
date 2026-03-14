@@ -11,7 +11,7 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UserData } from '../../decorators/user.decorator';
-import { Language, User } from '@/generated/prisma/client';
+import { Language, User } from 'generated/prisma/client';
 import { AuthGuard } from '../../guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';

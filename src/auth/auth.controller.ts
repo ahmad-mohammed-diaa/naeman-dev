@@ -15,8 +15,8 @@ import { RegisterDto } from './dto/auth-register-dto';
 import { AuthGuard } from 'guard/auth.guard';
 import { UserData } from 'decorators/user.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from '@/config/multer.config';
-import { AppSuccess } from '@/utils/AppSuccess';
+import { multerConfig } from '../../src/config/multer.config';
+import { AppSuccess } from 'src/utils/AppSuccess';
 import { Roles } from 'decorators/roles.decorator';
 import { RolesGuard } from 'guard/role.guard';
 

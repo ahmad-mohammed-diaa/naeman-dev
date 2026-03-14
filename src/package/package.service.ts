@@ -5,12 +5,12 @@ import {
 } from '@nestjs/common';
 
 import { CreatePackageDto } from './dto/create-package.dto';
-import { PrismaService } from '@/prisma/prisma.service';
-import { AppSuccess } from '@/utils/AppSuccess';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { AppSuccess } from 'src/utils/AppSuccess';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { createTranslation, Translation } from '@/class-type/translation';
-import { Language } from '@/generated/prisma/client';
-import { NotificationService } from '@/notification/notification.service';
+import { createTranslation, Translation } from 'src/class-type/translation';
+import { Language } from 'generated/prisma/client';
+import { NotificationService } from 'src/notification/notification.service';
 
 @Injectable()
 export class PackageService {

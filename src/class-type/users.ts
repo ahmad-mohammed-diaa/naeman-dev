@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { Role } from '@/generated/prisma/client';
-import { User as PrismaUserType } from '@/generated/prisma/client';
+import { Role } from 'generated/prisma/client';
+import { User as PrismaUserType } from 'generated/prisma/client';
 
 const data = {
   [Role.USER]: {
