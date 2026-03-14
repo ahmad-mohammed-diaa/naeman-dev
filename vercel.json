@@ -2,9 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "command": "prisma generate && nest build"
-    },
-    {
       "src": "src/main.ts",
       "use": "@vercel/node"
     }
