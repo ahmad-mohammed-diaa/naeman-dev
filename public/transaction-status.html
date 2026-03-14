@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Status</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .success {
+            color: #22c55e;
+        }
+
+        .failure {
+            color: #ef4444;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #3b82f6;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {      
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="statusMessage">Transaction Status</h1>
+        <p id="statusDescription">Checking transaction status...</p>
+        <button onclick="window.location.href='/'">Go Back to Home</button>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isSuccess = urlParams.get('success') === 'true';
+
+            const statusMessage = document.getElementById('statusMessage');
+            const statusDescription = document.getElementById('statusDescription');
+
+            if (isSuccess) {
+                statusMessage.textContent = 'Transaction Successful!';
+                statusMessage.className = 'success';
+                statusDescription.textContent = 'Your payment was processed successfully.';
+            } else {
+                statusMessage.textContent = 'Transaction Failed';
+                statusMessage.className = 'failure';
+                statusDescription.textContent = 'Something went wrong. Please try again.';
+            }
+        };
+    </script>
+</body>
+</html>

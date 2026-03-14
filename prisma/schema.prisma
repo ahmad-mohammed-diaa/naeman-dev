@@ -1,0 +1,457 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id            String         @id @default(uuid()) @map("id")
+  firstName     String
+  lastName      String
+  avatar        String         @default("https://i.ibb.co/P50Hk9p/avatar.png")
+  phone         String         @unique
+  password      String
+  fcmToken      String?
+  createdAt     DateTime       @default(now()) @map("createdAt")
+  updatedAt     DateTime       @updatedAt @map("updatedAt")
+  role          Role           @default(USER) @map("role")
+  admin         Admin?
+  barber        Barber?
+  cashier       Cashier?
+  client        Client?
+  BarberOrders  Order[]        @relation("BarberOrders")
+  CashierOrders Order[]        @relation("CashierOrders")
+  UserOrders    Order[]        @relation("UserOrders")
+  notification  notification[] @relation("notifications")
+  deleted       Boolean        @default(false)
+
+  @@index([phone])
+  @@index([role])
+  @@map("users")
+}
+
+model Client {
+  id             String  @id
+  referralCode   String? @unique
+  points         Int     @default(0)
+  ban            Boolean @default(false)
+  offersId       String?
+  canceledOrders Int     @default(0)
+
+  user           User             @relation(fields: [id], references: [id])
+  complain       Complain[]
+  ClientPackages ClientPackages[]
+  Offers         Offers[]         @relation("ClientOffers")
+  BarberRating   BarberRating[]
+
+  @@index([referralCode])
+}
+
+model Cashier {
+  id        String     @id
+  branchId  String
+  branch    Branch     @relation(fields: [branchId], references: [id])
+  user      User       @relation(fields: [id], references: [id])
+  Slot      Slot?
+  vacations Vacation[]
+}
+
+model Barber {
+  id          String  @id
+  branchId    String
+  rate        Float   @default(0)
+  isAvailable Boolean @default(true)
+
+  type         CategoryType   @default(GENERAL)
+  branch       Branch         @relation(fields: [branchId], references: [id])
+  user         User           @relation(fields: [id], references: [id])
+  Slot         Slot?
+  vacations    Vacation[]
+  BarberRating BarberRating[]
+}
+
+model BarberRating {
+  id        String   @id @default(uuid()) @map("id")
+  barberId  String
+  clientId  String
+  rate      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  barber Barber @relation(fields: [barberId], references: [id])
+  client Client @relation(fields: [clientId], references: [id])
+
+  @@unique([barberId, clientId])
+  @@index([barberId, clientId])
+}
+
+model Vacation {
+  id        String     @id @default(uuid())
+  dates     DateTime[]
+  month     DateTime   @default(now())
+  cashierId String?
+  barberId  String?
+  barber    Barber?    @relation(fields: [barberId], references: [id], onDelete: Cascade)
+  cashier   Cashier?   @relation(fields: [cashierId], references: [id], onDelete: Cascade)
+}
+
+model Admin {
+  id   String @id
+  user User   @relation(fields: [id], references: [id])
+}
+
+model PhoneVerification {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  code      String
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([phone])
+}
+
+model ResetPassword {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  code      String
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([phone])
+}
+
+model Settings {
+  id                        String    @id @default(uuid())
+  PointsPercentage          Int       @default(10)
+  referralPoints            Int       @default(1000)
+  pointLimit                Int       @default(100)
+  password                  String?
+  canceledOrder             Int       @default(3)
+  slotDuration              Int       @default(30)
+  maxDaysBooking            Int       @default(3)
+  effectiveSlotDurationDate DateTime? @default(now())
+}
+
+model Static {
+  id        String      @id @default(uuid())
+  about     about?
+  questions questions[]
+}
+
+model about {
+  id       String @id
+  content  String
+  location String
+  time     String
+  Static   Static @relation(fields: [id], references: [id])
+
+  @@map("about")
+}
+
+model questions {
+  id       String  @id @default(uuid())
+  question String
+  answer   String
+  staticId String
+  Static   Static? @relation(fields: [staticId], references: [id])
+
+  @@map("questions")
+}
+
+model Token {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiredAt DateTime?
+}
+
+model Complain {
+  id        String   @id @default(uuid())
+  userId    String
+  message   String
+  done      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  client    Client   @relation(fields: [userId], references: [id])
+}
+
+model Branch {
+  id          String        @id @default(uuid())
+  phone       String        @unique
+  location    String
+  longitude   String
+  latitude    String
+  branchImg   String
+  rate        Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  barber      Barber[]
+  Cashier     Cashier[]
+  Order       Order[]
+  Translation Translation[] @relation("branch")
+}
+
+model Translation {
+  id         String    @id @default(uuid())
+  name       String
+  language   Language
+  branchId   String?
+  categoryId String?
+  serviceId  String?
+  branch     Branch?   @relation("branch", fields: [branchId], references: [id], map: "Translation_branch_key")
+  category   Category? @relation("category", fields: [categoryId], references: [id], map: "Translation_category_key", onDelete: Cascade)
+  service    Service?  @relation("service", fields: [serviceId], references: [id], map: "Translation_service_key", onDelete: Cascade)
+  pointsId   String?
+  Product    Product?  @relation(fields: [productId], references: [id])
+  productId  String?
+
+  @@index([name])
+}
+
+model TranslationDes {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  language    Language
+
+  clientPackageId String?
+  pointsId        String?
+  packageId       String?
+
+  clientPackages ClientPackages? @relation("clientPackages", fields: [clientPackageId], references: [id], map: "Translation_clientPackages_key")
+  Points         Points?         @relation("points", fields: [pointsId], references: [id])
+  package        Packages?       @relation("packages", fields: [packageId], references: [id], map: "Translation_package_key")
+
+  @@index([name])
+}
+
+enum Language {
+  EN
+  AR
+}
+
+model Category {
+  id          String        @id @default(uuid())
+  available   Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  type        CategoryType  @default(GENERAL)
+  services    Service[]
+  Translation Translation[] @relation("category")
+}
+
+model Service {
+  id               String             @id @default(uuid())
+  price            Int
+  serviceImg       String?
+  duration         Int
+  categoryId       String
+  available        Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  offersId         String?
+  PackagesServices PackagesServices[]
+  category         Category           @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  order            Order[]            @relation("OrderToServices")
+  packagesIds      Packages[]         @relation("PackagesToServices")
+  Translation      Translation[]      @relation("service")
+}
+
+model Product {
+  id String @id @default(uuid())
+
+  productImg String
+  price      Int
+  available  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  Translation Translation[]
+}
+
+model Slot {
+  id                String    @id @default(uuid())
+  start             Int
+  end               Int
+  barberId          String?   @unique
+  cashierId         String?   @unique
+  Cashier           Cashier?  @relation(fields: [cashierId], references: [id], onDelete: Cascade)
+  barber            Barber?   @relation(fields: [barberId], references: [id], onDelete: Cascade)
+  slot              String[]
+  updatedSlot       String[]
+  effectiveSlotDate DateTime?
+}
+
+model PromoCode {
+  id        String    @id @default(uuid())
+  code      String
+  discount  Int
+  active    Boolean   @default(true)
+  expiredAt DateTime
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  type      PromoType
+}
+
+model Order {
+  id                      String   @id @default(uuid())
+  branchId                String
+  promoCode               String?
+  date                    DateTime
+  slot                    String
+  note                    String?
+  points                  Int      @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  subTotal                Int
+  total                   Int
+  userId                  String?
+  barberId                String?
+  cashierId               String?
+  discount                Int      @default(0)
+  freeService             String[]
+  deleted                 Boolean  @default(false)
+  barberName              String?
+  usedPackage             String[]
+  shouldBeReviewedByAdmin Boolean  @default(false)
+  servicesToDelete        String[]
+  reminderSent            Boolean  @default(false)
+
+  booking BookingStatus @default(UPCOMING)
+  type    discount      @default(AMOUNT)
+  status  OrderStatus   @default(PENDING)
+  branch  Branch        @relation(fields: [branchId], references: [id])
+  client  User?         @relation("UserOrders", fields: [userId], references: [id])
+  barber  User?         @relation("BarberOrders", fields: [barberId], references: [id])
+  Cashier User?         @relation("CashierOrders", fields: [cashierId], references: [id])
+  service Service[]     @relation("OrderToServices")
+
+  @@index([barberId, date])
+  @@index([userId, date])
+  @@index([cashierId, date])
+  @@index([date, booking, status])
+}
+
+model Offers {
+  id        String    @id @default(uuid()) @map("id")
+  offerType OfferType
+  expiresAt DateTime
+  createdAt DateTime  @default(now()) @map("createdAt")
+  updatedAt DateTime  @updatedAt @map("updatedAt")
+  clients   Client[]  @relation("ClientOffers")
+  packages  Packages?
+  points    Points?
+}
+
+enum OfferType {
+  POINTS
+  PACKAGES
+}
+
+model Packages {
+  id          String           @id
+  price       Int
+  image       String
+  count       Int              @default(1)
+  type        PackagesStatus   @default(SINGLE)
+  expiresAt   DateTime
+  offers      Offers           @relation(fields: [id], references: [id])
+  services    Service[]        @relation("PackagesToServices")
+  Translation TranslationDes[] @relation("packages")
+}
+
+model Points {
+  id          String           @id
+  image       String
+  price       Int
+  points      Int
+  expiresAt   DateTime
+  Offers      Offers           @relation(fields: [id], references: [id])
+  Translation TranslationDes[] @relation("points")
+}
+
+model PackagesServices {
+  id               String         @id @default(uuid()) @map("id")
+  serviceId        String
+  isActive         Boolean        @default(true)
+  usedAt           DateTime?
+  createdAt        DateTime       @default(now()) @map("createdAt")
+  service          Service        @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  remainingCount   Int?
+  ClientPackagesId String
+  ClientPackages   ClientPackages @relation(fields: [ClientPackagesId], references: [id])
+}
+
+model ClientPackages {
+  id             String             @id @default(uuid()) @map("id")
+  description    String?
+  image          String?
+  packageId      String
+  packageService PackagesServices[]
+  type           PackagesStatus
+  isActive       Boolean            @default(true)
+  createdAt      DateTime           @default(now()) @map("createdAt")
+  updatedAt      DateTime           @updatedAt @map("updatedAt")
+  clientId       String
+  client         Client             @relation(fields: [clientId], references: [id])
+  Translation    TranslationDes[]   @relation("clientPackages")
+}
+
+model notification {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  image     String?
+  user      User[]   @relation("notifications")
+  createdAt DateTime @default(now()) @map("createdAt")
+}
+
+enum discount {
+  PERCENTAGE
+  AMOUNT
+}
+
+enum PackagesStatus {
+  MULTIPLE
+  SINGLE
+}
+
+enum OrderStatus {
+  PENDING
+  IN_PROGRESS
+  ADMIN_CANCELLED
+  CLIENT_CANCELLED
+  BARBER_CANCELLED
+  CASHIER_CANCELLED
+  COMPLETED
+  PAID
+}
+
+enum BookingStatus {
+  UPCOMING
+  PAST
+  CANCELLED
+}
+
+enum PromoType {
+  PERCENTAGE
+  AMOUNT
+}
+
+enum Role {
+  BARBER
+  CASHIER
+  ADMIN
+  USER
+}
+
+enum CategoryType {
+  GENERAL
+  MASSAGE
+  PEDICURE
+}
