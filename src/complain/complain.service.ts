@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateComplainDto } from './dto/create-complain.dto';
 import { Complain, User } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { AppSuccess } from 'src/utils/AppSuccess';
+import { PrismaService } from '@/prisma/prisma.service';
+import { AppSuccess } from '@/utils/AppSuccess';
 
 @Injectable()
 export class ComplainService {

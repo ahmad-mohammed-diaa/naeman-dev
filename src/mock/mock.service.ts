@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Client, Role, User } from '@prisma/client';
 import { hash } from 'bcrypt';
-import {
-  createTranslation,
-  Translation,
-} from '../../src/class-type/translation';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { createTranslation, Translation } from '@/class-type/translation';
+import { PrismaService } from '@/prisma/prisma.service';
 
 @Injectable()
 export class MockService {

@@ -1,13 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { AppSuccess } from 'src/utils/AppSuccess';
+import { PrismaService } from '@/prisma/prisma.service';
+import { AppSuccess } from '@/utils/AppSuccess';
 import { Language, User } from '@prisma/client';
-import {
-  createTranslation,
-  Translation,
-} from '../../src/class-type/translation';
+import { createTranslation, Translation } from '@/class-type/translation';
 
 @Injectable()
 export class PointsService {

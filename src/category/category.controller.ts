@@ -17,7 +17,7 @@ import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from '../../guard/role.guard';
 import { Roles } from '../../decorators/roles.decorator';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { AppSuccess } from 'src/utils/AppSuccess';
+import { AppSuccess } from '@/utils/AppSuccess';
 import { UserData } from 'decorators/user.decorator';
 import { Lang } from '../../decorators/accept.language';
 

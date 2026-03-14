@@ -1,4 +1,4 @@
-import { CreateOrderDto } from 'src/order/dto/create-order.dto';
+import { CreateOrderDto } from '@/order/dto/create-order.dto';
 import { PartialType } from '@nestjs/mapped-types';
 import { IsArray, IsOptional } from 'class-validator';
 

@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { AppSuccess } from 'src/utils/AppSuccess';
-import { PromoCodeService } from 'src/promo-code/promo-code.service';
+import { AppSuccess } from '@/utils/AppSuccess';
+import { PromoCodeService } from '@/promo-code/promo-code.service';
 import {
   BookingStatus,
   Language,
@@ -23,7 +23,7 @@ import {
 } from '@prisma/client';
 import { endOfDay, format, startOfDay } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
-import { Translation } from 'src/class-type/translation';
+import { Translation } from '@/class-type/translation';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { UpdateOrderServicesDto } from './dto/update-order-services.dto';
 import { comparePassword } from '../utils/lib';

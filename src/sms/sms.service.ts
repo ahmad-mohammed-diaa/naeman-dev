@@ -5,13 +5,13 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 import axios from 'axios';
-import { RegisterDto } from 'src/auth/dto/auth-register-dto';
-import { AuthService } from 'src/auth/auth.service';
+import { RegisterDto } from '@/auth/dto/auth-register-dto';
+import { AuthService } from '@/auth/auth.service';
 import { hash } from 'bcrypt';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { AppSuccess } from 'src/utils/AppSuccess';
+import { AppSuccess } from '@/utils/AppSuccess';
 import { User } from '@prisma/client';
 
 @Injectable()

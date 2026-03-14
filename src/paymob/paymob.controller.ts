@@ -15,11 +15,11 @@ import { config } from 'dotenv';
 import { Language, User } from '@prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { UserData } from 'decorators/user.decorator';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 import { CreatePaymobDto } from './dto/create-paymob.dto';
 import { join } from 'path';
 import { Lang } from 'decorators/accept.language';
-import { Translation } from 'src/class-type/translation';
+import { Translation } from '@/class-type/translation';
 
 config();
 

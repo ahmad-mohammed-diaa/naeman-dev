@@ -3,12 +3,12 @@ import { PrismaService } from '../prisma/prisma.service';
 import { Language, Service } from '@prisma/client';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
-import { AppSuccess } from 'src/utils/AppSuccess';
+import { AppSuccess } from '@/utils/AppSuccess';
 import {
   createTranslation,
   Translation as serviceTranslation,
   updateTranslation,
-} from '../../src/class-type/translation';
+} from '@/class-type/translation';
 
 @Injectable()
 export class ServiceService {

@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateClientPackageDto } from './dto/update-client-package.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
 import { Language, User } from '@prisma/client';
-import { AppSuccess } from 'src/utils/AppSuccess';
+import { AppSuccess } from '@/utils/AppSuccess';
 import {
   createTranslation,
   Translation,
   translationDes,
-} from '../../src/class-type/translation';
+} from '@/class-type/translation';
 
 @Injectable()
 export class ClientPackagesService {

@@ -16,7 +16,7 @@ import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from '../../src/config/multer.config';
+import { multerConfig } from '@/config/multer.config';
 
 import { Lang } from '../../decorators/accept.language';
 import { CategoryType, Language } from '@prisma/client';

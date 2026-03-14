@@ -15,7 +15,7 @@ import { Language, Service } from '@prisma/client';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from '../../src/config/multer.config';
+import { multerConfig } from '@/config/multer.config';
 
 import { Lang } from '../../decorators/accept.language';
 import { AuthGuard } from 'guard/auth.guard';

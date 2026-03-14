@@ -19,7 +19,7 @@ import { UserUpdateDto } from './dto/user-update-dto';
 import { RateBarberDto } from './dto/rate-barber.dto';
 import { UserData } from 'decorators/user.decorator';
 import { Role, User } from '@prisma/client';
-import { multerConfig } from 'src/config/multer.config';
+import { multerConfig } from '@/config/multer.config';
 
 @Controller('user')
 @UseGuards(AuthGuard())

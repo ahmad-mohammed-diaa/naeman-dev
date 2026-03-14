@@ -7,7 +7,7 @@ import {
   IsUUID,
   ValidateIf,
 } from 'class-validator';
-import { translationDto } from '../../../src/class-type/translation';
+import { translationDto } from '@/class-type/translation';
 
 export class CreateServiceDto {
   @ValidateIf(

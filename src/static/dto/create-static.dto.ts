@@ -1,4 +1,4 @@
-// src/static/static.dto.ts
+// @/static/static.dto.ts
 import { IsNotEmpty, IsOptional, IsString, IsArray } from 'class-validator';
 
 export class CreateAboutDto {
