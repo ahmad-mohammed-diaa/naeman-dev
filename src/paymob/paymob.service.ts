@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as crypto from 'crypto';
 import { ClientPackagesService } from 'src/client-packages/client-packages.service';
-import { Language, User } from '@prisma/client';
+import { Language, User } from 'generated/prisma/client';
 import { PointsService } from 'src/points/points.service';
 import { Response } from 'express';
 import { join } from 'path';

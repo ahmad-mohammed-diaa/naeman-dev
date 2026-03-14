@@ -1,4 +1,4 @@
-import { CategoryType } from '@prisma/client';
+import { CategoryType } from 'generated/prisma/client';
 import { Transform } from 'class-transformer';
 import { IsArray, IsBoolean, IsEnum, IsOptional } from 'class-validator';
 import { translationDto } from 'src/class-type/translation';

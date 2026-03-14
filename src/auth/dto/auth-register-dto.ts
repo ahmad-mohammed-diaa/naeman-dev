@@ -1,4 +1,4 @@
-import { CategoryType, Role } from '@prisma/client';
+import { CategoryType, Role } from 'generated/prisma/client';
 import { Transform } from 'class-transformer';
 import {
   IsArray,

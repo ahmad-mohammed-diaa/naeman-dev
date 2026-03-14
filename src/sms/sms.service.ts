@@ -12,7 +12,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { hash } from 'bcrypt';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { AppSuccess } from 'src/utils/AppSuccess';
-import { User } from '@prisma/client';
+import { User } from 'generated/prisma/client';
 
 @Injectable()
 export class SmsService {

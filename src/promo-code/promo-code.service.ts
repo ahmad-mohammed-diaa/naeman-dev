@@ -2,7 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { CreatePromoCodeDto } from './dto/create-promo-code.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { AppSuccess } from 'src/utils/AppSuccess';
-import { PromoCode } from '@prisma/client';
+import { PromoCode } from 'generated/prisma/client';
 import { Random } from 'src/utils/generate';
 import { Cron, CronExpression } from '@nestjs/schedule';
 

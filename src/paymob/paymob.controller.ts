@@ -12,7 +12,7 @@ import * as fs from 'fs';
 import { PaymobService } from './paymob.service';
 import { Response } from 'express';
 import { config } from 'dotenv';
-import { Language, User } from '@prisma/client';
+import { Language, User } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { UserData } from 'decorators/user.decorator';
 import { PrismaService } from 'src/prisma/prisma.service';

@@ -14,7 +14,7 @@ import { PointsService } from './points.service';
 import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
 import { UserData } from 'decorators/user.decorator';
-import { Language, User } from '@prisma/client';
+import { Language, User } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from 'src/config/multer.config';

@@ -11,7 +11,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { Category, CategoryType, Language, User } from '@prisma/client';
+import {
+  Category,
+  CategoryType,
+  Language,
+  User,
+} from 'generated/prisma/client';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from '../../guard/role.guard';

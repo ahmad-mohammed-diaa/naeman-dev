@@ -10,7 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ClientPackagesService } from './client-packages.service';
-import { Language, User } from '@prisma/client';
+import { Language, User } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { Lang } from 'decorators/accept.language';
 
