@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "prisma generate && nest build && copy .\\config\\firebase.json .\\dist\\src\\config\\firebase.json && copy .\\config\\transaction-status.html .\\dist\\config\\transaction-status.html",
+    "build": "prisma generate && nest build ",
     "build:win": "prisma generate && nest build ",
     "prisma-generate": "prisma generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
