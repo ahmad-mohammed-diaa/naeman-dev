@@ -3,7 +3,7 @@ import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { PrismaService } from '@/prisma/prisma.service';
 import { AppSuccess } from '@/utils/AppSuccess';
-import { Branch, CategoryType, Language } from '@prisma/client';
+import { Branch, CategoryType, Language } from '@/generated/prisma/client';
 import {
   createTranslation,
   Translation,

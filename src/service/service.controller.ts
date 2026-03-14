@@ -11,7 +11,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ServiceService } from './service.service';
-import { Language, Service } from '@prisma/client';
+import { Language, Service } from '@/generated/prisma/client';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 import { FileInterceptor } from '@nestjs/platform-express';

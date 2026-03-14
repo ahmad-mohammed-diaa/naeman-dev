@@ -1,6 +1,12 @@
 import { PrismaService } from '../prisma/prisma.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { BookingStatus, OrderStatus, Prisma, Role, User } from '@prisma/client';
+import {
+  BookingStatus,
+  OrderStatus,
+  Prisma,
+  Role,
+  User,
+} from '@/generated/prisma/client';
 import { UserUpdateDto } from './dto/user-update-dto';
 import { AppSuccess } from '@/utils/AppSuccess';
 import { AuthService } from '@/auth/auth.service';

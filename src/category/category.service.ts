@@ -7,7 +7,12 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { AppSuccess } from '@/utils/AppSuccess';
-import { Category, CategoryType, Language, User } from '@prisma/client';
+import {
+  Category,
+  CategoryType,
+  Language,
+  User,
+} from '@/generated/prisma/client';
 import {
   createTranslation,
   Translation,

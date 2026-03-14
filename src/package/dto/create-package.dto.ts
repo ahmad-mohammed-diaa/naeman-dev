@@ -1,4 +1,4 @@
-import { PackagesStatus } from '@prisma/client';
+import { PackagesStatus } from '@/generated/prisma/client';
 import { Transform } from 'class-transformer';
 import {
   IsArray,

@@ -3,7 +3,7 @@ import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
 import { PrismaService } from '@/prisma/prisma.service';
 import { AppSuccess } from '@/utils/AppSuccess';
-import { Language, User } from '@prisma/client';
+import { Language, User } from '@/generated/prisma/client';
 import { createTranslation, Translation } from '@/class-type/translation';
 
 @Injectable()

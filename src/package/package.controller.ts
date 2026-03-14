@@ -18,7 +18,7 @@ import { Roles } from 'decorators/roles.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from '@/config/multer.config';
 import { Lang } from 'decorators/accept.language';
-import { Language } from '@prisma/client';
+import { Language } from '@/generated/prisma/client';
 
 @UseGuards(AuthGuard(), RolesGuard)
 @Controller('package')

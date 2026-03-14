@@ -9,7 +9,7 @@ import { PrismaService } from '@/prisma/prisma.service';
 import { AppSuccess } from '@/utils/AppSuccess';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { createTranslation, Translation } from '@/class-type/translation';
-import { Language } from '@prisma/client';
+import { Language } from '@/generated/prisma/client';
 import { NotificationService } from '@/notification/notification.service';
 
 @Injectable()

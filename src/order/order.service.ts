@@ -20,7 +20,7 @@ import {
   Role,
   Service,
   User,
-} from '@prisma/client';
+} from '@/generated/prisma/client';
 import { endOfDay, format, startOfDay } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
 import { Translation } from '@/class-type/translation';

@@ -4,7 +4,7 @@ import { UpdateAdminDto } from './dto/update-admin.dto';
 import { PrismaService } from '@/prisma/prisma.service';
 import { AppSuccess } from '@/utils/AppSuccess';
 import { TranslateName } from '../../lib/lib';
-import { OrderStatus, Prisma, Role } from '@prisma/client';
+import { OrderStatus, Prisma, Role } from '@/generated/prisma/client';
 import { startOfDay, endOfDay } from 'date-fns';
 import { hashedPassword } from '@/utils/lib';
 
