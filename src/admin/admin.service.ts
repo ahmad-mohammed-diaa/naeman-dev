@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
-import { PrismaService } from '@/prisma/prisma.service';
-import { AppSuccess } from '@/utils/AppSuccess';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { AppSuccess } from 'src/utils/AppSuccess';
 import { TranslateName } from '../../lib/lib';
-import { OrderStatus, Prisma, Role } from '@/generated/prisma/client';
+import { OrderStatus, Prisma, Role } from '@prisma/client';
 import { startOfDay, endOfDay } from 'date-fns';
-import { hashedPassword } from '@/utils/lib';
+import { hashedPassword } from 'src/utils/lib';
 
 @Injectable()
 export class AdminService {

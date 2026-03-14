@@ -16,10 +16,10 @@ import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from '@/config/multer.config';
+import { multerConfig } from '../../src/config/multer.config';
 
 import { Lang } from '../../decorators/accept.language';
-import { CategoryType, Language } from '@/generated/prisma/client';
+import { CategoryType, Language } from '@prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';

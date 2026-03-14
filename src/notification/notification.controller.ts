@@ -12,9 +12,9 @@ import { NotificationService } from './notification.service';
 import * as admin from 'firebase-admin';
 import { AuthGuard } from 'guard/auth.guard';
 import { UserData } from 'decorators/user.decorator';
-import { User } from '@/generated/prisma/client';
-import { PrismaService } from '@/prisma/prisma.service';
-import { AppSuccess } from '@/utils/AppSuccess';
+import { User } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { AppSuccess } from 'src/utils/AppSuccess';
 
 @UseGuards(AuthGuard())
 @Controller('notification')

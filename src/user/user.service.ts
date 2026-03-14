@@ -1,15 +1,9 @@
 import { PrismaService } from '../prisma/prisma.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import {
-  BookingStatus,
-  OrderStatus,
-  Prisma,
-  Role,
-  User,
-} from '@/generated/prisma/client';
+import { BookingStatus, OrderStatus, Prisma, Role, User } from '@prisma/client';
 import { UserUpdateDto } from './dto/user-update-dto';
-import { AppSuccess } from '@/utils/AppSuccess';
-import { AuthService } from '@/auth/auth.service';
+import { AppSuccess } from 'src/utils/AppSuccess';
+import { AuthService } from 'src/auth/auth.service';
 import { addDays } from 'date-fns';
 
 @Injectable()

@@ -10,7 +10,7 @@ import {
   ValidateIf,
   Length,
 } from 'class-validator';
-import { OrderStatus, BookingStatus } from '@/generated/prisma/client';
+import { OrderStatus, BookingStatus } from '@prisma/client';
 
 export class CreateOrderDto {
   @IsOptional()

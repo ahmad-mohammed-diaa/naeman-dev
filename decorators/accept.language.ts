@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { Language } from '@/generated/prisma/client';
+import { Language } from '@prisma/client';
 
 // Custom decorator to set the Accept-Language header
 export const Lang = createParamDecorator(

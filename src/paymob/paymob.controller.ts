@@ -12,14 +12,14 @@ import * as fs from 'fs';
 import { PaymobService } from './paymob.service';
 import { Response } from 'express';
 import { config } from 'dotenv';
-import { Language, User } from '@/generated/prisma/client';
+import { Language, User } from '@prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { UserData } from 'decorators/user.decorator';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePaymobDto } from './dto/create-paymob.dto';
 import { join } from 'path';
 import { Lang } from 'decorators/accept.language';
-import { Translation } from '@/class-type/translation';
+import { Translation } from 'src/class-type/translation';
 
 config();
 

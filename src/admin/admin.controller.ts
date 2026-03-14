@@ -14,7 +14,7 @@ import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';
 import { UserData } from 'decorators/user.decorator';
-import { User } from '@/generated/prisma/client';
+import { User } from '@prisma/client';
 
 @Controller('admin')
 @UseGuards(AuthGuard(), RolesGuard)

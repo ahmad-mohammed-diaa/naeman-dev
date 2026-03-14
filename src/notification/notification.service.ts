@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { User } from '@/generated/prisma/client';
+import { User } from '@prisma/client';
 import * as jwt from 'jsonwebtoken';
-import { PrismaService } from '@/prisma/prisma.service';
-import { AppSuccess } from '@/utils/AppSuccess';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { AppSuccess } from 'src/utils/AppSuccess';
 import * as admin from 'firebase-admin';
 // Local storage for users
 

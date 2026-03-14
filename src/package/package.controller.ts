@@ -16,9 +16,9 @@ import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from '@/config/multer.config';
+import { multerConfig } from '../../src/config/multer.config';
 import { Lang } from 'decorators/accept.language';
-import { Language } from '@/generated/prisma/client';
+import { Language } from '@prisma/client';
 
 @UseGuards(AuthGuard(), RolesGuard)
 @Controller('package')

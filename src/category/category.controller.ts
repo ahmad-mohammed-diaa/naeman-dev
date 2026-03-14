@@ -11,18 +11,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import {
-  Category,
-  CategoryType,
-  Language,
-  User,
-} from '@/generated/prisma/client';
+import { Category, CategoryType, Language, User } from '@prisma/client';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from '../../guard/role.guard';
 import { Roles } from '../../decorators/roles.decorator';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { AppSuccess } from '@/utils/AppSuccess';
+import { AppSuccess } from 'src/utils/AppSuccess';
 import { UserData } from 'decorators/user.decorator';
 import { Lang } from '../../decorators/accept.language';
 

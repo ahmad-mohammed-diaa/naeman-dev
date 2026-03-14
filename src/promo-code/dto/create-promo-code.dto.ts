@@ -1,4 +1,4 @@
-import { PromoType } from '@/generated/prisma/client';
+import { PromoType } from '@prisma/client';
 import { Transform } from 'class-transformer';
 import {
   IsEnum,
