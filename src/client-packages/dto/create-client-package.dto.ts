@@ -1,4 +1,4 @@
-import { PackagesStatus } from '@/generated/prisma/client';
+import { PackagesStatus } from 'generated/prisma/client';
 import { IsArray, IsBoolean, IsEnum, IsNotEmpty } from 'class-validator';
 
 export class CreateClientPackageDto {

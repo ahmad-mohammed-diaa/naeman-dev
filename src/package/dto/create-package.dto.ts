@@ -1,4 +1,4 @@
-import { PackagesStatus } from '@/generated/prisma/client';
+import { PackagesStatus } from 'generated/prisma/client';
 import { Transform } from 'class-transformer';
 import {
   IsArray,
@@ -8,7 +8,7 @@ import {
   IsNumber,
   IsOptional,
 } from 'class-validator';
-import { translationDto } from '@/class-type/translation';
+import { translationDto } from 'src/class-type/translation';
 
 export class CreatePackageDto {
   @IsNotEmpty()

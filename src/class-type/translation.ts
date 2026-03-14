@@ -1,4 +1,4 @@
-import { Language } from '@/generated/prisma/client';
+import { Language } from 'generated/prisma/client';
 import { Transform } from 'class-transformer';
 import { IsOptional, IsString } from 'class-validator';
 

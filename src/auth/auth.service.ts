@@ -7,13 +7,13 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { compare, hash } from 'bcrypt';
 import { RegisterDto } from './dto/auth-register-dto';
 import { LoginDto } from './dto/auth-login-dto';
 import * as jwt from 'jsonwebtoken';
 import { AppSuccess } from '../utils/AppSuccess';
-import { Client, Prisma, Role, User } from '../generated/prisma/client';
+import { Client, Prisma, Role, User } from 'generated/prisma/client';
 import { Random } from '../utils/generate';
 import { DEFAULT_PASSWORD } from '../utils/constants';
 

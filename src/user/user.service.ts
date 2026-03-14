@@ -6,10 +6,10 @@ import {
   Prisma,
   Role,
   User,
-} from '@/generated/prisma/client';
+} from 'generated/prisma/client';
 import { UserUpdateDto } from './dto/user-update-dto';
-import { AppSuccess } from '@/utils/AppSuccess';
-import { AuthService } from '@/auth/auth.service';
+import { AppSuccess } from 'src/utils/AppSuccess';
+import { AuthService } from 'src/auth/auth.service';
 import { addDays } from 'date-fns';
 
 @Injectable()

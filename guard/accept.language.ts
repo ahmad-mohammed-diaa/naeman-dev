@@ -4,8 +4,8 @@ import {
   ExecutionContext,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthService } from '@/auth/auth.service';
-import { PrismaService } from '@/prisma/prisma.service';
+import { AuthService } from 'src/auth/auth.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AcceptLanguage implements CanActivate {
