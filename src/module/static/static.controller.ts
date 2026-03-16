@@ -6,7 +6,7 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { StaticSwagger } from './static.swagger';
 
-@Controller('v1/static')
+@Controller('v2/static')
 export class StaticController {
   constructor(private readonly staticService: StaticService) {}
 

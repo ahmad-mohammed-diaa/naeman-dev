@@ -14,7 +14,7 @@ import { Permissions } from '@/common/decorators/permissions.decorator';
 import { ClientSwagger } from './client.swagger';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
-@Controller('v1/clients')
+@Controller('v2/clients')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 

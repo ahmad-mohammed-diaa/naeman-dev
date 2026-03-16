@@ -17,7 +17,7 @@ import { AuthSwagger } from './auth.swagger';
 import { UploadFile } from '@/common/decorators/upload.decorator';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
-@Controller('v1/auth')
+@Controller('v2/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

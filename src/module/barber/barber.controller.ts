@@ -22,7 +22,7 @@ import { DateRangeDto } from '../order/dto/date-range.dto';
 import { FindBarbersQuery } from './dto/get-barbers-query.dot';
 import { type User } from 'generated/prisma/client';
 
-@Controller('v1/barbers')
+@Controller('v2/barbers')
 export class BarberController {
   constructor(private readonly barberService: BarberService) {}
 

@@ -20,7 +20,7 @@ import { UserSwagger } from './user.swagger';
 import { UploadFile } from '@/common/decorators/upload.decorator';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
-@Controller('v1/users')
+@Controller('v2/users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

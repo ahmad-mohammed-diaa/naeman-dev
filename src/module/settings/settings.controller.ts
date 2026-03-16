@@ -6,7 +6,7 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { SettingsSwagger } from './settings.swagger';
 
-@Controller('v1/settings')
+@Controller('v2/settings')
 export class SettingsController {
   constructor(private readonly settingsService: SettingsService) {}
 

@@ -7,7 +7,7 @@ import { SlotSwagger } from './slot.swagger';
 import { AvailableSlotQuery } from './dto/available-slot-query.dto';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
-@Controller('v1/slots')
+@Controller('v2/slots')
 export class SlotController {
   constructor(private readonly slotService: SlotService) {}
 

@@ -15,7 +15,7 @@ import { Permissions } from '@/common/decorators/permissions.decorator';
 import { PromoCodeSwagger } from './promo-code.swagger';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
-@Controller('v1/promo-codes')
+@Controller('v2/promo-codes')
 export class PromoCodeController {
   constructor(private readonly promoCodeService: PromoCodeService) {}
 

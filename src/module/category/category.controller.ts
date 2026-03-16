@@ -18,7 +18,7 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { CategorySwagger } from './category.swagger';
 
-@Controller('v1/categories')
+@Controller('v2/categories')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 

@@ -17,7 +17,7 @@ import { Permissions } from '@/common/decorators/permissions.decorator';
 import { ProductSwagger } from './product.swagger';
 import { UploadFile } from '@/common/decorators/upload.decorator';
 
-@Controller('v1/products')
+@Controller('v2/products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 

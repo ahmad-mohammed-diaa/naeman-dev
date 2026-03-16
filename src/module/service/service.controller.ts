@@ -16,7 +16,7 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { ServiceSwagger } from './service.swagger';
 
-@Controller('v1/services')
+@Controller('v2/services')
 export class ServiceController {
   constructor(private readonly serviceService: ServiceService) {}
 

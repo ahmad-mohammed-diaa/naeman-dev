@@ -16,7 +16,7 @@ import { Permissions } from '@/common/decorators/permissions.decorator';
 import { CashierSwagger } from './cashier.swagger';
 import { DateRangeDto } from '../order/dto/date-range.dto';
 
-@Controller('v1/cashiers')
+@Controller('v2/cashiers')
 export class CashierController {
   constructor(private readonly cashierService: CashierService) {}
 

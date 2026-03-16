@@ -18,7 +18,7 @@ import { BranchSwagger } from './branch.swagger';
 import { Lang } from '@/common/decorators/lang.decorator';
 import { Language } from 'generated/prisma/enums';
 
-@Controller('v1/branches')
+@Controller('v2/branches')
 export class BranchController {
   constructor(private readonly branchService: BranchService) {}
 

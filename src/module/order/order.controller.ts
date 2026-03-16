@@ -21,7 +21,7 @@ import { DateRangeDto } from './dto/date-range.dto';
 import { type User } from 'generated/prisma/client';
 
 // @UseGuards(JwtAuthGuard)
-@Controller('v1/orders')
+@Controller('v2/orders')
 @UseGuards(JwtAuthGuard, PermissionGuard)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}

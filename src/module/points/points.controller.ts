@@ -8,7 +8,7 @@ import { PointsSwagger } from './points.swagger';
 import { type User } from 'generated/prisma/client';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
-@Controller('v1/points')
+@Controller('v2/points')
 export class PointsController {
   constructor(private readonly pointsService: PointsService) {}
 

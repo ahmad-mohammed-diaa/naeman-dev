@@ -17,7 +17,7 @@ import { UploadFile } from '@/common/decorators/upload.decorator';
 import { type User } from 'generated/prisma/client';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
-@Controller('v1/notifications')
+@Controller('v2/notifications')
 export class NotificationController {
   constructor(private readonly notificationService: NotificationService) {}
 
