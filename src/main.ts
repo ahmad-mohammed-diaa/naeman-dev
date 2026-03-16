@@ -70,7 +70,17 @@ async function bootstrap() {
     next();
   });
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup('api/docs', app, document, {
+    customSiteTitle: 'API Docs',
+    customfavIcon:
+      'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/favicon-32x32.png',
+    customCssUrl:
+      'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css',
+    customJs: [
+      'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js',
+      'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js',
+    ],
+  });
 
   await app.listen(process.env.PORT ?? 3000, () => {
     console.log(`Application is running on: ${process.env.PORT ?? 3000}`);
