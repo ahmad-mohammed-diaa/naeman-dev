@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -6,7 +10,7 @@ import { AppSuccess } from 'src/utils/AppSuccess';
 import { TranslateName } from '../../lib/lib';
 import { OrderStatus, Prisma, Role } from 'generated/prisma/client';
 import { startOfDay, endOfDay } from 'date-fns';
-import { hashedPassword } from 'src/utils/lib';
+import { comparePassword, hashedPassword } from 'src/utils/lib';
 
 @Injectable()
 export class AdminService {
@@ -297,5 +301,15 @@ export class AdminService {
       slotsArray.push(slot);
     }
     return slotsArray;
+  }
+
+  async CheckPassword(password: string) {
+    const settings = await this.prisma.settings.findFirst({
+      select: { password: true },
+    });
+    if (!password || !(await comparePassword(password, settings.password))) {
+      return false;
+    }
+    return true;
   }
 }

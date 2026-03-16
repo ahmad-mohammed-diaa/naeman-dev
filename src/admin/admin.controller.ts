@@ -49,4 +49,10 @@ export class AdminController {
   update(@Body() updateAdminDto: UpdateAdminDto) {
     return this.adminService.update(updateAdminDto);
   }
+
+  @Roles(['ADMIN', 'CASHIER'])
+  @Post('/check-password')
+  checkPassword(@Body() { password }: { password: string }) {
+    return this.adminService.CheckPassword(password);
+  }
 }
