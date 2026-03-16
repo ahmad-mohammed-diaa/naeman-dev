@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"^/e/projects/repo/naeman/naeman-dev/src/[^/]+\\\\.\\(ts|module\\\\.ts|controller\\\\.ts\\)$\")"
+    ]
+  }
+}
