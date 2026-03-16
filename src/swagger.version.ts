@@ -110,6 +110,7 @@ export function SwaggerVersions(app: INestApplication<any>) {
   });
 
   SwaggerModule.setup('api/docs', app, v1Document, {
+    ...swaggerUiOptions,
     explorer: true, // 👈 this enables the dropdown
     swaggerOptions: {
       urls: [

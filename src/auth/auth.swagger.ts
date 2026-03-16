@@ -1,4 +1,4 @@
-import { ApiDoc } from 'src/common/decorators/api-doc.decorator';
+import { ApiDoc } from '@/common/decorators/api-doc.decorator';
 import { LoginDto } from './dto/auth-login-dto';
 import { RegisterDto } from './dto/auth-register-dto';
 
