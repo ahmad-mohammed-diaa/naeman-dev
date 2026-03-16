@@ -22,11 +22,33 @@ import { StaticModule } from './static/static.module';
 import { AdminModule } from './admin/admin.module';
 import { SmsModule } from './sms/sms.module';
 
+// V2 modules
+import {
+  AuthModuleV2,
+  BranchModuleV2,
+  BarberModuleV2,
+  CategoryModuleV2,
+  CashierModuleV2,
+  ClientModuleV2,
+  NotificationModuleV2,
+  OrderModuleV2,
+  PromoCodeModuleV2,
+  PointsModuleV2,
+  ProductModuleV2,
+  SettingsModuleV2,
+  StaticModuleV2,
+  ServiceModuleV2,
+  SlotModuleV2,
+  UserModuleV2,
+} from './module';
+import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    // V1 modules
     AuthModule,
     UserModule,
     PrismaModule,
@@ -47,6 +69,26 @@ import { SmsModule } from './sms/sms.module';
     StaticModule,
     AdminModule,
     SmsModule,
+    // V2 modules
+    AuthModuleV2,
+    BranchModuleV2,
+    BarberModuleV2,
+    CategoryModuleV2,
+    CashierModuleV2,
+    ClientModuleV2,
+    NotificationModuleV2,
+    OrderModuleV2,
+    PromoCodeModuleV2,
+    PointsModuleV2,
+    ProductModuleV2,
+    SettingsModuleV2,
+    StaticModuleV2,
+    ServiceModuleV2,
+    SlotModuleV2,
+    UserModuleV2,
+
+    //Common
+    CloudinaryModule,
   ],
   controllers: [],
   providers: [TokenService],

@@ -8,6 +8,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UserData } from '../../decorators/user.decorator';
@@ -18,17 +19,21 @@ import { Roles } from 'decorators/roles.decorator';
 import { Lang } from 'decorators/accept.language';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { UpdateOrderServicesDto } from './dto/update-order-services.dto';
+import { OrderSwagger } from './order.swagger';
 
-@Controller('order')
+@ApiTags('Order')
+@Controller('v1/order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @OrderSwagger.getAllOrders()
   @UseGuards(AuthGuard(), RolesGuard)
   @Get()
   async getAllOrders(@UserData('user') user: User, @Lang() lang: Language) {
     return this.orderService.getAllOrders(user.id, lang);
   }
 
+  @OrderSwagger.getNewOrders()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Get('/getAllOrders')
@@ -52,6 +57,7 @@ export class OrderController {
     );
   }
 
+  @OrderSwagger.getBarberOrders()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['BARBER'])
   @Get('/barber-orders')
@@ -63,12 +69,14 @@ export class OrderController {
     return this.orderService.GetBarberOrders(user.id, lang, orderDate);
   }
 
+  @OrderSwagger.getCategories()
   @UseGuards(AuthGuard(), RolesGuard)
   @Get('categories/:id')
   async getCategories(@Param('id') id: string, @Lang() lang: Language) {
     return this.orderService.getNonSelectedServices(id, lang);
   }
 
+  @OrderSwagger.getCashierOrders()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['CASHIER'])
   @Get('/cashier')
@@ -83,6 +91,7 @@ export class OrderController {
     return this.orderService.getCashierOrders(user.id, lang, DateFrom, DateTo);
   }
 
+  @OrderSwagger.getPaidOrders()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Get('/paid-orders')
@@ -91,6 +100,7 @@ export class OrderController {
     return this.orderService.billOrders(DateFrom);
   }
 
+  @OrderSwagger.deleteOrderServices()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Put('/delete-order-services/:id')
@@ -101,6 +111,7 @@ export class OrderController {
     return this.orderService.deleteOrderServices(id, password);
   }
 
+  @OrderSwagger.cancelDeletedServices()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Put('/cancel-deleted-services/:id')
@@ -111,6 +122,7 @@ export class OrderController {
     return this.orderService.cancelDeletedServices(id, password);
   }
 
+  @OrderSwagger.updateOrderServices()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Put('/update-order-services/:id')
@@ -121,6 +133,7 @@ export class OrderController {
     return this.orderService.updateOrderServices(id, updateOrderServicesDto);
   }
 
+  @OrderSwagger.paidOrder()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Put('/paid-order/:id')
@@ -132,12 +145,14 @@ export class OrderController {
     return this.orderService.paidOrder(id, user, body);
   }
 
+  @OrderSwagger.cancelOrder()
   @UseGuards(AuthGuard(), RolesGuard)
   @Put('/cancel-order/:id')
   async cancelOrder(@Param('id') id: string, @UserData('user') user: User) {
     return this.orderService.cancelOrder(id, user.role);
   }
 
+  @OrderSwagger.startOrder()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'BARBER'])
   @Put('/start-order/:id')
@@ -145,6 +160,7 @@ export class OrderController {
     return this.orderService.startOrder(id);
   }
 
+  @OrderSwagger.completeOrder()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'BARBER'])
   @Put('/complete-order/:id')
@@ -152,6 +168,7 @@ export class OrderController {
     return this.orderService.completeOrder(id);
   }
 
+  @OrderSwagger.getOrderDetails()
   @UseGuards(AuthGuard(false), RolesGuard)
   @Post('/OrderDetails')
   async getOrderDetails(
@@ -162,6 +179,7 @@ export class OrderController {
     return this.orderService.GetData(orderDto, user.id, lang);
   }
 
+  @OrderSwagger.getSlots()
   @UseGuards(AuthGuard(false), RolesGuard)
   @Get('/slots')
   async getSlots(
@@ -174,6 +192,7 @@ export class OrderController {
     );
   }
 
+  @OrderSwagger.updateOrder()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER', 'BARBER'])
   @Put('/:id')
@@ -185,12 +204,14 @@ export class OrderController {
     return this.orderService.updateOrder(id, updateOrderDto, user.role);
   }
 
+  @OrderSwagger.getOrderById()
   @UseGuards(AuthGuard(), RolesGuard)
   @Get(':id')
   async getOrderById(@Param('id') id: string) {
     return this.orderService.getOrderById(id);
   }
 
+  @OrderSwagger.createOrder()
   @UseGuards(AuthGuard(), RolesGuard)
   @Post()
   async createOrder(
@@ -201,6 +222,7 @@ export class OrderController {
     return this.orderService.createOrder(createOrderDto, user.id, lang);
   }
 
+  @OrderSwagger.generateSlot()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Post('/generate-slot')

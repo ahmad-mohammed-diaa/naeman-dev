@@ -39,7 +39,10 @@ export const AuthSwagger = {
     ApiDoc({
       summary: 'Logout — invalidates current session token',
       auth: true,
-      res: { ok: MessageResponseDto, unauthorized: { message: 'Not authenticated' } },
+      res: {
+        ok: MessageResponseDto,
+        unauthorized: { message: 'Not authenticated' },
+      },
     }),
   refresh: () =>
     ApiDoc({

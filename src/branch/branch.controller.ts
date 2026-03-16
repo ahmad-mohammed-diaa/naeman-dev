@@ -12,6 +12,7 @@ import {
   UseGuards,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
@@ -23,11 +24,14 @@ import { CategoryType, Language } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';
+import { BranchSwagger } from './branch.swagger';
 
-@Controller('branch')
+@ApiTags('Branch')
+@Controller('v1/branch')
 export class BranchController {
   constructor(private readonly branchService: BranchService) {}
 
+  @BranchSwagger.create()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Post()
@@ -39,12 +43,14 @@ export class BranchController {
     return this.branchService.create(createBranchDto, file);
   }
 
+  @BranchSwagger.findAll()
   @UseGuards(AuthGuard(false))
   @Get()
   findAll(@Lang() language: Language) {
     return this.branchService.findAll(language);
   }
 
+  @BranchSwagger.findOne()
   @UseGuards(AuthGuard(false))
   @Get(':id')
   findOne(
@@ -56,6 +62,7 @@ export class BranchController {
     return this.branchService.findOne(id, type, Date, language);
   }
 
+  @BranchSwagger.update()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @UseInterceptors(FileInterceptor('file', multerConfig('branches')))
@@ -68,6 +75,7 @@ export class BranchController {
     return this.branchService.update(id, updateBranchDto, file);
   }
 
+  @BranchSwagger.remove()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Delete(':id')

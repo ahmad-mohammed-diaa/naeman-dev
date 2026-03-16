@@ -10,6 +10,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CategoryService } from './category.service';
 import {
   Category,
@@ -25,11 +26,14 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { AppSuccess } from 'src/utils/AppSuccess';
 import { UserData } from 'decorators/user.decorator';
 import { Lang } from '../../decorators/accept.language';
+import { CategorySwagger } from './category.swagger';
 
-@Controller('category')
+@ApiTags('Category')
+@Controller('v1/category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @CategorySwagger.findAllCategories()
   @UseGuards(AuthGuard(false))
   @Get()
   public async findAllCategories(
@@ -40,6 +44,7 @@ export class CategoryController {
     return await this.categoryService.findAllCategories(user, lang, type);
   }
 
+  @CategorySwagger.findCategoryById()
   @UseGuards(AuthGuard(false))
   @Get(':id')
   public async findCategoryById(
@@ -49,6 +54,7 @@ export class CategoryController {
     return await this.categoryService.findCategoryById(id, language);
   }
 
+  @CategorySwagger.createCategory()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Post()
@@ -62,6 +68,7 @@ export class CategoryController {
     );
   }
 
+  @CategorySwagger.updateCategory()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Put(':id')
@@ -77,6 +84,7 @@ export class CategoryController {
     );
   }
 
+  @CategorySwagger.deleteCategory()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Delete(':id')

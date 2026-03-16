@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFile,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PackageService } from './package.service';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { AuthGuard } from 'guard/auth.guard';
@@ -19,12 +20,15 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from '../../src/config/multer.config';
 import { Lang } from 'decorators/accept.language';
 import { Language } from 'generated/prisma/client';
+import { PackageSwagger } from './package.swagger';
 
+@ApiTags('Package')
 @UseGuards(AuthGuard(), RolesGuard)
-@Controller('package')
+@Controller('v1/package')
 export class PackageController {
   constructor(private readonly packageService: PackageService) {}
 
+  @PackageSwagger.create()
   @UseInterceptors(FileInterceptor('file', multerConfig('packages')))
   @Post()
   create(
@@ -34,24 +38,28 @@ export class PackageController {
     return this.packageService.create(createPackageDto, file);
   }
 
+  @PackageSwagger.findAll()
   @Get()
   findAll(@Lang() language: Language) {
     return this.packageService.findAll(language);
   }
 
+  @PackageSwagger.findOne()
   @Get(':id')
   findOne(@Param('id') id: string, @Lang() language: Language) {
     return this.packageService.findOne(id, language);
   }
 
+  @PackageSwagger.update()
   @Roles(['ADMIN'])
   @Put(':id')
   update(@Param('id') id: string) {
     return this.packageService.update(id);
   }
 
+  @PackageSwagger.remove()
   @Delete('delete-many')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') _id: string) {
     return this.packageService.remove();
   }
 }

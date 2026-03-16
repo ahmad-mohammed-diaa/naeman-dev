@@ -7,6 +7,7 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import * as fs from 'fs';
 
 import { PaymobService } from './paymob.service';
@@ -20,10 +21,12 @@ import { CreatePaymobDto } from './dto/create-paymob.dto';
 import { join } from 'path';
 import { Lang } from 'decorators/accept.language';
 import { Translation } from 'src/class-type/translation';
+import { PaymobSwagger } from './paymob.swagger';
 
 config();
 
-@Controller('paymob')
+@ApiTags('Paymob')
+@Controller('v1/paymob')
 export class PaymobController {
   private readonly IntegrationIds = {
     card: process.env.PAYMOB_CARD_INTEGRATION_ID,
@@ -35,6 +38,7 @@ export class PaymobController {
     private readonly prisma: PrismaService,
   ) {}
 
+  @PaymobSwagger.getPaymentKey()
   @UseGuards(AuthGuard())
   @Post('payment-key')
   async getPaymentKey(
@@ -95,10 +99,10 @@ export class PaymobController {
     return res.redirect(paymentKey);
   }
 
+  @PaymobSwagger.verifyPaymobQuery()
   @Get('verify')
   async verifyPaymobQuery(
     @Query() query: any,
-    // @UserData('user') user: User,
     @Res() res: Response,
     @Lang() lang: Language,
   ) {
@@ -113,23 +117,14 @@ export class PaymobController {
     );
 
     res.redirect('api/paymob/config/transaction-status');
-
-    // let page = fs.readFileSync('config/transaction-status.html', 'utf-8');
-    // page = page.replace(
-    //   `{{ isSuccess }}`,
-    //   JSON.stringify(isSuccess.toString()),
-    // );
-    // res.send(page);
   }
 
+  @PaymobSwagger.test()
   @Get('config/transaction-status')
   test(@Res() res: Response) {
     const isSuccess = false;
 
-    // res.redirect('/config/transaction-status.html');
-
     let page = fs.readFileSync('config/transaction-status.html', 'utf-8');
-    // page = page.replace('{{ .Success }}', isSuccess.toString());
     res.send(page);
   }
 }

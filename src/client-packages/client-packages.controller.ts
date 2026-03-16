@@ -9,16 +9,20 @@ import {
   UseGuards,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ClientPackagesService } from './client-packages.service';
-import { Language, User } from 'generated/prisma/client';
+import { Language } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { Lang } from 'decorators/accept.language';
+import { ClientPackagesSwagger } from './client-packages.swagger';
 
+@ApiTags('Client Packages')
 @UseGuards(AuthGuard())
-@Controller('client-packages')
+@Controller('v1/client-packages')
 export class ClientPackagesController {
   constructor(private readonly clientPackagesService: ClientPackagesService) {}
 
+  @ClientPackagesSwagger.create()
   @Post()
   create(
     @Body('phone') phone: string,
@@ -28,21 +32,25 @@ export class ClientPackagesController {
     return this.clientPackagesService.create(packageId, phone, lang);
   }
 
+  @ClientPackagesSwagger.findAll()
   @Get()
   findAll(@Lang() language: Language) {
     return this.clientPackagesService.findAll(language);
   }
 
+  @ClientPackagesSwagger.findOne()
   @Get(':id')
   findOne(@Param('id') id: string, @Lang() language: Language) {
     return this.clientPackagesService.findOne(id, language);
   }
 
+  @ClientPackagesSwagger.update()
   @Patch(':id')
   update(@Param('id') id: string) {
     return this.clientPackagesService.update(+id);
   }
 
+  @ClientPackagesSwagger.remove()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.clientPackagesService.remove(id);

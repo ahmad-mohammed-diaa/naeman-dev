@@ -10,6 +10,7 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ServiceService } from './service.service';
 import { Language, Service } from 'generated/prisma/client';
 import { CreateServiceDto } from './dto/create-service.dto';
@@ -21,17 +22,21 @@ import { Lang } from '../../decorators/accept.language';
 import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';
+import { ServiceSwagger } from './service.swagger';
 
-@Controller('service')
+@ApiTags('Service')
+@Controller('v1/service')
 export class ServiceController {
   constructor(private readonly serviceService: ServiceService) {}
 
+  @ServiceSwagger.findAllService()
   @UseGuards(AuthGuard(false))
   @Get()
   public async findAllService(@Lang() lang: Language) {
     return await this.serviceService.getAllService(lang);
   }
 
+  @ServiceSwagger.findServiceById()
   @UseGuards(AuthGuard(false))
   @Get(':id')
   public async findServiceById(
@@ -41,6 +46,7 @@ export class ServiceController {
     return await this.serviceService.getServiceById(id, language);
   }
 
+  @ServiceSwagger.createService()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Post()
@@ -57,6 +63,7 @@ export class ServiceController {
     );
   }
 
+  @ServiceSwagger.updateService()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Put(':id')
@@ -75,6 +82,7 @@ export class ServiceController {
     );
   }
 
+  @ServiceSwagger.softDeleteService()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Put(':id/status')

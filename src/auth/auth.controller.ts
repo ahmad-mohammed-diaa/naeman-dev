@@ -9,6 +9,7 @@ import {
   ConflictException,
   Param,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/auth-login-dto';
 import { RegisterDto } from './dto/auth-register-dto';
@@ -19,11 +20,14 @@ import { multerConfig } from '../../src/config/multer.config';
 import { AppSuccess } from 'src/utils/AppSuccess';
 import { Roles } from 'decorators/roles.decorator';
 import { RolesGuard } from 'guard/role.guard';
+import { AuthSwagger } from './auth.swagger';
 
-@Controller('auth')
+@ApiTags('Auth')
+@Controller('v1/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @AuthSwagger.signup()
   @Post('/signup')
   @UseInterceptors(FileInterceptor('file', multerConfig('avatars')))
   signup(
@@ -33,17 +37,20 @@ export class AuthController {
     return this.authService.signup(createAuthDto, file);
   }
 
+  @AuthSwagger.login()
   @Post('/login')
   login(@Body() createAuthDto: LoginDto) {
     return this.authService.login(createAuthDto);
   }
 
+  @AuthSwagger.logout()
   @Post('/logout')
   @UseGuards(AuthGuard())
   logout(@UserData('token') token: string) {
     return this.authService.logout(token);
   }
 
+  @AuthSwagger.checkReferralCode()
   @Post('/referral-code')
   checkReferralCode(@Body('referralCode') referralCode: string) {
     const isCodeValid = this.authService.checkReferralCode(referralCode);
@@ -56,12 +63,14 @@ export class AuthController {
     );
   }
 
+  @AuthSwagger.changePassword()
   @UseGuards(AuthGuard())
   @Patch('/change-password/:id')
   changePassword(@Param('id') id: string, @Body('password') password: string) {
     return this.authService.changePassword(id, password);
   }
 
+  @AuthSwagger.resetPassword()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Patch('/reset-password')
