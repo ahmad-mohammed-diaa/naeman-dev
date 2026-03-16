@@ -80,11 +80,6 @@ export function SwaggerVersions(app: INestApplication<any>) {
     ],
   });
 
-  SwaggerModule.setup('api/docs/v1', app, v1Document, {
-    customSiteTitle: 'Naeman API v1 Docs',
-    ...swaggerUiOptions,
-  });
-
   // --- V2 Swagger ---
   const v2Config = new DocumentBuilder()
     .setTitle('Naeman API v2')
@@ -114,8 +109,29 @@ export function SwaggerVersions(app: INestApplication<any>) {
     ],
   });
 
-  SwaggerModule.setup('api/docs/v2', app, v2Document, {
-    customSiteTitle: 'Naeman API v2 Docs',
-    ...swaggerUiOptions,
+  SwaggerModule.setup('api/docs', app, v1Document, {
+    explorer: true, // 👈 this enables the dropdown
+    swaggerOptions: {
+      urls: [
+        {
+          url: '/api/docs-json?v=1',
+          name: 'v1',
+        },
+        {
+          url: '/api/docs-json?v=2',
+          name: 'v2',
+        },
+      ],
+    },
+  });
+
+  app.getHttpAdapter().get('/api/docs-json', (req, res) => {
+    const version = req.query.v;
+
+    if (version === '2') {
+      return res.json(v2Document);
+    }
+
+    return res.json(v1Document);
   });
 }

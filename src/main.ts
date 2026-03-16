@@ -34,7 +34,12 @@ async function bootstrap() {
       },
     }),
   );
+
+  // app.enableVersioning({
+  //   type: 'URI',
+  // });
   SwaggerVersions(app);
+
   const isDev = process.env.NODE_ENV === 'development';
   const devApiKey =
     isDev && Buffer.from(process.env.API_KEY || '').toString('base64');
