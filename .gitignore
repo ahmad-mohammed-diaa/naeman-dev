@@ -45,6 +45,8 @@ serviceAccountKey.json
 .env.production.local
 .env.local
 
+# TXT Files
+*.txt
 
 
 # temp directory
