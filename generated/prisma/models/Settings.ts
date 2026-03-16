@@ -27,7 +27,7 @@ export type AggregateSettings = {
 }
 
 export type SettingsAvgAggregateOutputType = {
-  PointsPercentage: number | null
+  pointsPercentage: number | null
   referralPoints: number | null
   pointLimit: number | null
   canceledOrder: number | null
@@ -36,7 +36,7 @@ export type SettingsAvgAggregateOutputType = {
 }
 
 export type SettingsSumAggregateOutputType = {
-  PointsPercentage: number | null
+  pointsPercentage: number | null
   referralPoints: number | null
   pointLimit: number | null
   canceledOrder: number | null
@@ -46,7 +46,7 @@ export type SettingsSumAggregateOutputType = {
 
 export type SettingsMinAggregateOutputType = {
   id: string | null
-  PointsPercentage: number | null
+  pointsPercentage: number | null
   referralPoints: number | null
   pointLimit: number | null
   password: string | null
@@ -58,7 +58,7 @@ export type SettingsMinAggregateOutputType = {
 
 export type SettingsMaxAggregateOutputType = {
   id: string | null
-  PointsPercentage: number | null
+  pointsPercentage: number | null
   referralPoints: number | null
   pointLimit: number | null
   password: string | null
@@ -70,7 +70,7 @@ export type SettingsMaxAggregateOutputType = {
 
 export type SettingsCountAggregateOutputType = {
   id: number
-  PointsPercentage: number
+  pointsPercentage: number
   referralPoints: number
   pointLimit: number
   password: number
@@ -83,7 +83,7 @@ export type SettingsCountAggregateOutputType = {
 
 
 export type SettingsAvgAggregateInputType = {
-  PointsPercentage?: true
+  pointsPercentage?: true
   referralPoints?: true
   pointLimit?: true
   canceledOrder?: true
@@ -92,7 +92,7 @@ export type SettingsAvgAggregateInputType = {
 }
 
 export type SettingsSumAggregateInputType = {
-  PointsPercentage?: true
+  pointsPercentage?: true
   referralPoints?: true
   pointLimit?: true
   canceledOrder?: true
@@ -102,7 +102,7 @@ export type SettingsSumAggregateInputType = {
 
 export type SettingsMinAggregateInputType = {
   id?: true
-  PointsPercentage?: true
+  pointsPercentage?: true
   referralPoints?: true
   pointLimit?: true
   password?: true
@@ -114,7 +114,7 @@ export type SettingsMinAggregateInputType = {
 
 export type SettingsMaxAggregateInputType = {
   id?: true
-  PointsPercentage?: true
+  pointsPercentage?: true
   referralPoints?: true
   pointLimit?: true
   password?: true
@@ -126,7 +126,7 @@ export type SettingsMaxAggregateInputType = {
 
 export type SettingsCountAggregateInputType = {
   id?: true
-  PointsPercentage?: true
+  pointsPercentage?: true
   referralPoints?: true
   pointLimit?: true
   password?: true
@@ -225,7 +225,7 @@ export type SettingsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type SettingsGroupByOutputType = {
   id: string
-  PointsPercentage: number
+  pointsPercentage: number
   referralPoints: number
   pointLimit: number
   password: string | null
@@ -260,7 +260,7 @@ export type SettingsWhereInput = {
   OR?: Prisma.SettingsWhereInput[]
   NOT?: Prisma.SettingsWhereInput | Prisma.SettingsWhereInput[]
   id?: Prisma.StringFilter<"Settings"> | string
-  PointsPercentage?: Prisma.IntFilter<"Settings"> | number
+  pointsPercentage?: Prisma.IntFilter<"Settings"> | number
   referralPoints?: Prisma.IntFilter<"Settings"> | number
   pointLimit?: Prisma.IntFilter<"Settings"> | number
   password?: Prisma.StringNullableFilter<"Settings"> | string | null
@@ -272,7 +272,7 @@ export type SettingsWhereInput = {
 
 export type SettingsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -287,7 +287,7 @@ export type SettingsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SettingsWhereInput | Prisma.SettingsWhereInput[]
   OR?: Prisma.SettingsWhereInput[]
   NOT?: Prisma.SettingsWhereInput | Prisma.SettingsWhereInput[]
-  PointsPercentage?: Prisma.IntFilter<"Settings"> | number
+  pointsPercentage?: Prisma.IntFilter<"Settings"> | number
   referralPoints?: Prisma.IntFilter<"Settings"> | number
   pointLimit?: Prisma.IntFilter<"Settings"> | number
   password?: Prisma.StringNullableFilter<"Settings"> | string | null
@@ -299,7 +299,7 @@ export type SettingsWhereUniqueInput = Prisma.AtLeast<{
 
 export type SettingsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -319,7 +319,7 @@ export type SettingsScalarWhereWithAggregatesInput = {
   OR?: Prisma.SettingsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SettingsScalarWhereWithAggregatesInput | Prisma.SettingsScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Settings"> | string
-  PointsPercentage?: Prisma.IntWithAggregatesFilter<"Settings"> | number
+  pointsPercentage?: Prisma.IntWithAggregatesFilter<"Settings"> | number
   referralPoints?: Prisma.IntWithAggregatesFilter<"Settings"> | number
   pointLimit?: Prisma.IntWithAggregatesFilter<"Settings"> | number
   password?: Prisma.StringNullableWithAggregatesFilter<"Settings"> | string | null
@@ -331,7 +331,7 @@ export type SettingsScalarWhereWithAggregatesInput = {
 
 export type SettingsCreateInput = {
   id?: string
-  PointsPercentage?: number
+  pointsPercentage?: number
   referralPoints?: number
   pointLimit?: number
   password?: string | null
@@ -343,7 +343,7 @@ export type SettingsCreateInput = {
 
 export type SettingsUncheckedCreateInput = {
   id?: string
-  PointsPercentage?: number
+  pointsPercentage?: number
   referralPoints?: number
   pointLimit?: number
   password?: string | null
@@ -355,7 +355,7 @@ export type SettingsUncheckedCreateInput = {
 
 export type SettingsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
+  pointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
   referralPoints?: Prisma.IntFieldUpdateOperationsInput | number
   pointLimit?: Prisma.IntFieldUpdateOperationsInput | number
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -367,7 +367,7 @@ export type SettingsUpdateInput = {
 
 export type SettingsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
+  pointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
   referralPoints?: Prisma.IntFieldUpdateOperationsInput | number
   pointLimit?: Prisma.IntFieldUpdateOperationsInput | number
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -379,7 +379,7 @@ export type SettingsUncheckedUpdateInput = {
 
 export type SettingsCreateManyInput = {
   id?: string
-  PointsPercentage?: number
+  pointsPercentage?: number
   referralPoints?: number
   pointLimit?: number
   password?: string | null
@@ -391,7 +391,7 @@ export type SettingsCreateManyInput = {
 
 export type SettingsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
+  pointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
   referralPoints?: Prisma.IntFieldUpdateOperationsInput | number
   pointLimit?: Prisma.IntFieldUpdateOperationsInput | number
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -403,7 +403,7 @@ export type SettingsUpdateManyMutationInput = {
 
 export type SettingsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  PointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
+  pointsPercentage?: Prisma.IntFieldUpdateOperationsInput | number
   referralPoints?: Prisma.IntFieldUpdateOperationsInput | number
   pointLimit?: Prisma.IntFieldUpdateOperationsInput | number
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -415,7 +415,7 @@ export type SettingsUncheckedUpdateManyInput = {
 
 export type SettingsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   password?: Prisma.SortOrder
@@ -426,7 +426,7 @@ export type SettingsCountOrderByAggregateInput = {
 }
 
 export type SettingsAvgOrderByAggregateInput = {
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   canceledOrder?: Prisma.SortOrder
@@ -436,7 +436,7 @@ export type SettingsAvgOrderByAggregateInput = {
 
 export type SettingsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   password?: Prisma.SortOrder
@@ -448,7 +448,7 @@ export type SettingsMaxOrderByAggregateInput = {
 
 export type SettingsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   password?: Prisma.SortOrder
@@ -459,7 +459,7 @@ export type SettingsMinOrderByAggregateInput = {
 }
 
 export type SettingsSumOrderByAggregateInput = {
-  PointsPercentage?: Prisma.SortOrder
+  pointsPercentage?: Prisma.SortOrder
   referralPoints?: Prisma.SortOrder
   pointLimit?: Prisma.SortOrder
   canceledOrder?: Prisma.SortOrder
@@ -475,7 +475,7 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
 
 export type SettingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  PointsPercentage?: boolean
+  pointsPercentage?: boolean
   referralPoints?: boolean
   pointLimit?: boolean
   password?: boolean
@@ -487,7 +487,7 @@ export type SettingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type SettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  PointsPercentage?: boolean
+  pointsPercentage?: boolean
   referralPoints?: boolean
   pointLimit?: boolean
   password?: boolean
@@ -499,7 +499,7 @@ export type SettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type SettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  PointsPercentage?: boolean
+  pointsPercentage?: boolean
   referralPoints?: boolean
   pointLimit?: boolean
   password?: boolean
@@ -511,7 +511,7 @@ export type SettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type SettingsSelectScalar = {
   id?: boolean
-  PointsPercentage?: boolean
+  pointsPercentage?: boolean
   referralPoints?: boolean
   pointLimit?: boolean
   password?: boolean
@@ -521,14 +521,14 @@ export type SettingsSelectScalar = {
   effectiveSlotDurationDate?: boolean
 }
 
-export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "PointsPercentage" | "referralPoints" | "pointLimit" | "password" | "canceledOrder" | "slotDuration" | "maxDaysBooking" | "effectiveSlotDurationDate", ExtArgs["result"]["settings"]>
+export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pointsPercentage" | "referralPoints" | "pointLimit" | "password" | "canceledOrder" | "slotDuration" | "maxDaysBooking" | "effectiveSlotDurationDate", ExtArgs["result"]["settings"]>
 
 export type $SettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Settings"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    PointsPercentage: number
+    pointsPercentage: number
     referralPoints: number
     pointLimit: number
     password: string | null
@@ -960,7 +960,7 @@ export interface Prisma__SettingsClient<T, Null = never, ExtArgs extends runtime
  */
 export interface SettingsFieldRefs {
   readonly id: Prisma.FieldRef<"Settings", 'String'>
-  readonly PointsPercentage: Prisma.FieldRef<"Settings", 'Int'>
+  readonly pointsPercentage: Prisma.FieldRef<"Settings", 'Int'>
   readonly referralPoints: Prisma.FieldRef<"Settings", 'Int'>
   readonly pointLimit: Prisma.FieldRef<"Settings", 'Int'>
   readonly password: Prisma.FieldRef<"Settings", 'String'>

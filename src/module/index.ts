@@ -1,0 +1,13 @@
+export { AuthModule } from './auth/auth.module';
+export { UserModule } from './user/user.module';
+export { CategoryModule } from './category/category.module';
+export { ServiceModule } from './service/service.module';
+export { OrderModule } from './order/order.module';
+export { BranchModule } from './branch/branch.module';
+export { PromoCodeModule } from './promo-code/promo-code.module';
+export { SettingsModule } from './settings/settings.module';
+// export {ComplainModule} from './complain/complain.module';
+export { PointsModule } from './points/points.module';
+export { NotificationModule } from './notification/notification.module';
+export { ProductModule } from './product/product.module';
+export { StaticModule } from './static/static.module';

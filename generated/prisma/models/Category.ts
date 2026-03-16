@@ -183,7 +183,7 @@ export type CategoryWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   type?: Prisma.EnumCategoryTypeFilter<"Category"> | $Enums.CategoryType
   services?: Prisma.ServiceListRelationFilter
-  Translation?: Prisma.TranslationListRelationFilter
+  translation?: Prisma.TranslationListRelationFilter
 }
 
 export type CategoryOrderByWithRelationInput = {
@@ -193,7 +193,7 @@ export type CategoryOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   type?: Prisma.SortOrder
   services?: Prisma.ServiceOrderByRelationAggregateInput
-  Translation?: Prisma.TranslationOrderByRelationAggregateInput
+  translation?: Prisma.TranslationOrderByRelationAggregateInput
 }
 
 export type CategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -206,7 +206,7 @@ export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   type?: Prisma.EnumCategoryTypeFilter<"Category"> | $Enums.CategoryType
   services?: Prisma.ServiceListRelationFilter
-  Translation?: Prisma.TranslationListRelationFilter
+  translation?: Prisma.TranslationListRelationFilter
 }, "id">
 
 export type CategoryOrderByWithAggregationInput = {
@@ -238,7 +238,7 @@ export type CategoryCreateInput = {
   updatedAt?: Date | string
   type?: $Enums.CategoryType
   services?: Prisma.ServiceCreateNestedManyWithoutCategoryInput
-  Translation?: Prisma.TranslationCreateNestedManyWithoutCategoryInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateInput = {
@@ -248,7 +248,7 @@ export type CategoryUncheckedCreateInput = {
   updatedAt?: Date | string
   type?: $Enums.CategoryType
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutCategoryInput
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutCategoryInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUpdateInput = {
@@ -258,7 +258,7 @@ export type CategoryUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
   services?: Prisma.ServiceUpdateManyWithoutCategoryNestedInput
-  Translation?: Prisma.TranslationUpdateManyWithoutCategoryNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateInput = {
@@ -268,7 +268,7 @@ export type CategoryUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
   services?: Prisma.ServiceUncheckedUpdateManyWithoutCategoryNestedInput
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutCategoryNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryCreateManyInput = {
@@ -417,7 +417,7 @@ export type CategoryCreateWithoutServicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   type?: $Enums.CategoryType
-  Translation?: Prisma.TranslationCreateNestedManyWithoutCategoryInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateWithoutServicesInput = {
@@ -426,7 +426,7 @@ export type CategoryUncheckedCreateWithoutServicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   type?: $Enums.CategoryType
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutCategoryInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryCreateOrConnectWithoutServicesInput = {
@@ -451,7 +451,7 @@ export type CategoryUpdateWithoutServicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Translation?: Prisma.TranslationUpdateManyWithoutCategoryNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateWithoutServicesInput = {
@@ -460,7 +460,7 @@ export type CategoryUncheckedUpdateWithoutServicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutCategoryNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 
@@ -470,12 +470,12 @@ export type CategoryUncheckedUpdateWithoutServicesInput = {
 
 export type CategoryCountOutputType = {
   services: number
-  Translation: number
+  translation: number
 }
 
 export type CategoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   services?: boolean | CategoryCountOutputTypeCountServicesArgs
-  Translation?: boolean | CategoryCountOutputTypeCountTranslationArgs
+  translation?: boolean | CategoryCountOutputTypeCountTranslationArgs
 }
 
 /**
@@ -510,7 +510,7 @@ export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   type?: boolean
   services?: boolean | Prisma.Category$servicesArgs<ExtArgs>
-  Translation?: boolean | Prisma.Category$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Category$translationArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["category"]>
 
@@ -541,7 +541,7 @@ export type CategorySelectScalar = {
 export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "available" | "createdAt" | "updatedAt" | "type", ExtArgs["result"]["category"]>
 export type CategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   services?: boolean | Prisma.Category$servicesArgs<ExtArgs>
-  Translation?: boolean | Prisma.Category$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Category$translationArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -551,7 +551,7 @@ export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Category"
   objects: {
     services: Prisma.$ServicePayload<ExtArgs>[]
-    Translation: Prisma.$TranslationPayload<ExtArgs>[]
+    translation: Prisma.$TranslationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -954,7 +954,7 @@ readonly fields: CategoryFieldRefs;
 export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   services<T extends Prisma.Category$servicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Translation<T extends Prisma.Category$TranslationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$TranslationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translation<T extends Prisma.Category$translationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$translationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1406,9 +1406,9 @@ export type Category$servicesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Category.Translation
+ * Category.translation
  */
-export type Category$TranslationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Category$translationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Translation
    */

@@ -26,12 +26,12 @@ export class BranchService {
         ...createBranchDto,
         latitude: createBranchDto.latitude.toString(),
         longitude: createBranchDto.longitude.toString(),
-        Translation: createTranslation(createBranchDto),
+        translation: createTranslation(createBranchDto),
       },
       include: Translation(),
     });
 
-    const { Translation: branchTranslation, ...rest } = newBranch;
+    const { translation: branchTranslation, ...rest } = newBranch;
 
     const branch = {
       name: branchTranslation[0].name,
@@ -55,12 +55,12 @@ export class BranchService {
       .findFirst()
       .then((s) => s?.maxDaysBooking);
     const branches = fetchBranches.map((branch) => {
-      const { Translation, ...rest } = branch;
+      const { translation, ...rest } = branch;
       return {
         ...rest,
-        nameEN: Translation.find((t) => t.language === 'EN')?.name,
-        nameAR: Translation.find((t) => t.language === 'AR')?.name,
-        name: Translation.find((t) => t.language === language)?.name,
+        nameEN: translation.find((t) => t.language === 'EN')?.name,
+        nameAR: translation.find((t) => t.language === 'AR')?.name,
+        name: translation.find((t) => t.language === language)?.name,
         maxDaysBooking,
       };
     });
@@ -122,7 +122,7 @@ export class BranchService {
       throw new NotFoundException(`Branch with ID ${id} not found`);
 
     const {
-      Translation: branchTranslation,
+      translation: branchTranslation,
 
       ...rest
     } = fetchedBranch;
@@ -152,8 +152,8 @@ export class BranchService {
       data: {
         ...updateBranchDto,
         ...(branchImg && { branchImg }),
-        ...(updateBranchDto.Translation && {
-          Translation: updateTranslation(updateBranchDto),
+        ...(updateBranchDto.translation && {
+          translation: updateTranslation(updateBranchDto),
         }),
       },
     });

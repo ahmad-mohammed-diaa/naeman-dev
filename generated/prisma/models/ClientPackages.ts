@@ -216,7 +216,8 @@ export type ClientPackagesWhereInput = {
   clientId?: Prisma.StringFilter<"ClientPackages"> | string
   packageService?: Prisma.PackagesServicesListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
-  Translation?: Prisma.TranslationDesListRelationFilter
+  translation?: Prisma.TranslationDesListRelationFilter
+  orderItems?: Prisma.OrderItemListRelationFilter
 }
 
 export type ClientPackagesOrderByWithRelationInput = {
@@ -231,7 +232,8 @@ export type ClientPackagesOrderByWithRelationInput = {
   clientId?: Prisma.SortOrder
   packageService?: Prisma.PackagesServicesOrderByRelationAggregateInput
   client?: Prisma.ClientOrderByWithRelationInput
-  Translation?: Prisma.TranslationDesOrderByRelationAggregateInput
+  translation?: Prisma.TranslationDesOrderByRelationAggregateInput
+  orderItems?: Prisma.OrderItemOrderByRelationAggregateInput
 }
 
 export type ClientPackagesWhereUniqueInput = Prisma.AtLeast<{
@@ -249,7 +251,8 @@ export type ClientPackagesWhereUniqueInput = Prisma.AtLeast<{
   clientId?: Prisma.StringFilter<"ClientPackages"> | string
   packageService?: Prisma.PackagesServicesListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
-  Translation?: Prisma.TranslationDesListRelationFilter
+  translation?: Prisma.TranslationDesListRelationFilter
+  orderItems?: Prisma.OrderItemListRelationFilter
 }, "id">
 
 export type ClientPackagesOrderByWithAggregationInput = {
@@ -293,7 +296,8 @@ export type ClientPackagesCreateInput = {
   updatedAt?: Date | string
   packageService?: Prisma.PackagesServicesCreateNestedManyWithoutClientPackagesInput
   client: Prisma.ClientCreateNestedOneWithoutClientPackagesInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesUncheckedCreateInput = {
@@ -307,7 +311,8 @@ export type ClientPackagesUncheckedCreateInput = {
   updatedAt?: Date | string
   clientId: string
   packageService?: Prisma.PackagesServicesUncheckedCreateNestedManyWithoutClientPackagesInput
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesUpdateInput = {
@@ -321,7 +326,8 @@ export type ClientPackagesUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   packageService?: Prisma.PackagesServicesUpdateManyWithoutClientPackagesNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutClientPackagesNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesUncheckedUpdateInput = {
@@ -335,7 +341,8 @@ export type ClientPackagesUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   packageService?: Prisma.PackagesServicesUncheckedUpdateManyWithoutClientPackagesNestedInput
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesCreateManyInput = {
@@ -487,6 +494,22 @@ export type ClientPackagesUpdateOneWithoutTranslationNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientPackagesUpdateToOneWithWhereWithoutTranslationInput, Prisma.ClientPackagesUpdateWithoutTranslationInput>, Prisma.ClientPackagesUncheckedUpdateWithoutTranslationInput>
 }
 
+export type ClientPackagesCreateNestedOneWithoutOrderItemsInput = {
+  create?: Prisma.XOR<Prisma.ClientPackagesCreateWithoutOrderItemsInput, Prisma.ClientPackagesUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.ClientPackagesCreateOrConnectWithoutOrderItemsInput
+  connect?: Prisma.ClientPackagesWhereUniqueInput
+}
+
+export type ClientPackagesUpdateOneWithoutOrderItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientPackagesCreateWithoutOrderItemsInput, Prisma.ClientPackagesUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.ClientPackagesCreateOrConnectWithoutOrderItemsInput
+  upsert?: Prisma.ClientPackagesUpsertWithoutOrderItemsInput
+  disconnect?: Prisma.ClientPackagesWhereInput | boolean
+  delete?: Prisma.ClientPackagesWhereInput | boolean
+  connect?: Prisma.ClientPackagesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientPackagesUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.ClientPackagesUpdateWithoutOrderItemsInput>, Prisma.ClientPackagesUncheckedUpdateWithoutOrderItemsInput>
+}
+
 export type ClientPackagesCreateNestedOneWithoutPackageServiceInput = {
   create?: Prisma.XOR<Prisma.ClientPackagesCreateWithoutPackageServiceInput, Prisma.ClientPackagesUncheckedCreateWithoutPackageServiceInput>
   connectOrCreate?: Prisma.ClientPackagesCreateOrConnectWithoutPackageServiceInput
@@ -511,7 +534,8 @@ export type ClientPackagesCreateWithoutClientInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   packageService?: Prisma.PackagesServicesCreateNestedManyWithoutClientPackagesInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesUncheckedCreateWithoutClientInput = {
@@ -524,7 +548,8 @@ export type ClientPackagesUncheckedCreateWithoutClientInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   packageService?: Prisma.PackagesServicesUncheckedCreateNestedManyWithoutClientPackagesInput
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesCreateOrConnectWithoutClientInput = {
@@ -579,6 +604,7 @@ export type ClientPackagesCreateWithoutTranslationInput = {
   updatedAt?: Date | string
   packageService?: Prisma.PackagesServicesCreateNestedManyWithoutClientPackagesInput
   client: Prisma.ClientCreateNestedOneWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesUncheckedCreateWithoutTranslationInput = {
@@ -592,6 +618,7 @@ export type ClientPackagesUncheckedCreateWithoutTranslationInput = {
   updatedAt?: Date | string
   clientId: string
   packageService?: Prisma.PackagesServicesUncheckedCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesCreateOrConnectWithoutTranslationInput = {
@@ -621,6 +648,7 @@ export type ClientPackagesUpdateWithoutTranslationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   packageService?: Prisma.PackagesServicesUpdateManyWithoutClientPackagesNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesUncheckedUpdateWithoutTranslationInput = {
@@ -634,6 +662,79 @@ export type ClientPackagesUncheckedUpdateWithoutTranslationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
   packageService?: Prisma.PackagesServicesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutClientPackageNestedInput
+}
+
+export type ClientPackagesCreateWithoutOrderItemsInput = {
+  id?: string
+  description?: string | null
+  image?: string | null
+  packageId: string
+  type: $Enums.PackagesStatus
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  packageService?: Prisma.PackagesServicesCreateNestedManyWithoutClientPackagesInput
+  client: Prisma.ClientCreateNestedOneWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+}
+
+export type ClientPackagesUncheckedCreateWithoutOrderItemsInput = {
+  id?: string
+  description?: string | null
+  image?: string | null
+  packageId: string
+  type: $Enums.PackagesStatus
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  clientId: string
+  packageService?: Prisma.PackagesServicesUncheckedCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+}
+
+export type ClientPackagesCreateOrConnectWithoutOrderItemsInput = {
+  where: Prisma.ClientPackagesWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientPackagesCreateWithoutOrderItemsInput, Prisma.ClientPackagesUncheckedCreateWithoutOrderItemsInput>
+}
+
+export type ClientPackagesUpsertWithoutOrderItemsInput = {
+  update: Prisma.XOR<Prisma.ClientPackagesUpdateWithoutOrderItemsInput, Prisma.ClientPackagesUncheckedUpdateWithoutOrderItemsInput>
+  create: Prisma.XOR<Prisma.ClientPackagesCreateWithoutOrderItemsInput, Prisma.ClientPackagesUncheckedCreateWithoutOrderItemsInput>
+  where?: Prisma.ClientPackagesWhereInput
+}
+
+export type ClientPackagesUpdateToOneWithWhereWithoutOrderItemsInput = {
+  where?: Prisma.ClientPackagesWhereInput
+  data: Prisma.XOR<Prisma.ClientPackagesUpdateWithoutOrderItemsInput, Prisma.ClientPackagesUncheckedUpdateWithoutOrderItemsInput>
+}
+
+export type ClientPackagesUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  packageService?: Prisma.PackagesServicesUpdateManyWithoutClientPackagesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+}
+
+export type ClientPackagesUncheckedUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  packageService?: Prisma.PackagesServicesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
 }
 
 export type ClientPackagesCreateWithoutPackageServiceInput = {
@@ -646,7 +747,8 @@ export type ClientPackagesCreateWithoutPackageServiceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutClientPackagesInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesUncheckedCreateWithoutPackageServiceInput = {
@@ -659,7 +761,8 @@ export type ClientPackagesUncheckedCreateWithoutPackageServiceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientId: string
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutClientPackagesInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutClientPackageInput
 }
 
 export type ClientPackagesCreateOrConnectWithoutPackageServiceInput = {
@@ -688,7 +791,8 @@ export type ClientPackagesUpdateWithoutPackageServiceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutClientPackagesNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesUncheckedUpdateWithoutPackageServiceInput = {
@@ -701,7 +805,8 @@ export type ClientPackagesUncheckedUpdateWithoutPackageServiceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesCreateManyClientInput = {
@@ -725,7 +830,8 @@ export type ClientPackagesUpdateWithoutClientInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   packageService?: Prisma.PackagesServicesUpdateManyWithoutClientPackagesNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesUncheckedUpdateWithoutClientInput = {
@@ -738,7 +844,8 @@ export type ClientPackagesUncheckedUpdateWithoutClientInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   packageService?: Prisma.PackagesServicesUncheckedUpdateManyWithoutClientPackagesNestedInput
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutClientPackagesNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutClientPackageNestedInput
 }
 
 export type ClientPackagesUncheckedUpdateManyWithoutClientInput = {
@@ -759,12 +866,14 @@ export type ClientPackagesUncheckedUpdateManyWithoutClientInput = {
 
 export type ClientPackagesCountOutputType = {
   packageService: number
-  Translation: number
+  translation: number
+  orderItems: number
 }
 
 export type ClientPackagesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   packageService?: boolean | ClientPackagesCountOutputTypeCountPackageServiceArgs
-  Translation?: boolean | ClientPackagesCountOutputTypeCountTranslationArgs
+  translation?: boolean | ClientPackagesCountOutputTypeCountTranslationArgs
+  orderItems?: boolean | ClientPackagesCountOutputTypeCountOrderItemsArgs
 }
 
 /**
@@ -791,6 +900,13 @@ export type ClientPackagesCountOutputTypeCountTranslationArgs<ExtArgs extends ru
   where?: Prisma.TranslationDesWhereInput
 }
 
+/**
+ * ClientPackagesCountOutputType without action
+ */
+export type ClientPackagesCountOutputTypeCountOrderItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderItemWhereInput
+}
+
 
 export type ClientPackagesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -804,7 +920,8 @@ export type ClientPackagesSelect<ExtArgs extends runtime.Types.Extensions.Intern
   clientId?: boolean
   packageService?: boolean | Prisma.ClientPackages$packageServiceArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  Translation?: boolean | Prisma.ClientPackages$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.ClientPackages$translationArgs<ExtArgs>
+  orderItems?: boolean | Prisma.ClientPackages$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientPackagesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clientPackages"]>
 
@@ -850,7 +967,8 @@ export type ClientPackagesOmit<ExtArgs extends runtime.Types.Extensions.Internal
 export type ClientPackagesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   packageService?: boolean | Prisma.ClientPackages$packageServiceArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  Translation?: boolean | Prisma.ClientPackages$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.ClientPackages$translationArgs<ExtArgs>
+  orderItems?: boolean | Prisma.ClientPackages$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientPackagesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClientPackagesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -865,7 +983,8 @@ export type $ClientPackagesPayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     packageService: Prisma.$PackagesServicesPayload<ExtArgs>[]
     client: Prisma.$ClientPayload<ExtArgs>
-    Translation: Prisma.$TranslationDesPayload<ExtArgs>[]
+    translation: Prisma.$TranslationDesPayload<ExtArgs>[]
+    orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1273,7 +1392,8 @@ export interface Prisma__ClientPackagesClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   packageService<T extends Prisma.ClientPackages$packageServiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientPackages$packageServiceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackagesServicesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Translation<T extends Prisma.ClientPackages$TranslationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientPackages$TranslationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationDesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translation<T extends Prisma.ClientPackages$translationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientPackages$translationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationDesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orderItems<T extends Prisma.ClientPackages$orderItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientPackages$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1737,9 +1857,9 @@ export type ClientPackages$packageServiceArgs<ExtArgs extends runtime.Types.Exte
 }
 
 /**
- * ClientPackages.Translation
+ * ClientPackages.translation
  */
-export type ClientPackages$TranslationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ClientPackages$translationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the TranslationDes
    */
@@ -1758,6 +1878,30 @@ export type ClientPackages$TranslationArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.TranslationDesScalarFieldEnum | Prisma.TranslationDesScalarFieldEnum[]
+}
+
+/**
+ * ClientPackages.orderItems
+ */
+export type ClientPackages$orderItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrderItem
+   */
+  select?: Prisma.OrderItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrderItem
+   */
+  omit?: Prisma.OrderItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderItemInclude<ExtArgs> | null
+  where?: Prisma.OrderItemWhereInput
+  orderBy?: Prisma.OrderItemOrderByWithRelationInput | Prisma.OrderItemOrderByWithRelationInput[]
+  cursor?: Prisma.OrderItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderItemScalarFieldEnum | Prisma.OrderItemScalarFieldEnum[]
 }
 
 /**

@@ -31,6 +31,7 @@ export type OrderAvgAggregateOutputType = {
   subTotal: number | null
   total: number | null
   discount: number | null
+  duration: number | null
 }
 
 export type OrderSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type OrderSumAggregateOutputType = {
   subTotal: number | null
   total: number | null
   discount: number | null
+  duration: number | null
 }
 
 export type OrderMinAggregateOutputType = {
@@ -60,9 +62,11 @@ export type OrderMinAggregateOutputType = {
   barberName: string | null
   shouldBeReviewedByAdmin: boolean | null
   reminderSent: boolean | null
+  duration: number | null
   booking: $Enums.BookingStatus | null
   type: $Enums.discount | null
   status: $Enums.OrderStatus | null
+  cancelledById: string | null
 }
 
 export type OrderMaxAggregateOutputType = {
@@ -85,9 +89,11 @@ export type OrderMaxAggregateOutputType = {
   barberName: string | null
   shouldBeReviewedByAdmin: boolean | null
   reminderSent: boolean | null
+  duration: number | null
   booking: $Enums.BookingStatus | null
   type: $Enums.discount | null
   status: $Enums.OrderStatus | null
+  cancelledById: string | null
 }
 
 export type OrderCountAggregateOutputType = {
@@ -113,9 +119,11 @@ export type OrderCountAggregateOutputType = {
   shouldBeReviewedByAdmin: number
   servicesToDelete: number
   reminderSent: number
+  duration: number
   booking: number
   type: number
   status: number
+  cancelledById: number
   _all: number
 }
 
@@ -125,6 +133,7 @@ export type OrderAvgAggregateInputType = {
   subTotal?: true
   total?: true
   discount?: true
+  duration?: true
 }
 
 export type OrderSumAggregateInputType = {
@@ -132,6 +141,7 @@ export type OrderSumAggregateInputType = {
   subTotal?: true
   total?: true
   discount?: true
+  duration?: true
 }
 
 export type OrderMinAggregateInputType = {
@@ -154,9 +164,11 @@ export type OrderMinAggregateInputType = {
   barberName?: true
   shouldBeReviewedByAdmin?: true
   reminderSent?: true
+  duration?: true
   booking?: true
   type?: true
   status?: true
+  cancelledById?: true
 }
 
 export type OrderMaxAggregateInputType = {
@@ -179,9 +191,11 @@ export type OrderMaxAggregateInputType = {
   barberName?: true
   shouldBeReviewedByAdmin?: true
   reminderSent?: true
+  duration?: true
   booking?: true
   type?: true
   status?: true
+  cancelledById?: true
 }
 
 export type OrderCountAggregateInputType = {
@@ -207,9 +221,11 @@ export type OrderCountAggregateInputType = {
   shouldBeReviewedByAdmin?: true
   servicesToDelete?: true
   reminderSent?: true
+  duration?: true
   booking?: true
   type?: true
   status?: true
+  cancelledById?: true
   _all?: true
 }
 
@@ -322,9 +338,11 @@ export type OrderGroupByOutputType = {
   shouldBeReviewedByAdmin: boolean
   servicesToDelete: string[]
   reminderSent: boolean
+  duration: number | null
   booking: $Enums.BookingStatus
   type: $Enums.discount
   status: $Enums.OrderStatus
+  cancelledById: string | null
   _count: OrderCountAggregateOutputType | null
   _avg: OrderAvgAggregateOutputType | null
   _sum: OrderSumAggregateOutputType | null
@@ -373,14 +391,19 @@ export type OrderWhereInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFilter<"Order"> | boolean
   servicesToDelete?: Prisma.StringNullableListFilter<"Order">
   reminderSent?: Prisma.BoolFilter<"Order"> | boolean
+  duration?: Prisma.IntNullableFilter<"Order"> | number | null
   booking?: Prisma.EnumBookingStatusFilter<"Order"> | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFilter<"Order"> | $Enums.discount
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+  cancelledById?: Prisma.StringNullableFilter<"Order"> | string | null
+  cancelledBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   client?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   barber?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  Cashier?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  cashier?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   service?: Prisma.ServiceListRelationFilter
+  orderItems?: Prisma.OrderItemListRelationFilter
+  pointTransactions?: Prisma.PointTransactionListRelationFilter
 }
 
 export type OrderOrderByWithRelationInput = {
@@ -406,14 +429,19 @@ export type OrderOrderByWithRelationInput = {
   shouldBeReviewedByAdmin?: Prisma.SortOrder
   servicesToDelete?: Prisma.SortOrder
   reminderSent?: Prisma.SortOrder
+  duration?: Prisma.SortOrderInput | Prisma.SortOrder
   booking?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledBy?: Prisma.UserOrderByWithRelationInput
   branch?: Prisma.BranchOrderByWithRelationInput
   client?: Prisma.UserOrderByWithRelationInput
   barber?: Prisma.UserOrderByWithRelationInput
-  Cashier?: Prisma.UserOrderByWithRelationInput
+  cashier?: Prisma.UserOrderByWithRelationInput
   service?: Prisma.ServiceOrderByRelationAggregateInput
+  orderItems?: Prisma.OrderItemOrderByRelationAggregateInput
+  pointTransactions?: Prisma.PointTransactionOrderByRelationAggregateInput
 }
 
 export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -442,14 +470,19 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   shouldBeReviewedByAdmin?: Prisma.BoolFilter<"Order"> | boolean
   servicesToDelete?: Prisma.StringNullableListFilter<"Order">
   reminderSent?: Prisma.BoolFilter<"Order"> | boolean
+  duration?: Prisma.IntNullableFilter<"Order"> | number | null
   booking?: Prisma.EnumBookingStatusFilter<"Order"> | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFilter<"Order"> | $Enums.discount
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+  cancelledById?: Prisma.StringNullableFilter<"Order"> | string | null
+  cancelledBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   client?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   barber?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  Cashier?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  cashier?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   service?: Prisma.ServiceListRelationFilter
+  orderItems?: Prisma.OrderItemListRelationFilter
+  pointTransactions?: Prisma.PointTransactionListRelationFilter
 }, "id">
 
 export type OrderOrderByWithAggregationInput = {
@@ -475,9 +508,11 @@ export type OrderOrderByWithAggregationInput = {
   shouldBeReviewedByAdmin?: Prisma.SortOrder
   servicesToDelete?: Prisma.SortOrder
   reminderSent?: Prisma.SortOrder
+  duration?: Prisma.SortOrderInput | Prisma.SortOrder
   booking?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
   _avg?: Prisma.OrderAvgOrderByAggregateInput
   _max?: Prisma.OrderMaxOrderByAggregateInput
@@ -511,9 +546,11 @@ export type OrderScalarWhereWithAggregatesInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolWithAggregatesFilter<"Order"> | boolean
   servicesToDelete?: Prisma.StringNullableListFilter<"Order">
   reminderSent?: Prisma.BoolWithAggregatesFilter<"Order"> | boolean
+  duration?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
   booking?: Prisma.EnumBookingStatusWithAggregatesFilter<"Order"> | $Enums.BookingStatus
   type?: Prisma.EnumdiscountWithAggregatesFilter<"Order"> | $Enums.discount
   status?: Prisma.EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
+  cancelledById?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
 }
 
 export type OrderCreateInput = {
@@ -535,14 +572,18 @@ export type OrderCreateInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
   branch: Prisma.BranchCreateNestedOneWithoutOrderInput
   client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
   barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
-  Cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
   service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateInput = {
@@ -568,10 +609,14 @@ export type OrderUncheckedCreateInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
   service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUpdateInput = {
@@ -593,14 +638,18 @@ export type OrderUpdateInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
   client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
   barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
-  Cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
   service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateInput = {
@@ -626,10 +675,14 @@ export type OrderUncheckedUpdateInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderCreateManyInput = {
@@ -655,9 +708,11 @@ export type OrderCreateManyInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
 }
 
 export type OrderUpdateManyMutationInput = {
@@ -679,6 +734,7 @@ export type OrderUpdateManyMutationInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -707,9 +763,11 @@ export type OrderUncheckedUpdateManyInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderListRelationFilter = {
@@ -745,9 +803,11 @@ export type OrderCountOrderByAggregateInput = {
   shouldBeReviewedByAdmin?: Prisma.SortOrder
   servicesToDelete?: Prisma.SortOrder
   reminderSent?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
   booking?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrder
 }
 
 export type OrderAvgOrderByAggregateInput = {
@@ -755,6 +815,7 @@ export type OrderAvgOrderByAggregateInput = {
   subTotal?: Prisma.SortOrder
   total?: Prisma.SortOrder
   discount?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
 }
 
 export type OrderMaxOrderByAggregateInput = {
@@ -777,9 +838,11 @@ export type OrderMaxOrderByAggregateInput = {
   barberName?: Prisma.SortOrder
   shouldBeReviewedByAdmin?: Prisma.SortOrder
   reminderSent?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
   booking?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrder
 }
 
 export type OrderMinOrderByAggregateInput = {
@@ -802,9 +865,11 @@ export type OrderMinOrderByAggregateInput = {
   barberName?: Prisma.SortOrder
   shouldBeReviewedByAdmin?: Prisma.SortOrder
   reminderSent?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
   booking?: Prisma.SortOrder
   type?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrder
 }
 
 export type OrderSumOrderByAggregateInput = {
@@ -812,6 +877,17 @@ export type OrderSumOrderByAggregateInput = {
   subTotal?: Prisma.SortOrder
   total?: Prisma.SortOrder
   discount?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
+}
+
+export type OrderScalarRelationFilter = {
+  is?: Prisma.OrderWhereInput
+  isNot?: Prisma.OrderWhereInput
+}
+
+export type OrderNullableScalarRelationFilter = {
+  is?: Prisma.OrderWhereInput | null
+  isNot?: Prisma.OrderWhereInput | null
 }
 
 export type OrderCreateNestedManyWithoutBarberInput = {
@@ -835,6 +911,13 @@ export type OrderCreateNestedManyWithoutClientInput = {
   connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
 }
 
+export type OrderCreateNestedManyWithoutCancelledByInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCancelledByInput, Prisma.OrderUncheckedCreateWithoutCancelledByInput> | Prisma.OrderCreateWithoutCancelledByInput[] | Prisma.OrderUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCancelledByInput | Prisma.OrderCreateOrConnectWithoutCancelledByInput[]
+  createMany?: Prisma.OrderCreateManyCancelledByInputEnvelope
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+}
+
 export type OrderUncheckedCreateNestedManyWithoutBarberInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutBarberInput, Prisma.OrderUncheckedCreateWithoutBarberInput> | Prisma.OrderCreateWithoutBarberInput[] | Prisma.OrderUncheckedCreateWithoutBarberInput[]
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutBarberInput | Prisma.OrderCreateOrConnectWithoutBarberInput[]
@@ -853,6 +936,13 @@ export type OrderUncheckedCreateNestedManyWithoutClientInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutClientInput, Prisma.OrderUncheckedCreateWithoutClientInput> | Prisma.OrderCreateWithoutClientInput[] | Prisma.OrderUncheckedCreateWithoutClientInput[]
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutClientInput | Prisma.OrderCreateOrConnectWithoutClientInput[]
   createMany?: Prisma.OrderCreateManyClientInputEnvelope
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+}
+
+export type OrderUncheckedCreateNestedManyWithoutCancelledByInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCancelledByInput, Prisma.OrderUncheckedCreateWithoutCancelledByInput> | Prisma.OrderCreateWithoutCancelledByInput[] | Prisma.OrderUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCancelledByInput | Prisma.OrderCreateOrConnectWithoutCancelledByInput[]
+  createMany?: Prisma.OrderCreateManyCancelledByInputEnvelope
   connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
 }
 
@@ -898,6 +988,20 @@ export type OrderUpdateManyWithoutClientNestedInput = {
   deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
+export type OrderUpdateManyWithoutCancelledByNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCancelledByInput, Prisma.OrderUncheckedCreateWithoutCancelledByInput> | Prisma.OrderCreateWithoutCancelledByInput[] | Prisma.OrderUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCancelledByInput | Prisma.OrderCreateOrConnectWithoutCancelledByInput[]
+  upsert?: Prisma.OrderUpsertWithWhereUniqueWithoutCancelledByInput | Prisma.OrderUpsertWithWhereUniqueWithoutCancelledByInput[]
+  createMany?: Prisma.OrderCreateManyCancelledByInputEnvelope
+  set?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  disconnect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  delete?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  update?: Prisma.OrderUpdateWithWhereUniqueWithoutCancelledByInput | Prisma.OrderUpdateWithWhereUniqueWithoutCancelledByInput[]
+  updateMany?: Prisma.OrderUpdateManyWithWhereWithoutCancelledByInput | Prisma.OrderUpdateManyWithWhereWithoutCancelledByInput[]
+  deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
+}
+
 export type OrderUncheckedUpdateManyWithoutBarberNestedInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutBarberInput, Prisma.OrderUncheckedCreateWithoutBarberInput> | Prisma.OrderCreateWithoutBarberInput[] | Prisma.OrderUncheckedCreateWithoutBarberInput[]
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutBarberInput | Prisma.OrderCreateOrConnectWithoutBarberInput[]
@@ -937,6 +1041,20 @@ export type OrderUncheckedUpdateManyWithoutClientNestedInput = {
   connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
   update?: Prisma.OrderUpdateWithWhereUniqueWithoutClientInput | Prisma.OrderUpdateWithWhereUniqueWithoutClientInput[]
   updateMany?: Prisma.OrderUpdateManyWithWhereWithoutClientInput | Prisma.OrderUpdateManyWithWhereWithoutClientInput[]
+  deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
+}
+
+export type OrderUncheckedUpdateManyWithoutCancelledByNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCancelledByInput, Prisma.OrderUncheckedCreateWithoutCancelledByInput> | Prisma.OrderCreateWithoutCancelledByInput[] | Prisma.OrderUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCancelledByInput | Prisma.OrderCreateOrConnectWithoutCancelledByInput[]
+  upsert?: Prisma.OrderUpsertWithWhereUniqueWithoutCancelledByInput | Prisma.OrderUpsertWithWhereUniqueWithoutCancelledByInput[]
+  createMany?: Prisma.OrderCreateManyCancelledByInputEnvelope
+  set?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  disconnect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  delete?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  update?: Prisma.OrderUpdateWithWhereUniqueWithoutCancelledByInput | Prisma.OrderUpdateWithWhereUniqueWithoutCancelledByInput[]
+  updateMany?: Prisma.OrderUpdateManyWithWhereWithoutCancelledByInput | Prisma.OrderUpdateManyWithWhereWithoutCancelledByInput[]
   deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
@@ -1047,6 +1165,14 @@ export type OrderUpdateservicesToDeleteInput = {
   push?: string | string[]
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type EnumBookingStatusFieldUpdateOperationsInput = {
   set?: $Enums.BookingStatus
 }
@@ -1057,6 +1183,36 @@ export type EnumdiscountFieldUpdateOperationsInput = {
 
 export type EnumOrderStatusFieldUpdateOperationsInput = {
   set?: $Enums.OrderStatus
+}
+
+export type OrderCreateNestedOneWithoutOrderItemsInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutOrderItemsInput, Prisma.OrderUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutOrderItemsInput
+  connect?: Prisma.OrderWhereUniqueInput
+}
+
+export type OrderUpdateOneRequiredWithoutOrderItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutOrderItemsInput, Prisma.OrderUncheckedCreateWithoutOrderItemsInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutOrderItemsInput
+  upsert?: Prisma.OrderUpsertWithoutOrderItemsInput
+  connect?: Prisma.OrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.OrderUpdateWithoutOrderItemsInput>, Prisma.OrderUncheckedUpdateWithoutOrderItemsInput>
+}
+
+export type OrderCreateNestedOneWithoutPointTransactionsInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutPointTransactionsInput, Prisma.OrderUncheckedCreateWithoutPointTransactionsInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPointTransactionsInput
+  connect?: Prisma.OrderWhereUniqueInput
+}
+
+export type OrderUpdateOneWithoutPointTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutPointTransactionsInput, Prisma.OrderUncheckedCreateWithoutPointTransactionsInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPointTransactionsInput
+  upsert?: Prisma.OrderUpsertWithoutPointTransactionsInput
+  disconnect?: Prisma.OrderWhereInput | boolean
+  delete?: Prisma.OrderWhereInput | boolean
+  connect?: Prisma.OrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutPointTransactionsInput, Prisma.OrderUpdateWithoutPointTransactionsInput>, Prisma.OrderUncheckedUpdateWithoutPointTransactionsInput>
 }
 
 export type OrderCreateWithoutBarberInput = {
@@ -1078,13 +1234,17 @@ export type OrderCreateWithoutBarberInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
   branch: Prisma.BranchCreateNestedOneWithoutOrderInput
   client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
-  Cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
   service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutBarberInput = {
@@ -1109,10 +1269,14 @@ export type OrderUncheckedCreateWithoutBarberInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
   service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutBarberInput = {
@@ -1144,13 +1308,17 @@ export type OrderCreateWithoutCashierInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
   branch: Prisma.BranchCreateNestedOneWithoutOrderInput
   client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
   barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
   service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutCashierInput = {
@@ -1175,10 +1343,14 @@ export type OrderUncheckedCreateWithoutCashierInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
   service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutCashierInput = {
@@ -1210,13 +1382,17 @@ export type OrderCreateWithoutClientInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
   branch: Prisma.BranchCreateNestedOneWithoutOrderInput
   barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
-  Cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
   service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutClientInput = {
@@ -1241,10 +1417,14 @@ export type OrderUncheckedCreateWithoutClientInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
   service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutClientInput = {
@@ -1254,6 +1434,80 @@ export type OrderCreateOrConnectWithoutClientInput = {
 
 export type OrderCreateManyClientInputEnvelope = {
   data: Prisma.OrderCreateManyClientInput | Prisma.OrderCreateManyClientInput[]
+  skipDuplicates?: boolean
+}
+
+export type OrderCreateWithoutCancelledByInput = {
+  id?: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  branch: Prisma.BranchCreateNestedOneWithoutOrderInput
+  client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
+  barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
+}
+
+export type OrderUncheckedCreateWithoutCancelledByInput = {
+  id?: string
+  branchId: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  userId?: string | null
+  barberId?: string | null
+  cashierId?: string | null
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
+}
+
+export type OrderCreateOrConnectWithoutCancelledByInput = {
+  where: Prisma.OrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderCreateWithoutCancelledByInput, Prisma.OrderUncheckedCreateWithoutCancelledByInput>
+}
+
+export type OrderCreateManyCancelledByInputEnvelope = {
+  data: Prisma.OrderCreateManyCancelledByInput | Prisma.OrderCreateManyCancelledByInput[]
   skipDuplicates?: boolean
 }
 
@@ -1299,9 +1553,11 @@ export type OrderScalarWhereInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFilter<"Order"> | boolean
   servicesToDelete?: Prisma.StringNullableListFilter<"Order">
   reminderSent?: Prisma.BoolFilter<"Order"> | boolean
+  duration?: Prisma.IntNullableFilter<"Order"> | number | null
   booking?: Prisma.EnumBookingStatusFilter<"Order"> | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFilter<"Order"> | $Enums.discount
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+  cancelledById?: Prisma.StringNullableFilter<"Order"> | string | null
 }
 
 export type OrderUpsertWithWhereUniqueWithoutCashierInput = {
@@ -1336,6 +1592,22 @@ export type OrderUpdateManyWithWhereWithoutClientInput = {
   data: Prisma.XOR<Prisma.OrderUpdateManyMutationInput, Prisma.OrderUncheckedUpdateManyWithoutClientInput>
 }
 
+export type OrderUpsertWithWhereUniqueWithoutCancelledByInput = {
+  where: Prisma.OrderWhereUniqueInput
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutCancelledByInput, Prisma.OrderUncheckedUpdateWithoutCancelledByInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutCancelledByInput, Prisma.OrderUncheckedCreateWithoutCancelledByInput>
+}
+
+export type OrderUpdateWithWhereUniqueWithoutCancelledByInput = {
+  where: Prisma.OrderWhereUniqueInput
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutCancelledByInput, Prisma.OrderUncheckedUpdateWithoutCancelledByInput>
+}
+
+export type OrderUpdateManyWithWhereWithoutCancelledByInput = {
+  where: Prisma.OrderScalarWhereInput
+  data: Prisma.XOR<Prisma.OrderUpdateManyMutationInput, Prisma.OrderUncheckedUpdateManyWithoutCancelledByInput>
+}
+
 export type OrderCreateWithoutBranchInput = {
   id?: string
   promoCode?: string | null
@@ -1355,13 +1627,17 @@ export type OrderCreateWithoutBranchInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
   client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
   barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
-  Cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
   service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutBranchInput = {
@@ -1386,10 +1662,14 @@ export type OrderUncheckedCreateWithoutBranchInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
   service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutBranchInput = {
@@ -1437,13 +1717,17 @@ export type OrderCreateWithoutServiceInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
   branch: Prisma.BranchCreateNestedOneWithoutOrderInput
   client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
   barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
-  Cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutServiceInput = {
@@ -1469,9 +1753,13 @@ export type OrderUncheckedCreateWithoutServiceInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutServiceInput = {
@@ -1493,6 +1781,294 @@ export type OrderUpdateWithWhereUniqueWithoutServiceInput = {
 export type OrderUpdateManyWithWhereWithoutServiceInput = {
   where: Prisma.OrderScalarWhereInput
   data: Prisma.XOR<Prisma.OrderUpdateManyMutationInput, Prisma.OrderUncheckedUpdateManyWithoutServiceInput>
+}
+
+export type OrderCreateWithoutOrderItemsInput = {
+  id?: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
+  branch: Prisma.BranchCreateNestedOneWithoutOrderInput
+  client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
+  barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutOrderInput
+}
+
+export type OrderUncheckedCreateWithoutOrderItemsInput = {
+  id?: string
+  branchId: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  userId?: string | null
+  barberId?: string | null
+  cashierId?: string | null
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  cancelledById?: string | null
+  service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutOrderInput
+}
+
+export type OrderCreateOrConnectWithoutOrderItemsInput = {
+  where: Prisma.OrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderCreateWithoutOrderItemsInput, Prisma.OrderUncheckedCreateWithoutOrderItemsInput>
+}
+
+export type OrderUpsertWithoutOrderItemsInput = {
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutOrderItemsInput, Prisma.OrderUncheckedUpdateWithoutOrderItemsInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutOrderItemsInput, Prisma.OrderUncheckedCreateWithoutOrderItemsInput>
+  where?: Prisma.OrderWhereInput
+}
+
+export type OrderUpdateToOneWithWhereWithoutOrderItemsInput = {
+  where?: Prisma.OrderWhereInput
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutOrderItemsInput, Prisma.OrderUncheckedUpdateWithoutOrderItemsInput>
+}
+
+export type OrderUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
+  branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
+  client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
+  barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateWithoutOrderItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cashierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderCreateWithoutPointTransactionsInput = {
+  id?: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutOrdersInput
+  branch: Prisma.BranchCreateNestedOneWithoutOrderInput
+  client?: Prisma.UserCreateNestedOneWithoutUserOrdersInput
+  barber?: Prisma.UserCreateNestedOneWithoutBarberOrdersInput
+  cashier?: Prisma.UserCreateNestedOneWithoutCashierOrdersInput
+  service?: Prisma.ServiceCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
+}
+
+export type OrderUncheckedCreateWithoutPointTransactionsInput = {
+  id?: string
+  branchId: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  userId?: string | null
+  barberId?: string | null
+  cashierId?: string | null
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  cancelledById?: string | null
+  service?: Prisma.ServiceUncheckedCreateNestedManyWithoutOrderInput
+  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
+}
+
+export type OrderCreateOrConnectWithoutPointTransactionsInput = {
+  where: Prisma.OrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderCreateWithoutPointTransactionsInput, Prisma.OrderUncheckedCreateWithoutPointTransactionsInput>
+}
+
+export type OrderUpsertWithoutPointTransactionsInput = {
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutPointTransactionsInput, Prisma.OrderUncheckedUpdateWithoutPointTransactionsInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutPointTransactionsInput, Prisma.OrderUncheckedCreateWithoutPointTransactionsInput>
+  where?: Prisma.OrderWhereInput
+}
+
+export type OrderUpdateToOneWithWhereWithoutPointTransactionsInput = {
+  where?: Prisma.OrderWhereInput
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutPointTransactionsInput, Prisma.OrderUncheckedUpdateWithoutPointTransactionsInput>
+}
+
+export type OrderUpdateWithoutPointTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
+  branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
+  client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
+  barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateWithoutPointTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cashierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderCreateManyBarberInput = {
@@ -1517,9 +2093,11 @@ export type OrderCreateManyBarberInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
 }
 
 export type OrderCreateManyCashierInput = {
@@ -1544,9 +2122,11 @@ export type OrderCreateManyCashierInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
 }
 
 export type OrderCreateManyClientInput = {
@@ -1571,6 +2151,37 @@ export type OrderCreateManyClientInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
+  booking?: $Enums.BookingStatus
+  type?: $Enums.discount
+  status?: $Enums.OrderStatus
+  cancelledById?: string | null
+}
+
+export type OrderCreateManyCancelledByInput = {
+  id?: string
+  branchId: string
+  promoCode?: string | null
+  date: Date | string
+  slot: string
+  note?: string | null
+  points?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subTotal: number
+  total: number
+  userId?: string | null
+  barberId?: string | null
+  cashierId?: string | null
+  discount?: number
+  freeService?: Prisma.OrderCreatefreeServiceInput | string[]
+  deleted?: boolean
+  barberName?: string | null
+  usedPackage?: Prisma.OrderCreateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: boolean
+  servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
+  reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
@@ -1595,13 +2206,17 @@ export type OrderUpdateWithoutBarberInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
   client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
-  Cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
   service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutBarberInput = {
@@ -1626,10 +2241,14 @@ export type OrderUncheckedUpdateWithoutBarberInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutBarberInput = {
@@ -1654,9 +2273,11 @@ export type OrderUncheckedUpdateManyWithoutBarberInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderUpdateWithoutCashierInput = {
@@ -1678,13 +2299,17 @@ export type OrderUpdateWithoutCashierInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
   client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
   barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
   service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutCashierInput = {
@@ -1709,10 +2334,14 @@ export type OrderUncheckedUpdateWithoutCashierInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutCashierInput = {
@@ -1737,9 +2366,11 @@ export type OrderUncheckedUpdateManyWithoutCashierInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderUpdateWithoutClientInput = {
@@ -1761,13 +2392,17 @@ export type OrderUpdateWithoutClientInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
   barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
-  Cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
   service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutClientInput = {
@@ -1792,10 +2427,14 @@ export type OrderUncheckedUpdateWithoutClientInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutClientInput = {
@@ -1820,6 +2459,101 @@ export type OrderUncheckedUpdateManyWithoutClientInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type OrderUpdateWithoutCancelledByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
+  client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
+  barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateWithoutCancelledByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cashierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
+  type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateManyWithoutCancelledByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  promoCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slot?: Prisma.StringFieldUpdateOperationsInput | string
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subTotal?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  barberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cashierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discount?: Prisma.IntFieldUpdateOperationsInput | number
+  freeService?: Prisma.OrderUpdatefreeServiceInput | string[]
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  barberName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  usedPackage?: Prisma.OrderUpdateusedPackageInput | string[]
+  shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
+  reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -1847,9 +2581,11 @@ export type OrderCreateManyBranchInput = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: Prisma.OrderCreateservicesToDeleteInput | string[]
   reminderSent?: boolean
+  duration?: number | null
   booking?: $Enums.BookingStatus
   type?: $Enums.discount
   status?: $Enums.OrderStatus
+  cancelledById?: string | null
 }
 
 export type OrderUpdateWithoutBranchInput = {
@@ -1871,13 +2607,17 @@ export type OrderUpdateWithoutBranchInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
   client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
   barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
-  Cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
   service?: Prisma.ServiceUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutBranchInput = {
@@ -1902,10 +2642,14 @@ export type OrderUncheckedUpdateWithoutBranchInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   service?: Prisma.ServiceUncheckedUpdateManyWithoutOrderNestedInput
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutBranchInput = {
@@ -1930,9 +2674,11 @@ export type OrderUncheckedUpdateManyWithoutBranchInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type OrderUpdateWithoutServiceInput = {
@@ -1954,13 +2700,17 @@ export type OrderUpdateWithoutServiceInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledBy?: Prisma.UserUpdateOneWithoutOrdersNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutOrderNestedInput
   client?: Prisma.UserUpdateOneWithoutUserOrdersNestedInput
   barber?: Prisma.UserUpdateOneWithoutBarberOrdersNestedInput
-  Cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  cashier?: Prisma.UserUpdateOneWithoutCashierOrdersNestedInput
+  orderItems?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutServiceInput = {
@@ -1986,9 +2736,13 @@ export type OrderUncheckedUpdateWithoutServiceInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutServiceInput = {
@@ -2014,9 +2768,11 @@ export type OrderUncheckedUpdateManyWithoutServiceInput = {
   shouldBeReviewedByAdmin?: Prisma.BoolFieldUpdateOperationsInput | boolean
   servicesToDelete?: Prisma.OrderUpdateservicesToDeleteInput | string[]
   reminderSent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booking?: Prisma.EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
   type?: Prisma.EnumdiscountFieldUpdateOperationsInput | $Enums.discount
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -2026,10 +2782,14 @@ export type OrderUncheckedUpdateManyWithoutServiceInput = {
 
 export type OrderCountOutputType = {
   service: number
+  orderItems: number
+  pointTransactions: number
 }
 
 export type OrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | OrderCountOutputTypeCountServiceArgs
+  orderItems?: boolean | OrderCountOutputTypeCountOrderItemsArgs
+  pointTransactions?: boolean | OrderCountOutputTypeCountPointTransactionsArgs
 }
 
 /**
@@ -2047,6 +2807,20 @@ export type OrderCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  */
 export type OrderCountOutputTypeCountServiceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ServiceWhereInput
+}
+
+/**
+ * OrderCountOutputType without action
+ */
+export type OrderCountOutputTypeCountOrderItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderItemWhereInput
+}
+
+/**
+ * OrderCountOutputType without action
+ */
+export type OrderCountOutputTypeCountPointTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PointTransactionWhereInput
 }
 
 
@@ -2073,14 +2847,19 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: boolean
   reminderSent?: boolean
+  duration?: boolean
   booking?: boolean
   type?: boolean
   status?: boolean
+  cancelledById?: boolean
+  cancelledBy?: boolean | Prisma.Order$cancelledByArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Order$clientArgs<ExtArgs>
   barber?: boolean | Prisma.Order$barberArgs<ExtArgs>
-  Cashier?: boolean | Prisma.Order$CashierArgs<ExtArgs>
+  cashier?: boolean | Prisma.Order$cashierArgs<ExtArgs>
   service?: boolean | Prisma.Order$serviceArgs<ExtArgs>
+  orderItems?: boolean | Prisma.Order$orderItemsArgs<ExtArgs>
+  pointTransactions?: boolean | Prisma.Order$pointTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
@@ -2107,13 +2886,16 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: boolean
   reminderSent?: boolean
+  duration?: boolean
   booking?: boolean
   type?: boolean
   status?: boolean
+  cancelledById?: boolean
+  cancelledBy?: boolean | Prisma.Order$cancelledByArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Order$clientArgs<ExtArgs>
   barber?: boolean | Prisma.Order$barberArgs<ExtArgs>
-  Cashier?: boolean | Prisma.Order$CashierArgs<ExtArgs>
+  cashier?: boolean | Prisma.Order$cashierArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2139,13 +2921,16 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: boolean
   reminderSent?: boolean
+  duration?: boolean
   booking?: boolean
   type?: boolean
   status?: boolean
+  cancelledById?: boolean
+  cancelledBy?: boolean | Prisma.Order$cancelledByArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Order$clientArgs<ExtArgs>
   barber?: boolean | Prisma.Order$barberArgs<ExtArgs>
-  Cashier?: boolean | Prisma.Order$CashierArgs<ExtArgs>
+  cashier?: boolean | Prisma.Order$cashierArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectScalar = {
@@ -2171,41 +2956,51 @@ export type OrderSelectScalar = {
   shouldBeReviewedByAdmin?: boolean
   servicesToDelete?: boolean
   reminderSent?: boolean
+  duration?: boolean
   booking?: boolean
   type?: boolean
   status?: boolean
+  cancelledById?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "promoCode" | "date" | "slot" | "note" | "points" | "createdAt" | "updatedAt" | "subTotal" | "total" | "userId" | "barberId" | "cashierId" | "discount" | "freeService" | "deleted" | "barberName" | "usedPackage" | "shouldBeReviewedByAdmin" | "servicesToDelete" | "reminderSent" | "booking" | "type" | "status", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "promoCode" | "date" | "slot" | "note" | "points" | "createdAt" | "updatedAt" | "subTotal" | "total" | "userId" | "barberId" | "cashierId" | "discount" | "freeService" | "deleted" | "barberName" | "usedPackage" | "shouldBeReviewedByAdmin" | "servicesToDelete" | "reminderSent" | "duration" | "booking" | "type" | "status" | "cancelledById", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cancelledBy?: boolean | Prisma.Order$cancelledByArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Order$clientArgs<ExtArgs>
   barber?: boolean | Prisma.Order$barberArgs<ExtArgs>
-  Cashier?: boolean | Prisma.Order$CashierArgs<ExtArgs>
+  cashier?: boolean | Prisma.Order$cashierArgs<ExtArgs>
   service?: boolean | Prisma.Order$serviceArgs<ExtArgs>
+  orderItems?: boolean | Prisma.Order$orderItemsArgs<ExtArgs>
+  pointTransactions?: boolean | Prisma.Order$pointTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cancelledBy?: boolean | Prisma.Order$cancelledByArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Order$clientArgs<ExtArgs>
   barber?: boolean | Prisma.Order$barberArgs<ExtArgs>
-  Cashier?: boolean | Prisma.Order$CashierArgs<ExtArgs>
+  cashier?: boolean | Prisma.Order$cashierArgs<ExtArgs>
 }
 export type OrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cancelledBy?: boolean | Prisma.Order$cancelledByArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Order$clientArgs<ExtArgs>
   barber?: boolean | Prisma.Order$barberArgs<ExtArgs>
-  Cashier?: boolean | Prisma.Order$CashierArgs<ExtArgs>
+  cashier?: boolean | Prisma.Order$cashierArgs<ExtArgs>
 }
 
 export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Order"
   objects: {
+    cancelledBy: Prisma.$UserPayload<ExtArgs> | null
     branch: Prisma.$BranchPayload<ExtArgs>
     client: Prisma.$UserPayload<ExtArgs> | null
     barber: Prisma.$UserPayload<ExtArgs> | null
-    Cashier: Prisma.$UserPayload<ExtArgs> | null
+    cashier: Prisma.$UserPayload<ExtArgs> | null
     service: Prisma.$ServicePayload<ExtArgs>[]
+    orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
+    pointTransactions: Prisma.$PointTransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2230,9 +3025,11 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     shouldBeReviewedByAdmin: boolean
     servicesToDelete: string[]
     reminderSent: boolean
+    duration: number | null
     booking: $Enums.BookingStatus
     type: $Enums.discount
     status: $Enums.OrderStatus
+    cancelledById: string | null
   }, ExtArgs["result"]["order"]>
   composites: {}
 }
@@ -2627,11 +3424,14 @@ readonly fields: OrderFieldRefs;
  */
 export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  cancelledBy<T extends Prisma.Order$cancelledByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$cancelledByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   client<T extends Prisma.Order$clientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$clientArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   barber<T extends Prisma.Order$barberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$barberArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  Cashier<T extends Prisma.Order$CashierArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$CashierArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  cashier<T extends Prisma.Order$cashierArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$cashierArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   service<T extends Prisma.Order$serviceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$serviceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orderItems<T extends Prisma.Order$orderItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pointTransactions<T extends Prisma.Order$pointTransactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$pointTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PointTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2683,9 +3483,11 @@ export interface OrderFieldRefs {
   readonly shouldBeReviewedByAdmin: Prisma.FieldRef<"Order", 'Boolean'>
   readonly servicesToDelete: Prisma.FieldRef<"Order", 'String[]'>
   readonly reminderSent: Prisma.FieldRef<"Order", 'Boolean'>
+  readonly duration: Prisma.FieldRef<"Order", 'Int'>
   readonly booking: Prisma.FieldRef<"Order", 'BookingStatus'>
   readonly type: Prisma.FieldRef<"Order", 'discount'>
   readonly status: Prisma.FieldRef<"Order", 'OrderStatus'>
+  readonly cancelledById: Prisma.FieldRef<"Order", 'String'>
 }
     
 
@@ -3087,6 +3889,25 @@ export type OrderDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Order.cancelledBy
+ */
+export type Order$cancelledByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
  * Order.client
  */
 export type Order$clientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3125,9 +3946,9 @@ export type Order$barberArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Order.Cashier
+ * Order.cashier
  */
-export type Order$CashierArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Order$cashierArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */
@@ -3165,6 +3986,54 @@ export type Order$serviceArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.ServiceScalarFieldEnum | Prisma.ServiceScalarFieldEnum[]
+}
+
+/**
+ * Order.orderItems
+ */
+export type Order$orderItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrderItem
+   */
+  select?: Prisma.OrderItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrderItem
+   */
+  omit?: Prisma.OrderItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderItemInclude<ExtArgs> | null
+  where?: Prisma.OrderItemWhereInput
+  orderBy?: Prisma.OrderItemOrderByWithRelationInput | Prisma.OrderItemOrderByWithRelationInput[]
+  cursor?: Prisma.OrderItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderItemScalarFieldEnum | Prisma.OrderItemScalarFieldEnum[]
+}
+
+/**
+ * Order.pointTransactions
+ */
+export type Order$pointTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PointTransaction
+   */
+  select?: Prisma.PointTransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PointTransaction
+   */
+  omit?: Prisma.PointTransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PointTransactionInclude<ExtArgs> | null
+  where?: Prisma.PointTransactionWhereInput
+  orderBy?: Prisma.PointTransactionOrderByWithRelationInput | Prisma.PointTransactionOrderByWithRelationInput[]
+  cursor?: Prisma.PointTransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PointTransactionScalarFieldEnum | Prisma.PointTransactionScalarFieldEnum[]
 }
 
 /**

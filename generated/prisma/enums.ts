@@ -48,6 +48,7 @@ export const OrderStatus = {
   CLIENT_CANCELLED: 'CLIENT_CANCELLED',
   BARBER_CANCELLED: 'BARBER_CANCELLED',
   CASHIER_CANCELLED: 'CASHIER_CANCELLED',
+  CANCELLED: 'CANCELLED',
   COMPLETED: 'COMPLETED',
   PAID: 'PAID'
 } as const
@@ -76,7 +77,8 @@ export const Role = {
   BARBER: 'BARBER',
   CASHIER: 'CASHIER',
   ADMIN: 'ADMIN',
-  USER: 'USER'
+  USER: 'USER',
+  CLIENT: 'CLIENT'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -89,3 +91,34 @@ export const CategoryType = {
 } as const
 
 export type CategoryType = (typeof CategoryType)[keyof typeof CategoryType]
+
+
+export const OrderItemSource = {
+  SERVICE: 'SERVICE',
+  PACKAGE: 'PACKAGE'
+} as const
+
+export type OrderItemSource = (typeof OrderItemSource)[keyof typeof OrderItemSource]
+
+
+export const Days = {
+  SUNDAY: 'SUNDAY',
+  MONDAY: 'MONDAY',
+  TUESDAY: 'TUESDAY',
+  WEDNESDAY: 'WEDNESDAY',
+  THURSDAY: 'THURSDAY',
+  FRIDAY: 'FRIDAY',
+  SATURDAY: 'SATURDAY'
+} as const
+
+export type Days = (typeof Days)[keyof typeof Days]
+
+
+export const PointTransactionType = {
+  EARN: 'EARN',
+  REDEEM: 'REDEEM',
+  REFERRAL: 'REFERRAL',
+  EXPIRE: 'EXPIRE'
+} as const
+
+export type PointTransactionType = (typeof PointTransactionType)[keyof typeof PointTransactionType]

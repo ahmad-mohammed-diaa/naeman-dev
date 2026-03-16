@@ -23,13 +23,13 @@ export class ServiceService {
     });
 
     const services = fetchedServices.map((service) => {
-      const { Translation, ...rest } = service;
+      const { translation, ...rest } = service;
 
       return {
         ...rest,
-        nameEN: Translation.find((t) => t.language === 'EN')?.name,
-        nameAR: Translation.find((t) => t.language === 'AR')?.name,
-        name: Translation.find((t) => t.language === language)?.name,
+        nameEN: translation.find((t) => t.language === 'EN')?.name,
+        nameAR: translation.find((t) => t.language === 'AR')?.name,
+        name: translation.find((t) => t.language === language)?.name,
       };
     });
 
@@ -56,18 +56,18 @@ export class ServiceService {
       data: {
         ...createServiceDto,
         ...(serviceImg && { serviceImg }),
-        Translation: createTranslation(createServiceDto),
+        translation: createTranslation(createServiceDto),
       },
       include: serviceTranslation(false),
     });
 
-    const { Translation, ...rest } = newService;
+    const { translation, ...rest } = newService;
 
     const service = {
       ...rest,
-      nameEN: Translation.find((t) => t.language === 'EN')?.name,
-      nameAR: Translation.find((t) => t.language === 'AR')?.name,
-      name: Translation.find((t) => t.language === language)?.name,
+      nameEN: translation.find((t) => t.language === 'EN')?.name,
+      nameAR: translation.find((t) => t.language === 'AR')?.name,
+      name: translation.find((t) => t.language === language)?.name,
     };
 
     return new AppSuccess(service, 'Service created successfully');
@@ -87,20 +87,20 @@ export class ServiceService {
       data: {
         ...updateServiceDto,
         ...(serviceImg && { serviceImg }),
-        ...(updateServiceDto.Translation && {
-          Translation: updateTranslation(updateServiceDto),
+        ...(updateServiceDto.translation && {
+          translation: updateTranslation(updateServiceDto),
         }),
       },
       include: serviceTranslation(false),
     });
 
-    const { Translation, ...rest } = updatedService;
+    const { translation, ...rest } = updatedService;
 
     const service = {
       ...rest,
-      nameEN: Translation.find((t) => t.language === 'EN')?.name,
-      nameAR: Translation.find((t) => t.language === 'AR')?.name,
-      name: Translation.find((t) => t.language === language)?.name,
+      nameEN: translation.find((t) => t.language === 'EN')?.name,
+      nameAR: translation.find((t) => t.language === 'AR')?.name,
+      name: translation.find((t) => t.language === language)?.name,
     };
 
     return new AppSuccess(service, 'Service updated successfully');
@@ -130,13 +130,13 @@ export class ServiceService {
     if (!fetchedService) {
       throw new NotFoundException('Service not found');
     }
-    const { Translation, ...rest } = fetchedService;
+    const { translation, ...rest } = fetchedService;
 
     const service = {
       ...rest,
-      nameEN: Translation.find((t) => t.language === 'EN')?.name,
-      nameAR: Translation.find((t) => t.language === 'AR')?.name,
-      name: Translation.find((t) => t.language === language)?.name,
+      nameEN: translation.find((t) => t.language === 'EN')?.name,
+      nameAR: translation.find((t) => t.language === 'AR')?.name,
+      name: translation.find((t) => t.language === language)?.name,
     };
 
     return service;

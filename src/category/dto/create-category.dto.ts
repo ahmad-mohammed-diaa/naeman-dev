@@ -14,5 +14,5 @@ export class CreateCategoryDto {
   type: CategoryType;
 
   @IsArray()
-  Translation: translationDto[];
+  translation: translationDto[];
 }

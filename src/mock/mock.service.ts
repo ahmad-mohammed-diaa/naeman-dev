@@ -296,7 +296,7 @@ export class MockService {
 
   private readonly BeardServices = [
     {
-      Translation: [
+      translation: [
         {
           name: 'Beard Extra',
           language: 'EN',
@@ -312,7 +312,7 @@ export class MockService {
         'https://res.cloudinary.com/unknowndev/image/upload/v1741063090/barber/services/xddqtjomejieeehpq0nk.jpg',
     },
     {
-      Translation: [
+      translation: [
         {
           name: 'Beard Razor',
           language: 'EN',
@@ -328,7 +328,7 @@ export class MockService {
         'https://res.cloudinary.com/unknowndev/image/upload/v1741063090/barber/services/selqadltziifcfahp1pl.jpg',
     },
     {
-      Translation: [
+      translation: [
         {
           name: 'Beard Straightening',
           language: 'EN',
@@ -347,7 +347,7 @@ export class MockService {
 
   private readonly HairCutServices = [
     {
-      Translation: [
+      translation: [
         {
           name: 'Hair Cut',
           language: 'EN',
@@ -363,7 +363,7 @@ export class MockService {
         'https://res.cloudinary.com/unknowndev/image/upload/v1741063097/barber/services/lwwkcaptr1dnjtgkkfyk.jpg',
     },
     {
-      Translation: [
+      translation: [
         {
           name: 'Zero Cut',
           language: 'EN',
@@ -379,7 +379,7 @@ export class MockService {
         'https://res.cloudinary.com/unknowndev/image/upload/v1741063098/barber/services/vqypiatj8twlnogeydva.jpg',
     },
     {
-      Translation: [
+      translation: [
         {
           name: 'Long Hair',
           language: 'EN',
@@ -398,7 +398,7 @@ export class MockService {
 
   private readonly HairCareServices = [
     {
-      Translation: [
+      translation: [
         {
           name: 'Hair Dye',
           language: 'EN',
@@ -414,7 +414,7 @@ export class MockService {
         'https://res.cloudinary.com/unknowndev/image/upload/v1741063093/barber/services/enmuo5n0ywahae52gcms.jpg',
     },
     {
-      Translation: [
+      translation: [
         {
           name: 'Hair Relaxer',
           language: 'EN',
@@ -430,7 +430,7 @@ export class MockService {
         'https://res.cloudinary.com/unknowndev/image/upload/v1741063094/barber/services/ljpykqyiixcon4ctwl5g.jpg',
     },
     {
-      Translation: [
+      translation: [
         {
           name: 'Protein',
           language: 'EN',
@@ -485,7 +485,6 @@ export class MockService {
     };
 
     const client = this.clients.map(async (client) => {
-      client;
       await this.prisma.user.create({
         data: {
           firstName: client.firstName,
@@ -529,7 +528,7 @@ export class MockService {
         data: {
           latitude: branch.latitude,
           longitude: branch.longitude,
-          Translation: createTranslation({ Translation: branch.translations }),
+          translation: createTranslation({ translation: branch.translations }),
           location: branch.location,
           phone: branch.phone,
           branchImg: branch.branchImg,
@@ -552,7 +551,7 @@ export class MockService {
           barber: {
             create: {
               rate: 0,
-              Slot: {
+              slot: {
                 create: {
                   slot: slot(barber.start, barber.end).slotsArray,
                   end: barber.end,
@@ -577,7 +576,7 @@ export class MockService {
           barber: {
             create: {
               rate: 0,
-              Slot: {
+              slot: {
                 create: {
                   slot: slot(barber.start, barber.end).slotsArray,
                   end: barber.end,
@@ -602,7 +601,7 @@ export class MockService {
           barber: {
             create: {
               rate: 0,
-              Slot: {
+              slot: {
                 create: {
                   slot: slot(barber.start, barber.end).slotsArray,
                   end: barber.end,
@@ -619,8 +618,8 @@ export class MockService {
     const category = this.categories.map(async (category) => {
       const c = await this.prisma.category.create({
         data: {
-          Translation: createTranslation({
-            Translation: category.Translations,
+          translation: createTranslation({
+            translation: category.Translations,
           }),
         },
       });
@@ -631,7 +630,7 @@ export class MockService {
     const serviceBeard = this.BeardServices.map(async (service) => {
       await this.prisma.service.create({
         data: {
-          Translation: createTranslation({ Translation: service.Translation }),
+          translation: createTranslation({ translation: service.translation }),
           price: service.price,
           duration: service.duration,
           categoryId: createdCategories[1].id,
@@ -642,7 +641,7 @@ export class MockService {
     const serviceCare = this.HairCareServices.map(async (service) => {
       await this.prisma.service.create({
         data: {
-          Translation: createTranslation({ Translation: service.Translation }),
+          translation: createTranslation({ translation: service.translation }),
           price: service.price,
           duration: service.duration,
           categoryId: createdCategories[0].id,
@@ -653,7 +652,7 @@ export class MockService {
     const serviceCut = this.HairCutServices.map(async (service) => {
       await this.prisma.service.create({
         data: {
-          Translation: createTranslation({ Translation: service.Translation }),
+          translation: createTranslation({ translation: service.translation }),
           price: service.price,
           duration: service.duration,
           categoryId: createdCategories[2].id,
@@ -666,7 +665,7 @@ export class MockService {
       data: {
         canceledOrder: 2,
         pointLimit: 100,
-        PointsPercentage: 10,
+        pointsPercentage: 10,
         referralPoints: 1000,
       },
     });

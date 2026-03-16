@@ -1,0 +1,73 @@
+{
+  "AUTH": {
+    "INVALID_CREDENTIALS": "Invalid phone or password",
+    "OTP_INVALID": "OTP code is invalid",
+    "OTP_EXPIRED": "OTP code has expired",
+    "RESET_INVALID": "Reset token is invalid",
+    "RESET_EXPIRED": "Reset token has expired"
+  },
+  "user": {
+    "notFound": "User not found",
+    "conflict": "Phone number is already registered",
+    "roleNotFound": "Role not found"
+  },
+  "barber": {
+    "notFound": "Barber not found"
+  },
+  "cashier": {
+    "notFound": "Cashier not found"
+  },
+  "branch": {
+    "notFound": "Branch not found"
+  },
+  "category": {
+    "notFound": "Category not found"
+  },
+  "service": {
+    "notFound": "Service not found",
+    "unavailable": "One or more services are unavailable"
+  },
+  "order": {
+    "notFound": "Order not found",
+    "duplicate": "Duplicate order detected",
+    "forbidden": "You are not allowed to perform this action",
+    "invalidReviewToken": "Invalid or expired review token",
+    "bookingDateInvalid": "Booking date is out of allowed range",
+    "noActivePackage": "No active package found",
+    "packageNoSessions": "Package has no remaining sessions",
+    "serviceIdsRequired": "Service IDs are required for service orders",
+    "slotConflict": "This slot is already booked",
+    "datePastNotAllowed": "Cannot query past orders"
+  },
+  "client": {
+    "notFound": "Client not found",
+    "banned": "Client account is banned"
+  },
+  "offer": {
+    "notFound": "Offer not found",
+    "expired": "This offer has expired",
+    "invalidType": "Invalid offer type"
+  },
+  "package": {
+    "notFound": "Package not found",
+    "serviceInvalid": "One or more services not found or unavailable",
+    "typeRequired": "Offer type is required",
+    "servicesRequired": "Services are required for package offers"
+  },
+  "points": {
+    "amountRequired": "Points amount is required"
+  },
+  "promoCode": {
+    "notFound": "Promo code not found",
+    "invalid": "Invalid or expired promo code"
+  },
+  "product": {
+    "notFound": "Product not found"
+  },
+  "settings": {
+    "notFound": "Settings not found"
+  },
+  "static": {
+    "notFound": "Static content not found"
+  }
+}

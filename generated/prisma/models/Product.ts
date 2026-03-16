@@ -224,7 +224,7 @@ export type ProductWhereInput = {
   available?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  Translation?: Prisma.TranslationListRelationFilter
+  translation?: Prisma.TranslationListRelationFilter
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -234,7 +234,7 @@ export type ProductOrderByWithRelationInput = {
   available?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  Translation?: Prisma.TranslationOrderByRelationAggregateInput
+  translation?: Prisma.TranslationOrderByRelationAggregateInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -247,7 +247,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   available?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-  Translation?: Prisma.TranslationListRelationFilter
+  translation?: Prisma.TranslationListRelationFilter
 }, "id">
 
 export type ProductOrderByWithAggregationInput = {
@@ -283,7 +283,7 @@ export type ProductCreateInput = {
   available?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  Translation?: Prisma.TranslationCreateNestedManyWithoutProductInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -293,7 +293,7 @@ export type ProductUncheckedCreateInput = {
   available?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutProductInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -303,7 +303,7 @@ export type ProductUpdateInput = {
   available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Translation?: Prisma.TranslationUpdateManyWithoutProductNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -313,7 +313,7 @@ export type ProductUncheckedUpdateInput = {
   available?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutProductNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -457,11 +457,11 @@ export type ProductUncheckedUpdateWithoutTranslationInput = {
  */
 
 export type ProductCountOutputType = {
-  Translation: number
+  translation: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Translation?: boolean | ProductCountOutputTypeCountTranslationArgs
+  translation?: boolean | ProductCountOutputTypeCountTranslationArgs
 }
 
 /**
@@ -489,7 +489,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   available?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  Translation?: boolean | Prisma.Product$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Product$translationArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -522,7 +522,7 @@ export type ProductSelectScalar = {
 
 export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "productImg" | "price" | "available" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Translation?: boolean | Prisma.Product$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Product$translationArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -531,7 +531,7 @@ export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
   objects: {
-    Translation: Prisma.$TranslationPayload<ExtArgs>[]
+    translation: Prisma.$TranslationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -934,7 +934,7 @@ readonly fields: ProductFieldRefs;
  */
 export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Translation<T extends Prisma.Product$TranslationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$TranslationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translation<T extends Prisma.Product$translationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$translationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1363,9 +1363,9 @@ export type ProductDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Product.Translation
+ * Product.translation
  */
-export type Product$TranslationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$translationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Translation
    */

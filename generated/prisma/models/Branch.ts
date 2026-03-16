@@ -28,10 +28,14 @@ export type AggregateBranch = {
 
 export type BranchAvgAggregateOutputType = {
   rate: number | null
+  openingHour: number | null
+  closingHour: number | null
 }
 
 export type BranchSumAggregateOutputType = {
   rate: number | null
+  openingHour: number | null
+  closingHour: number | null
 }
 
 export type BranchMinAggregateOutputType = {
@@ -42,6 +46,8 @@ export type BranchMinAggregateOutputType = {
   latitude: string | null
   branchImg: string | null
   rate: number | null
+  openingHour: number | null
+  closingHour: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +60,8 @@ export type BranchMaxAggregateOutputType = {
   latitude: string | null
   branchImg: string | null
   rate: number | null
+  openingHour: number | null
+  closingHour: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +74,8 @@ export type BranchCountAggregateOutputType = {
   latitude: number
   branchImg: number
   rate: number
+  openingHour: number
+  closingHour: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -74,10 +84,14 @@ export type BranchCountAggregateOutputType = {
 
 export type BranchAvgAggregateInputType = {
   rate?: true
+  openingHour?: true
+  closingHour?: true
 }
 
 export type BranchSumAggregateInputType = {
   rate?: true
+  openingHour?: true
+  closingHour?: true
 }
 
 export type BranchMinAggregateInputType = {
@@ -88,6 +102,8 @@ export type BranchMinAggregateInputType = {
   latitude?: true
   branchImg?: true
   rate?: true
+  openingHour?: true
+  closingHour?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,6 +116,8 @@ export type BranchMaxAggregateInputType = {
   latitude?: true
   branchImg?: true
   rate?: true
+  openingHour?: true
+  closingHour?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +130,8 @@ export type BranchCountAggregateInputType = {
   latitude?: true
   branchImg?: true
   rate?: true
+  openingHour?: true
+  closingHour?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -211,6 +231,8 @@ export type BranchGroupByOutputType = {
   latitude: string
   branchImg: string
   rate: number
+  openingHour: number
+  closingHour: number
   createdAt: Date
   updatedAt: Date
   _count: BranchCountAggregateOutputType | null
@@ -246,12 +268,14 @@ export type BranchWhereInput = {
   latitude?: Prisma.StringFilter<"Branch"> | string
   branchImg?: Prisma.StringFilter<"Branch"> | string
   rate?: Prisma.IntFilter<"Branch"> | number
+  openingHour?: Prisma.IntFilter<"Branch"> | number
+  closingHour?: Prisma.IntFilter<"Branch"> | number
   createdAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
   barber?: Prisma.BarberListRelationFilter
   Cashier?: Prisma.CashierListRelationFilter
   Order?: Prisma.OrderListRelationFilter
-  Translation?: Prisma.TranslationListRelationFilter
+  translation?: Prisma.TranslationListRelationFilter
 }
 
 export type BranchOrderByWithRelationInput = {
@@ -262,12 +286,14 @@ export type BranchOrderByWithRelationInput = {
   latitude?: Prisma.SortOrder
   branchImg?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   barber?: Prisma.BarberOrderByRelationAggregateInput
   Cashier?: Prisma.CashierOrderByRelationAggregateInput
   Order?: Prisma.OrderOrderByRelationAggregateInput
-  Translation?: Prisma.TranslationOrderByRelationAggregateInput
+  translation?: Prisma.TranslationOrderByRelationAggregateInput
 }
 
 export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -281,12 +307,14 @@ export type BranchWhereUniqueInput = Prisma.AtLeast<{
   latitude?: Prisma.StringFilter<"Branch"> | string
   branchImg?: Prisma.StringFilter<"Branch"> | string
   rate?: Prisma.IntFilter<"Branch"> | number
+  openingHour?: Prisma.IntFilter<"Branch"> | number
+  closingHour?: Prisma.IntFilter<"Branch"> | number
   createdAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
   barber?: Prisma.BarberListRelationFilter
   Cashier?: Prisma.CashierListRelationFilter
   Order?: Prisma.OrderListRelationFilter
-  Translation?: Prisma.TranslationListRelationFilter
+  translation?: Prisma.TranslationListRelationFilter
 }, "id" | "phone">
 
 export type BranchOrderByWithAggregationInput = {
@@ -297,6 +325,8 @@ export type BranchOrderByWithAggregationInput = {
   latitude?: Prisma.SortOrder
   branchImg?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BranchCountOrderByAggregateInput
@@ -317,6 +347,8 @@ export type BranchScalarWhereWithAggregatesInput = {
   latitude?: Prisma.StringWithAggregatesFilter<"Branch"> | string
   branchImg?: Prisma.StringWithAggregatesFilter<"Branch"> | string
   rate?: Prisma.IntWithAggregatesFilter<"Branch"> | number
+  openingHour?: Prisma.IntWithAggregatesFilter<"Branch"> | number
+  closingHour?: Prisma.IntWithAggregatesFilter<"Branch"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Branch"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Branch"> | Date | string
 }
@@ -329,12 +361,14 @@ export type BranchCreateInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberCreateNestedManyWithoutBranchInput
   Cashier?: Prisma.CashierCreateNestedManyWithoutBranchInput
   Order?: Prisma.OrderCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateInput = {
@@ -345,12 +379,14 @@ export type BranchUncheckedCreateInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberUncheckedCreateNestedManyWithoutBranchInput
   Cashier?: Prisma.CashierUncheckedCreateNestedManyWithoutBranchInput
   Order?: Prisma.OrderUncheckedCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUpdateInput = {
@@ -361,12 +397,14 @@ export type BranchUpdateInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUpdateManyWithoutBranchNestedInput
   Cashier?: Prisma.CashierUpdateManyWithoutBranchNestedInput
   Order?: Prisma.OrderUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateInput = {
@@ -377,12 +415,14 @@ export type BranchUncheckedUpdateInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUncheckedUpdateManyWithoutBranchNestedInput
   Cashier?: Prisma.CashierUncheckedUpdateManyWithoutBranchNestedInput
   Order?: Prisma.OrderUncheckedUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateManyInput = {
@@ -393,6 +433,8 @@ export type BranchCreateManyInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -405,6 +447,8 @@ export type BranchUpdateManyMutationInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -417,6 +461,8 @@ export type BranchUncheckedUpdateManyInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -434,12 +480,16 @@ export type BranchCountOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   branchImg?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type BranchAvgOrderByAggregateInput = {
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
 }
 
 export type BranchMaxOrderByAggregateInput = {
@@ -450,6 +500,8 @@ export type BranchMaxOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   branchImg?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -462,12 +514,16 @@ export type BranchMinOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   branchImg?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type BranchSumOrderByAggregateInput = {
   rate?: Prisma.SortOrder
+  openingHour?: Prisma.SortOrder
+  closingHour?: Prisma.SortOrder
 }
 
 export type BranchNullableScalarRelationFilter = {
@@ -541,11 +597,13 @@ export type BranchCreateWithoutCashierInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberCreateNestedManyWithoutBranchInput
   Order?: Prisma.OrderCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutCashierInput = {
@@ -556,11 +614,13 @@ export type BranchUncheckedCreateWithoutCashierInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberUncheckedCreateNestedManyWithoutBranchInput
   Order?: Prisma.OrderUncheckedCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutCashierInput = {
@@ -587,11 +647,13 @@ export type BranchUpdateWithoutCashierInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUpdateManyWithoutBranchNestedInput
   Order?: Prisma.OrderUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutCashierInput = {
@@ -602,11 +664,13 @@ export type BranchUncheckedUpdateWithoutCashierInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUncheckedUpdateManyWithoutBranchNestedInput
   Order?: Prisma.OrderUncheckedUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateWithoutBarberInput = {
@@ -617,11 +681,13 @@ export type BranchCreateWithoutBarberInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   Cashier?: Prisma.CashierCreateNestedManyWithoutBranchInput
   Order?: Prisma.OrderCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutBarberInput = {
@@ -632,11 +698,13 @@ export type BranchUncheckedCreateWithoutBarberInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   Cashier?: Prisma.CashierUncheckedCreateNestedManyWithoutBranchInput
   Order?: Prisma.OrderUncheckedCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutBarberInput = {
@@ -663,11 +731,13 @@ export type BranchUpdateWithoutBarberInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Cashier?: Prisma.CashierUpdateManyWithoutBranchNestedInput
   Order?: Prisma.OrderUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutBarberInput = {
@@ -678,11 +748,13 @@ export type BranchUncheckedUpdateWithoutBarberInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   Cashier?: Prisma.CashierUncheckedUpdateManyWithoutBranchNestedInput
   Order?: Prisma.OrderUncheckedUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateWithoutTranslationInput = {
@@ -693,6 +765,8 @@ export type BranchCreateWithoutTranslationInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberCreateNestedManyWithoutBranchInput
@@ -708,6 +782,8 @@ export type BranchUncheckedCreateWithoutTranslationInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberUncheckedCreateNestedManyWithoutBranchInput
@@ -739,6 +815,8 @@ export type BranchUpdateWithoutTranslationInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUpdateManyWithoutBranchNestedInput
@@ -754,6 +832,8 @@ export type BranchUncheckedUpdateWithoutTranslationInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUncheckedUpdateManyWithoutBranchNestedInput
@@ -769,11 +849,13 @@ export type BranchCreateWithoutOrderInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberCreateNestedManyWithoutBranchInput
   Cashier?: Prisma.CashierCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateWithoutOrderInput = {
@@ -784,11 +866,13 @@ export type BranchUncheckedCreateWithoutOrderInput = {
   latitude: string
   branchImg: string
   rate?: number
+  openingHour?: number
+  closingHour?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   barber?: Prisma.BarberUncheckedCreateNestedManyWithoutBranchInput
   Cashier?: Prisma.CashierUncheckedCreateNestedManyWithoutBranchInput
-  Translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
+  translation?: Prisma.TranslationUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchCreateOrConnectWithoutOrderInput = {
@@ -815,11 +899,13 @@ export type BranchUpdateWithoutOrderInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUpdateManyWithoutBranchNestedInput
   Cashier?: Prisma.CashierUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateWithoutOrderInput = {
@@ -830,11 +916,13 @@ export type BranchUncheckedUpdateWithoutOrderInput = {
   latitude?: Prisma.StringFieldUpdateOperationsInput | string
   branchImg?: Prisma.StringFieldUpdateOperationsInput | string
   rate?: Prisma.IntFieldUpdateOperationsInput | number
+  openingHour?: Prisma.IntFieldUpdateOperationsInput | number
+  closingHour?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   barber?: Prisma.BarberUncheckedUpdateManyWithoutBranchNestedInput
   Cashier?: Prisma.CashierUncheckedUpdateManyWithoutBranchNestedInput
-  Translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
+  translation?: Prisma.TranslationUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 
@@ -846,14 +934,14 @@ export type BranchCountOutputType = {
   barber: number
   Cashier: number
   Order: number
-  Translation: number
+  translation: number
 }
 
 export type BranchCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   barber?: boolean | BranchCountOutputTypeCountBarberArgs
   Cashier?: boolean | BranchCountOutputTypeCountCashierArgs
   Order?: boolean | BranchCountOutputTypeCountOrderArgs
-  Translation?: boolean | BranchCountOutputTypeCountTranslationArgs
+  translation?: boolean | BranchCountOutputTypeCountTranslationArgs
 }
 
 /**
@@ -903,12 +991,14 @@ export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   latitude?: boolean
   branchImg?: boolean
   rate?: boolean
+  openingHour?: boolean
+  closingHour?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   barber?: boolean | Prisma.Branch$barberArgs<ExtArgs>
   Cashier?: boolean | Prisma.Branch$CashierArgs<ExtArgs>
   Order?: boolean | Prisma.Branch$OrderArgs<ExtArgs>
-  Translation?: boolean | Prisma.Branch$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Branch$translationArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["branch"]>
 
@@ -920,6 +1010,8 @@ export type BranchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   latitude?: boolean
   branchImg?: boolean
   rate?: boolean
+  openingHour?: boolean
+  closingHour?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["branch"]>
@@ -932,6 +1024,8 @@ export type BranchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   latitude?: boolean
   branchImg?: boolean
   rate?: boolean
+  openingHour?: boolean
+  closingHour?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["branch"]>
@@ -944,16 +1038,18 @@ export type BranchSelectScalar = {
   latitude?: boolean
   branchImg?: boolean
   rate?: boolean
+  openingHour?: boolean
+  closingHour?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "phone" | "location" | "longitude" | "latitude" | "branchImg" | "rate" | "createdAt" | "updatedAt", ExtArgs["result"]["branch"]>
+export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "phone" | "location" | "longitude" | "latitude" | "branchImg" | "rate" | "openingHour" | "closingHour" | "createdAt" | "updatedAt", ExtArgs["result"]["branch"]>
 export type BranchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   barber?: boolean | Prisma.Branch$barberArgs<ExtArgs>
   Cashier?: boolean | Prisma.Branch$CashierArgs<ExtArgs>
   Order?: boolean | Prisma.Branch$OrderArgs<ExtArgs>
-  Translation?: boolean | Prisma.Branch$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Branch$translationArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BranchIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -965,7 +1061,7 @@ export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     barber: Prisma.$BarberPayload<ExtArgs>[]
     Cashier: Prisma.$CashierPayload<ExtArgs>[]
     Order: Prisma.$OrderPayload<ExtArgs>[]
-    Translation: Prisma.$TranslationPayload<ExtArgs>[]
+    translation: Prisma.$TranslationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -975,6 +1071,8 @@ export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     latitude: string
     branchImg: string
     rate: number
+    openingHour: number
+    closingHour: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["branch"]>
@@ -1374,7 +1472,7 @@ export interface Prisma__BranchClient<T, Null = never, ExtArgs extends runtime.T
   barber<T extends Prisma.Branch$barberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$barberArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BarberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Cashier<T extends Prisma.Branch$CashierArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$CashierArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CashierPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Order<T extends Prisma.Branch$OrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$OrderArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Translation<T extends Prisma.Branch$TranslationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$TranslationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translation<T extends Prisma.Branch$translationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$translationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1411,6 +1509,8 @@ export interface BranchFieldRefs {
   readonly latitude: Prisma.FieldRef<"Branch", 'String'>
   readonly branchImg: Prisma.FieldRef<"Branch", 'String'>
   readonly rate: Prisma.FieldRef<"Branch", 'Int'>
+  readonly openingHour: Prisma.FieldRef<"Branch", 'Int'>
+  readonly closingHour: Prisma.FieldRef<"Branch", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Branch", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Branch", 'DateTime'>
 }
@@ -1878,9 +1978,9 @@ export type Branch$OrderArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Branch.Translation
+ * Branch.translation
  */
-export type Branch$TranslationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Branch$translationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Translation
    */

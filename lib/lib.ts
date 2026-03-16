@@ -1,14 +1,14 @@
 type TranslationType = { language: 'EN' | 'AR'; name: string };
 
-export const TranslateName = <T extends { Translation: TranslationType[] }>(
+export const TranslateName = <T extends { translation: TranslationType[] }>(
   data: T,
   language: 'EN' | 'AR',
 ) => {
-  const { Translation, ...rest } = data;
+  const { translation, ...rest } = data;
   return {
     ...rest,
-    nameEN: Translation.find((t) => t.language === 'EN')?.name,
-    nameAR: Translation.find((t) => t.language === 'AR')?.name,
-    name: Translation.find((t) => t.language === language)?.name,
+    nameEN: translation.find((t) => t.language === 'EN')?.name,
+    nameAR: translation.find((t) => t.language === 'AR')?.name,
+    name: translation.find((t) => t.language === language)?.name,
   };
 };

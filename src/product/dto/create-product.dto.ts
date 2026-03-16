@@ -18,5 +18,5 @@ export class CreateProductDto {
   available: boolean;
 
   @IsArray()
-  Translation: translationDto[];
+  translation: translationDto[];
 }

@@ -9,6 +9,7 @@ import { redisStore } from 'cache-manager-redis-store';
     CacheModule.registerAsync({
       useFactory: async () => ({
         store: await redisStore({
+          store: 'none',
           socket: {
             host: process.env.REDIS_HOST,
             port: +process.env.REDIS_PORT,

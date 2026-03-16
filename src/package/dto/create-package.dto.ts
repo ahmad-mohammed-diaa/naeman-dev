@@ -51,5 +51,5 @@ export class CreatePackageDto {
   expiresAt: Date;
 
   @IsArray()
-  Translation: translationDto[];
+  translation: translationDto[];
 }

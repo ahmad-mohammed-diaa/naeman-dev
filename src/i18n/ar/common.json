@@ -1,0 +1,73 @@
+{
+  "AUTH": {
+    "INVALID_CREDENTIALS": "رقم الهاتف أو كلمة المرور غير صحيحة",
+    "OTP_INVALID": "رمز التحقق غير صحيح",
+    "OTP_EXPIRED": "انتهت صلاحية رمز التحقق",
+    "RESET_INVALID": "رمز إعادة التعيين غير صالح",
+    "RESET_EXPIRED": "انتهت صلاحية رمز إعادة التعيين"
+  },
+  "user": {
+    "notFound": "المستخدم غير موجود",
+    "conflict": "رقم الهاتف مسجل مسبقاً",
+    "roleNotFound": "الدور غير موجود"
+  },
+  "barber": {
+    "notFound": "الحلاق غير موجود"
+  },
+  "cashier": {
+    "notFound": "أمين الصندوق غير موجود"
+  },
+  "branch": {
+    "notFound": "الفرع غير موجود"
+  },
+  "category": {
+    "notFound": "الفئة غير موجودة"
+  },
+  "service": {
+    "notFound": "الخدمة غير موجودة",
+    "unavailable": "خدمة واحدة أو أكثر غير متاحة"
+  },
+  "order": {
+    "notFound": "الطلب غير موجود",
+    "duplicate": "تم اكتشاف طلب مكرر",
+    "forbidden": "غير مسموح لك بتنفيذ هذا الإجراء",
+    "invalidReviewToken": "رمز المراجعة غير صالح أو منتهي الصلاحية",
+    "bookingDateInvalid": "تاريخ الحجز خارج النطاق المسموح به",
+    "noActivePackage": "لا توجد باقة نشطة",
+    "packageNoSessions": "لم تتبق جلسات في هذه الباقة",
+    "serviceIdsRequired": "معرّفات الخدمات مطلوبة لطلبات الخدمة",
+    "slotConflict": "هذا الموعد محجوز مسبقاً",
+    "datePastNotAllowed": "لا يمكن الاستعلام عن الطلبات السابقة"
+  },
+  "client": {
+    "notFound": "العميل غير موجود",
+    "banned": "حساب العميل محظور"
+  },
+  "offer": {
+    "notFound": "العرض غير موجود",
+    "expired": "انتهت صلاحية هذا العرض",
+    "invalidType": "نوع العرض غير صالح"
+  },
+  "package": {
+    "notFound": "الباقة غير موجودة",
+    "serviceInvalid": "خدمة واحدة أو أكثر غير موجودة أو غير متاحة",
+    "typeRequired": "نوع العرض مطلوب",
+    "servicesRequired": "الخدمات مطلوبة لعروض الباقات"
+  },
+  "points": {
+    "amountRequired": "كمية النقاط مطلوبة"
+  },
+  "promoCode": {
+    "notFound": "رمز الخصم غير موجود",
+    "invalid": "رمز الخصم غير صالح أو منتهي الصلاحية"
+  },
+  "product": {
+    "notFound": "المنتج غير موجود"
+  },
+  "settings": {
+    "notFound": "الإعدادات غير موجودة"
+  },
+  "static": {
+    "notFound": "المحتوى الثابت غير موجود"
+  }
+}

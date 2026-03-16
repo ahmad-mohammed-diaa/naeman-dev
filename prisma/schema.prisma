@@ -9,16 +9,20 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid()) @map("id")
-  firstName     String
-  lastName      String
-  avatar        String         @default("https://i.ibb.co/P50Hk9p/avatar.png")
-  phone         String         @unique
-  password      String
-  fcmToken      String?
-  createdAt     DateTime       @default(now()) @map("createdAt")
-  updatedAt     DateTime       @updatedAt @map("updatedAt")
-  role          Role           @default(USER) @map("role")
+  id        String   @id @default(uuid()) @map("id")
+  firstName String
+  lastName  String
+  avatar    String   @default("https://i.ibb.co/P50Hk9p/avatar.png")
+  phone     String   @unique
+  password  String
+  fcmToken  String?
+  createdAt DateTime @default(now()) @map("createdAt")
+  updatedAt DateTime @updatedAt @map("updatedAt")
+
+  role    Role    @default(USER) @map("role")
+  roleId  String?
+  roleRef Roles?  @relation(fields: [roleId], references: [id])
+
   admin         Admin?
   barber        Barber?
   cashier       Cashier?
@@ -27,11 +31,32 @@ model User {
   CashierOrders Order[]        @relation("CashierOrders")
   UserOrders    Order[]        @relation("UserOrders")
   notification  notification[] @relation("notifications")
+  orders        Order[]        @relation("CancelledBy")
   deleted       Boolean        @default(false)
 
   @@index([phone])
   @@index([role])
   @@map("users")
+}
+
+model Roles {
+  id          String       @id @default(uuid())
+  name        String       @unique // "ADMIN" | "BARBER" | "CASHIER" | "CLIENT"
+  users       User[]
+  permissions Permission[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id       String  @id @default(uuid())
+  action   String // "view" | "create" | "edit" | "delete"
+  resource String // "orders" | "services" | "settings" | ...
+  roles    Roles[]
+
+  @@unique([action, resource])
+  @@index([resource])
+  @@map("permissions")
 }
 
 model Client {
@@ -42,11 +67,12 @@ model Client {
   offersId       String?
   canceledOrders Int     @default(0)
 
-  user           User             @relation(fields: [id], references: [id])
-  complain       Complain[]
-  ClientPackages ClientPackages[]
-  Offers         Offers[]         @relation("ClientOffers")
-  BarberRating   BarberRating[]
+  user              User               @relation(fields: [id], references: [id])
+  complain          Complain[]
+  clientPackages    ClientPackages[]
+  offers            Offers[]           @relation("ClientOffers")
+  barberRating      BarberRating[]
+  pointTransactions PointTransaction[]
 
   @@index([referralCode])
 }
@@ -56,8 +82,9 @@ model Cashier {
   branchId  String
   branch    Branch     @relation(fields: [branchId], references: [id])
   user      User       @relation(fields: [id], references: [id])
-  Slot      Slot?
+  slot      Slot?
   vacations Vacation[]
+  daysOff   Days[]
 }
 
 model Barber {
@@ -69,9 +96,10 @@ model Barber {
   type         CategoryType   @default(GENERAL)
   branch       Branch         @relation(fields: [branchId], references: [id])
   user         User           @relation(fields: [id], references: [id])
-  Slot         Slot?
+  slot         Slot?
   vacations    Vacation[]
-  BarberRating BarberRating[]
+  daysOff      Days[]
+  barberRating BarberRating[]
 }
 
 model BarberRating {
@@ -128,7 +156,7 @@ model ResetPassword {
 
 model Settings {
   id                        String    @id @default(uuid())
-  PointsPercentage          Int       @default(10)
+  pointsPercentage          Int       @default(10)
   referralPoints            Int       @default(1000)
   pointLimit                Int       @default(100)
   password                  String?
@@ -165,9 +193,12 @@ model questions {
 }
 
 model Token {
-  id        String    @id @default(uuid())
-  token     String    @unique
-  expiredAt DateTime?
+  id           String    @id @default(uuid())
+  token        String    @unique
+  userId       String?
+  accessToken  String?
+  refreshToken String?
+  expiredAt    DateTime?
 }
 
 model Complain {
@@ -188,27 +219,30 @@ model Branch {
   latitude    String
   branchImg   String
   rate        Int           @default(0)
+  openingHour Int           @default(6) // branch opens at hour 6 → 6:00 AM (0–23)
+  closingHour Int           @default(24) // branch closes at hour 24 → 00:00 PM (0–23)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   barber      Barber[]
   Cashier     Cashier[]
   Order       Order[]
-  Translation Translation[] @relation("branch")
+  translation Translation[] @relation("branch")
 }
 
 model Translation {
-  id         String    @id @default(uuid())
+  id         String   @id @default(uuid())
   name       String
   language   Language
   branchId   String?
   categoryId String?
   serviceId  String?
-  branch     Branch?   @relation("branch", fields: [branchId], references: [id], map: "Translation_branch_key")
-  category   Category? @relation("category", fields: [categoryId], references: [id], map: "Translation_category_key", onDelete: Cascade)
-  service    Service?  @relation("service", fields: [serviceId], references: [id], map: "Translation_service_key", onDelete: Cascade)
   pointsId   String?
-  Product    Product?  @relation(fields: [productId], references: [id])
   productId  String?
+
+  branch   Branch?   @relation("branch", fields: [branchId], references: [id], map: "Translation_branch_key")
+  category Category? @relation("category", fields: [categoryId], references: [id], map: "Translation_category_key", onDelete: Cascade)
+  service  Service?  @relation("service", fields: [serviceId], references: [id], map: "Translation_service_key", onDelete: Cascade)
+  Product  Product?  @relation(fields: [productId], references: [id])
 
   @@index([name])
 }
@@ -242,7 +276,7 @@ model Category {
   updatedAt   DateTime      @updatedAt
   type        CategoryType  @default(GENERAL)
   services    Service[]
-  Translation Translation[] @relation("category")
+  translation Translation[] @relation("category")
 }
 
 model Service {
@@ -255,11 +289,12 @@ model Service {
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   offersId         String?
-  PackagesServices PackagesServices[]
+  packagesServices PackagesServices[]
   category         Category           @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   order            Order[]            @relation("OrderToServices")
   packagesIds      Packages[]         @relation("PackagesToServices")
-  Translation      Translation[]      @relation("service")
+  translation      Translation[]      @relation("service")
+  orderItems       OrderItem[]
 }
 
 model Product {
@@ -271,7 +306,7 @@ model Product {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  Translation Translation[]
+  translation Translation[]
 }
 
 model Slot {
@@ -299,42 +334,70 @@ model PromoCode {
 }
 
 model Order {
-  id                      String   @id @default(uuid())
+  id                      String             @id @default(uuid())
   branchId                String
   promoCode               String?
   date                    DateTime
   slot                    String
   note                    String?
-  points                  Int      @default(0)
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
+  points                  Int                @default(0)
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime           @updatedAt
   subTotal                Int
   total                   Int
   userId                  String?
   barberId                String?
   cashierId               String?
-  discount                Int      @default(0)
+  discount                Int                @default(0)
   freeService             String[]
-  deleted                 Boolean  @default(false)
+  deleted                 Boolean            @default(false)
   barberName              String?
   usedPackage             String[]
-  shouldBeReviewedByAdmin Boolean  @default(false)
+  shouldBeReviewedByAdmin Boolean            @default(false)
   servicesToDelete        String[]
-  reminderSent            Boolean  @default(false)
+  reminderSent            Boolean            @default(false)
+  duration                Int?
+  booking                 BookingStatus      @default(UPCOMING)
+  type                    discount           @default(AMOUNT)
+  status                  OrderStatus        @default(PENDING)
+  cancelledBy             User?              @relation("CancelledBy", fields: [cancelledById], references: [id])
+  cancelledById           String?
+  branch                  Branch             @relation(fields: [branchId], references: [id])
+  client                  User?              @relation("UserOrders", fields: [userId], references: [id])
+  barber                  User?              @relation("BarberOrders", fields: [barberId], references: [id])
+  cashier                 User?              @relation("CashierOrders", fields: [cashierId], references: [id])
+  service                 Service[]          @relation("OrderToServices")
+  orderItems              OrderItem[]
+  pointTransactions       PointTransaction[]
 
-  booking BookingStatus @default(UPCOMING)
-  type    discount      @default(AMOUNT)
-  status  OrderStatus   @default(PENDING)
-  branch  Branch        @relation(fields: [branchId], references: [id])
-  client  User?         @relation("UserOrders", fields: [userId], references: [id])
-  barber  User?         @relation("BarberOrders", fields: [barberId], references: [id])
-  Cashier User?         @relation("CashierOrders", fields: [cashierId], references: [id])
-  service Service[]     @relation("OrderToServices")
-
-  @@index([barberId, date])
   @@index([userId, date])
+  @@index([branchId, date])
+  @@index([barberId, date])
   @@index([cashierId, date])
   @@index([date, booking, status])
+}
+
+model OrderItem {
+  id              String          @id @default(uuid())
+  orderId         String
+  serviceId       String
+  price           Int
+  source          OrderItemSource
+  order           Order           @relation(fields: [orderId], references: [id])
+  service         Service         @relation(fields: [serviceId], references: [id])
+  clientPackageId String?
+  clientPackage   ClientPackages? @relation(fields: [clientPackageId], references: [id])
+}
+
+model IdempotencyKey {
+  id        String   @id @default(uuid())
+  key       String   @unique // SHA-256 hash of the reviewToken
+  orderId   String?
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([key])
+  @@map("idempotency_keys")
 }
 
 model Offers {
@@ -362,7 +425,7 @@ model Packages {
   expiresAt   DateTime
   offers      Offers           @relation(fields: [id], references: [id])
   services    Service[]        @relation("PackagesToServices")
-  Translation TranslationDes[] @relation("packages")
+  translation TranslationDes[] @relation("packages")
 }
 
 model Points {
@@ -371,8 +434,8 @@ model Points {
   price       Int
   points      Int
   expiresAt   DateTime
-  Offers      Offers           @relation(fields: [id], references: [id])
-  Translation TranslationDes[] @relation("points")
+  offers      Offers           @relation(fields: [id], references: [id])
+  translation TranslationDes[] @relation("points")
 }
 
 model PackagesServices {
@@ -382,9 +445,9 @@ model PackagesServices {
   usedAt           DateTime?
   createdAt        DateTime       @default(now()) @map("createdAt")
   service          Service        @relation(fields: [serviceId], references: [id], onDelete: Cascade)
-  remainingCount   Int?
-  ClientPackagesId String
-  ClientPackages   ClientPackages @relation(fields: [ClientPackagesId], references: [id])
+  quantity         Int            @default(1)
+  clientPackagesId String
+  clientPackages   ClientPackages @relation(fields: [clientPackagesId], references: [id])
 }
 
 model ClientPackages {
@@ -399,7 +462,8 @@ model ClientPackages {
   updatedAt      DateTime           @updatedAt @map("updatedAt")
   clientId       String
   client         Client             @relation(fields: [clientId], references: [id])
-  Translation    TranslationDes[]   @relation("clientPackages")
+  translation    TranslationDes[]   @relation("clientPackages")
+  orderItems     OrderItem[]
 }
 
 model notification {
@@ -409,6 +473,22 @@ model notification {
   image     String?
   user      User[]   @relation("notifications")
   createdAt DateTime @default(now()) @map("createdAt")
+}
+
+model PointTransaction {
+  id        String               @id @default(uuid())
+  clientId  String
+  orderId   String?
+  type      PointTransactionType
+  amount    Int // points added (EARN/REFERRAL) or subtracted (REDEEM)
+  createdAt DateTime             @default(now())
+
+  client Client @relation(fields: [clientId], references: [id])
+  order  Order? @relation(fields: [orderId], references: [id])
+
+  @@index([clientId])
+  @@index([orderId])
+  @@map("point_transactions")
 }
 
 enum discount {
@@ -428,6 +508,7 @@ enum OrderStatus {
   CLIENT_CANCELLED
   BARBER_CANCELLED
   CASHIER_CANCELLED
+  CANCELLED
   COMPLETED
   PAID
 }
@@ -448,10 +529,33 @@ enum Role {
   CASHIER
   ADMIN
   USER
+  CLIENT
 }
 
 enum CategoryType {
   GENERAL
   MASSAGE
   PEDICURE
+}
+
+enum OrderItemSource {
+  SERVICE
+  PACKAGE
+}
+
+enum Days {
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
+
+enum PointTransactionType {
+  EARN // earned after order completed
+  REDEEM // used to pay part of an order
+  REFERRAL // earned from referral code
+  EXPIRE // deducted when points expire
 }

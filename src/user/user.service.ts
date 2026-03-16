@@ -42,7 +42,7 @@ export class UserService {
   private barber = {
     id: false,
     branch: true,
-    Slot: {
+    slot: {
       select: {
         id: true,
         start: true,
@@ -60,7 +60,7 @@ export class UserService {
   private cashier = {
     id: false,
     branch: true,
-    Slot: {
+    slot: {
       select: {
         id: true,
         start: true,
@@ -274,7 +274,7 @@ export class UserService {
                   },
                 }),
                 ...((start || end) && {
-                  Slot: {
+                  slot: {
                     update: shouldUpdateImmediately
                       ? {
                           data: {
@@ -313,10 +313,10 @@ export class UserService {
         avatar: true,
         phone: true,
         ...(user.role === Role.BARBER && {
-          barber: { include: { vacations: true, Slot: true } },
+          barber: { include: { vacations: true, slot: true } },
         }),
         ...(user.role === Role.CASHIER && {
-          cashier: { include: { vacations: true, Slot: true } },
+          cashier: { include: { vacations: true, slot: true } },
         }),
         ...(user.role === Role.USER && {
           client: { select: this.client },

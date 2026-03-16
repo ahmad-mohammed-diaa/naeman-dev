@@ -230,7 +230,7 @@ export type PackagesWhereInput = {
   expiresAt?: Prisma.DateTimeFilter<"Packages"> | Date | string
   offers?: Prisma.XOR<Prisma.OffersScalarRelationFilter, Prisma.OffersWhereInput>
   services?: Prisma.ServiceListRelationFilter
-  Translation?: Prisma.TranslationDesListRelationFilter
+  translation?: Prisma.TranslationDesListRelationFilter
 }
 
 export type PackagesOrderByWithRelationInput = {
@@ -242,7 +242,7 @@ export type PackagesOrderByWithRelationInput = {
   expiresAt?: Prisma.SortOrder
   offers?: Prisma.OffersOrderByWithRelationInput
   services?: Prisma.ServiceOrderByRelationAggregateInput
-  Translation?: Prisma.TranslationDesOrderByRelationAggregateInput
+  translation?: Prisma.TranslationDesOrderByRelationAggregateInput
 }
 
 export type PackagesWhereUniqueInput = Prisma.AtLeast<{
@@ -257,7 +257,7 @@ export type PackagesWhereUniqueInput = Prisma.AtLeast<{
   expiresAt?: Prisma.DateTimeFilter<"Packages"> | Date | string
   offers?: Prisma.XOR<Prisma.OffersScalarRelationFilter, Prisma.OffersWhereInput>
   services?: Prisma.ServiceListRelationFilter
-  Translation?: Prisma.TranslationDesListRelationFilter
+  translation?: Prisma.TranslationDesListRelationFilter
 }, "id">
 
 export type PackagesOrderByWithAggregationInput = {
@@ -294,7 +294,7 @@ export type PackagesCreateInput = {
   expiresAt: Date | string
   offers: Prisma.OffersCreateNestedOneWithoutPackagesInput
   services?: Prisma.ServiceCreateNestedManyWithoutPackagesIdsInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutPackageInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutPackageInput
 }
 
 export type PackagesUncheckedCreateInput = {
@@ -305,7 +305,7 @@ export type PackagesUncheckedCreateInput = {
   type?: $Enums.PackagesStatus
   expiresAt: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutPackagesIdsInput
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPackageInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPackageInput
 }
 
 export type PackagesUpdateInput = {
@@ -316,7 +316,7 @@ export type PackagesUpdateInput = {
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offers?: Prisma.OffersUpdateOneRequiredWithoutPackagesNestedInput
   services?: Prisma.ServiceUpdateManyWithoutPackagesIdsNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutPackageNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutPackageNestedInput
 }
 
 export type PackagesUncheckedUpdateInput = {
@@ -327,7 +327,7 @@ export type PackagesUncheckedUpdateInput = {
   type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutPackagesIdsNestedInput
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPackageNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPackageNestedInput
 }
 
 export type PackagesCreateManyInput = {
@@ -561,7 +561,7 @@ export type PackagesCreateWithoutServicesInput = {
   type?: $Enums.PackagesStatus
   expiresAt: Date | string
   offers: Prisma.OffersCreateNestedOneWithoutPackagesInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutPackageInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutPackageInput
 }
 
 export type PackagesUncheckedCreateWithoutServicesInput = {
@@ -571,7 +571,7 @@ export type PackagesUncheckedCreateWithoutServicesInput = {
   count?: number
   type?: $Enums.PackagesStatus
   expiresAt: Date | string
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPackageInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPackageInput
 }
 
 export type PackagesCreateOrConnectWithoutServicesInput = {
@@ -614,7 +614,7 @@ export type PackagesCreateWithoutOffersInput = {
   type?: $Enums.PackagesStatus
   expiresAt: Date | string
   services?: Prisma.ServiceCreateNestedManyWithoutPackagesIdsInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutPackageInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutPackageInput
 }
 
 export type PackagesUncheckedCreateWithoutOffersInput = {
@@ -624,7 +624,7 @@ export type PackagesUncheckedCreateWithoutOffersInput = {
   type?: $Enums.PackagesStatus
   expiresAt: Date | string
   services?: Prisma.ServiceUncheckedCreateNestedManyWithoutPackagesIdsInput
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPackageInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPackageInput
 }
 
 export type PackagesCreateOrConnectWithoutOffersInput = {
@@ -650,7 +650,7 @@ export type PackagesUpdateWithoutOffersInput = {
   type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUpdateManyWithoutPackagesIdsNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutPackageNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutPackageNestedInput
 }
 
 export type PackagesUncheckedUpdateWithoutOffersInput = {
@@ -660,7 +660,7 @@ export type PackagesUncheckedUpdateWithoutOffersInput = {
   type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutPackagesIdsNestedInput
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPackageNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPackageNestedInput
 }
 
 export type PackagesUpdateWithoutServicesInput = {
@@ -670,7 +670,7 @@ export type PackagesUpdateWithoutServicesInput = {
   type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offers?: Prisma.OffersUpdateOneRequiredWithoutPackagesNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutPackageNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutPackageNestedInput
 }
 
 export type PackagesUncheckedUpdateWithoutServicesInput = {
@@ -680,7 +680,7 @@ export type PackagesUncheckedUpdateWithoutServicesInput = {
   count?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumPackagesStatusFieldUpdateOperationsInput | $Enums.PackagesStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPackageNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPackageNestedInput
 }
 
 export type PackagesUncheckedUpdateManyWithoutServicesInput = {
@@ -699,12 +699,12 @@ export type PackagesUncheckedUpdateManyWithoutServicesInput = {
 
 export type PackagesCountOutputType = {
   services: number
-  Translation: number
+  translation: number
 }
 
 export type PackagesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   services?: boolean | PackagesCountOutputTypeCountServicesArgs
-  Translation?: boolean | PackagesCountOutputTypeCountTranslationArgs
+  translation?: boolean | PackagesCountOutputTypeCountTranslationArgs
 }
 
 /**
@@ -741,7 +741,7 @@ export type PackagesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   expiresAt?: boolean
   offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
   services?: boolean | Prisma.Packages$servicesArgs<ExtArgs>
-  Translation?: boolean | Prisma.Packages$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Packages$translationArgs<ExtArgs>
   _count?: boolean | Prisma.PackagesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packages"]>
 
@@ -778,7 +778,7 @@ export type PackagesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type PackagesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
   services?: boolean | Prisma.Packages$servicesArgs<ExtArgs>
-  Translation?: boolean | Prisma.Packages$TranslationArgs<ExtArgs>
+  translation?: boolean | Prisma.Packages$translationArgs<ExtArgs>
   _count?: boolean | Prisma.PackagesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PackagesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -793,7 +793,7 @@ export type $PackagesPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     offers: Prisma.$OffersPayload<ExtArgs>
     services: Prisma.$ServicePayload<ExtArgs>[]
-    Translation: Prisma.$TranslationDesPayload<ExtArgs>[]
+    translation: Prisma.$TranslationDesPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1198,7 +1198,7 @@ export interface Prisma__PackagesClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   offers<T extends Prisma.OffersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffersDefaultArgs<ExtArgs>>): Prisma.Prisma__OffersClient<runtime.Types.Result.GetResult<Prisma.$OffersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   services<T extends Prisma.Packages$servicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Packages$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Translation<T extends Prisma.Packages$TranslationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Packages$TranslationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationDesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  translation<T extends Prisma.Packages$translationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Packages$translationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationDesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1659,9 +1659,9 @@ export type Packages$servicesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Packages.Translation
+ * Packages.translation
  */
-export type Packages$TranslationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Packages$translationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the TranslationDes
    */

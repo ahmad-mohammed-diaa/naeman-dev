@@ -24,7 +24,7 @@ export class ProductService {
       data: {
         ...(productImgUrl && { productImg: productImgUrl }),
         ...CreateProductDto,
-        Translation: createTranslation(CreateProductDto),
+        translation: createTranslation(CreateProductDto),
       },
     });
 
@@ -54,7 +54,7 @@ export class ProductService {
     const product = await this.prisma.product.update({
       where: { id },
       data: {
-        Translation: updateTranslation(updateProductDto),
+        translation: updateTranslation(updateProductDto),
         productImg,
         price,
         available,

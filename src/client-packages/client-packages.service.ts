@@ -41,16 +41,16 @@ export class ClientPackagesService {
     const clientPackage = await this.prisma.client.update({
       where: { id: user.id },
       data: {
-        ClientPackages: {
+        clientPackages: {
           create: {
-            Translation: createTranslation(pkg),
+            translation: createTranslation(pkg),
             packageId: pkg.id,
             type: pkg.type,
             packageService: {
               createMany: {
                 data: pkg.services.map((service) => ({
                   serviceId: service.id,
-                  remainingCount: pkg.count,
+                  quantity: pkg.count,
                 })),
               },
             },
@@ -58,7 +58,7 @@ export class ClientPackagesService {
         },
       },
       include: {
-        ClientPackages: {
+        clientPackages: {
           select: {
             id: true,
             packageService: {
@@ -86,17 +86,17 @@ export class ClientPackagesService {
         id: true,
         createdAt: true,
         updatedAt: true,
-        Translation: {
+        translation: {
           where: { language },
-          ...translationDes().Translation,
+          ...translationDes().translation,
         },
         packageService: {
           include: {
             service: {
               include: {
-                Translation: {
+                translation: {
                   where: { language },
-                  ...Translation().Translation,
+                  ...Translation().translation,
                 },
               },
             },
@@ -106,21 +106,21 @@ export class ClientPackagesService {
     });
 
     const clientPackages = fetchedClientPackages.map((clientPackage) => {
-      const { Translation, packageService, ...rest } = clientPackage;
+      const { translation, packageService, ...rest } = clientPackage;
       return {
         ...rest,
-        nameEN: Translation.find((t) => t.language === 'EN')?.name,
-        nameAR: Translation.find((t) => t.language === 'AR')?.name,
-        name: Translation.find((t) => t.language === language)?.name,
-        description: Translation.find((t) => t.language === language)
+        nameEN: translation.find((t) => t.language === 'EN')?.name,
+        nameAR: translation.find((t) => t.language === 'AR')?.name,
+        name: translation.find((t) => t.language === language)?.name,
+        description: translation.find((t) => t.language === language)
           .description,
         services: packageService.map((service) => {
-          const { serviceImg, Translation, ...rest } = service.service;
+          const { serviceImg, translation, ...rest } = service.service;
           return {
             ...rest,
-            nameEN: Translation.find((t) => t.language === 'EN')?.name,
-            nameAR: Translation.find((t) => t.language === 'AR')?.name,
-            name: Translation.find((t) => t.language === language)?.name,
+            nameEN: translation.find((t) => t.language === 'EN')?.name,
+            nameAR: translation.find((t) => t.language === 'AR')?.name,
+            name: translation.find((t) => t.language === language)?.name,
             serviceImg,
           };
         }),
@@ -141,18 +141,18 @@ export class ClientPackagesService {
         id: true,
         createdAt: true,
         updatedAt: true,
-        Translation: {
+        translation: {
           where: { language },
-          ...translationDes().Translation,
+          ...translationDes().translation,
         },
         packageService: {
           include: {
             service: {
               select: {
                 id: true,
-                Translation: {
+                translation: {
                   where: { language },
-                  ...Translation().Translation,
+                  ...Translation().translation,
                 },
                 serviceImg: true,
               },
@@ -163,7 +163,7 @@ export class ClientPackagesService {
     });
 
     const {
-      Translation: clientPackageTranslation,
+      translation: clientPackageTranslation,
       packageService,
       ...rest
     } = fetchedClientPackage;
@@ -172,12 +172,12 @@ export class ClientPackagesService {
       ...rest,
       name: clientPackageTranslation[0].name,
       description: clientPackageTranslation[0].description,
-      Translation: clientPackageTranslation,
+      translation: clientPackageTranslation,
       services: packageService.map((service) => {
-        const { serviceImg, Translation, ...rest } = service.service;
+        const { serviceImg, translation, ...rest } = service.service;
         return {
           ...rest,
-          name: Translation[0].name,
+          name: translation[0].name,
           serviceImg,
         };
       }),
@@ -201,7 +201,7 @@ export class ClientPackagesService {
   async remove(id: string) {
     await this.prisma.$transaction(async (prisma) => {
       await prisma.packagesServices.deleteMany({
-        where: { ClientPackagesId: id },
+        where: { clientPackagesId: id },
       });
 
       await prisma.clientPackages.delete({

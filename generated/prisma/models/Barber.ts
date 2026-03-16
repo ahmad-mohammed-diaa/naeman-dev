@@ -56,6 +56,7 @@ export type BarberCountAggregateOutputType = {
   rate: number
   isAvailable: number
   type: number
+  daysOff: number
   _all: number
 }
 
@@ -90,6 +91,7 @@ export type BarberCountAggregateInputType = {
   rate?: true
   isAvailable?: true
   type?: true
+  daysOff?: true
   _all?: true
 }
 
@@ -185,6 +187,7 @@ export type BarberGroupByOutputType = {
   rate: number
   isAvailable: boolean
   type: $Enums.CategoryType
+  daysOff: $Enums.Days[]
   _count: BarberCountAggregateOutputType | null
   _avg: BarberAvgAggregateOutputType | null
   _sum: BarberSumAggregateOutputType | null
@@ -216,11 +219,12 @@ export type BarberWhereInput = {
   rate?: Prisma.FloatFilter<"Barber"> | number
   isAvailable?: Prisma.BoolFilter<"Barber"> | boolean
   type?: Prisma.EnumCategoryTypeFilter<"Barber"> | $Enums.CategoryType
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Barber">
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  Slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
+  slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
   vacations?: Prisma.VacationListRelationFilter
-  BarberRating?: Prisma.BarberRatingListRelationFilter
+  barberRating?: Prisma.BarberRatingListRelationFilter
 }
 
 export type BarberOrderByWithRelationInput = {
@@ -229,11 +233,12 @@ export type BarberOrderByWithRelationInput = {
   rate?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  daysOff?: Prisma.SortOrder
   branch?: Prisma.BranchOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
-  Slot?: Prisma.SlotOrderByWithRelationInput
+  slot?: Prisma.SlotOrderByWithRelationInput
   vacations?: Prisma.VacationOrderByRelationAggregateInput
-  BarberRating?: Prisma.BarberRatingOrderByRelationAggregateInput
+  barberRating?: Prisma.BarberRatingOrderByRelationAggregateInput
 }
 
 export type BarberWhereUniqueInput = Prisma.AtLeast<{
@@ -245,11 +250,12 @@ export type BarberWhereUniqueInput = Prisma.AtLeast<{
   rate?: Prisma.FloatFilter<"Barber"> | number
   isAvailable?: Prisma.BoolFilter<"Barber"> | boolean
   type?: Prisma.EnumCategoryTypeFilter<"Barber"> | $Enums.CategoryType
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Barber">
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  Slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
+  slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
   vacations?: Prisma.VacationListRelationFilter
-  BarberRating?: Prisma.BarberRatingListRelationFilter
+  barberRating?: Prisma.BarberRatingListRelationFilter
 }, "id">
 
 export type BarberOrderByWithAggregationInput = {
@@ -258,6 +264,7 @@ export type BarberOrderByWithAggregationInput = {
   rate?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  daysOff?: Prisma.SortOrder
   _count?: Prisma.BarberCountOrderByAggregateInput
   _avg?: Prisma.BarberAvgOrderByAggregateInput
   _max?: Prisma.BarberMaxOrderByAggregateInput
@@ -274,17 +281,19 @@ export type BarberScalarWhereWithAggregatesInput = {
   rate?: Prisma.FloatWithAggregatesFilter<"Barber"> | number
   isAvailable?: Prisma.BoolWithAggregatesFilter<"Barber"> | boolean
   type?: Prisma.EnumCategoryTypeWithAggregatesFilter<"Barber"> | $Enums.CategoryType
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Barber">
 }
 
 export type BarberCreateInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutBarberInput
   user: Prisma.UserCreateNestedOneWithoutBarberInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
+  slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
 }
 
 export type BarberUncheckedCreateInput = {
@@ -293,20 +302,22 @@ export type BarberUncheckedCreateInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
 }
 
 export type BarberUpdateInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutBarberNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutBarberNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberUncheckedUpdateInput = {
@@ -315,9 +326,10 @@ export type BarberUncheckedUpdateInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberCreateManyInput = {
@@ -326,12 +338,14 @@ export type BarberCreateManyInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
 }
 
 export type BarberUpdateManyMutationInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
 }
 
 export type BarberUncheckedUpdateManyInput = {
@@ -340,6 +354,7 @@ export type BarberUncheckedUpdateManyInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
 }
 
 export type BarberNullableScalarRelationFilter = {
@@ -353,6 +368,7 @@ export type BarberCountOrderByAggregateInput = {
   rate?: Prisma.SortOrder
   isAvailable?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  daysOff?: Prisma.SortOrder
 }
 
 export type BarberAvgOrderByAggregateInput = {
@@ -426,6 +442,10 @@ export type BarberUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BarberUpdateToOneWithWhereWithoutUserInput, Prisma.BarberUpdateWithoutUserInput>, Prisma.BarberUncheckedUpdateWithoutUserInput>
 }
 
+export type BarberCreatedaysOffInput = {
+  set: $Enums.Days[]
+}
+
 export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -436,6 +456,11 @@ export type FloatFieldUpdateOperationsInput = {
 
 export type EnumCategoryTypeFieldUpdateOperationsInput = {
   set?: $Enums.CategoryType
+}
+
+export type BarberUpdatedaysOffInput = {
+  set?: $Enums.Days[]
+  push?: $Enums.Days | $Enums.Days[]
 }
 
 export type BarberCreateNestedOneWithoutBarberRatingInput = {
@@ -530,10 +555,11 @@ export type BarberCreateWithoutUserInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutBarberInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
+  slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
 }
 
 export type BarberUncheckedCreateWithoutUserInput = {
@@ -541,9 +567,10 @@ export type BarberUncheckedCreateWithoutUserInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
 }
 
 export type BarberCreateOrConnectWithoutUserInput = {
@@ -566,10 +593,11 @@ export type BarberUpdateWithoutUserInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutBarberNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberUncheckedUpdateWithoutUserInput = {
@@ -577,18 +605,20 @@ export type BarberUncheckedUpdateWithoutUserInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberCreateWithoutBarberRatingInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutBarberInput
   user: Prisma.UserCreateNestedOneWithoutBarberInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
+  slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationCreateNestedManyWithoutBarberInput
 }
 
@@ -598,7 +628,8 @@ export type BarberUncheckedCreateWithoutBarberRatingInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutBarberInput
 }
 
@@ -622,9 +653,10 @@ export type BarberUpdateWithoutBarberRatingInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutBarberNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutBarberNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutBarberNestedInput
 }
 
@@ -634,7 +666,8 @@ export type BarberUncheckedUpdateWithoutBarberRatingInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutBarberNestedInput
 }
 
@@ -642,10 +675,11 @@ export type BarberCreateWithoutVacationsInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutBarberInput
   user: Prisma.UserCreateNestedOneWithoutBarberInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
+  slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
 }
 
 export type BarberUncheckedCreateWithoutVacationsInput = {
@@ -654,8 +688,9 @@ export type BarberUncheckedCreateWithoutVacationsInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
 }
 
 export type BarberCreateOrConnectWithoutVacationsInput = {
@@ -678,10 +713,11 @@ export type BarberUpdateWithoutVacationsInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutBarberNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutBarberNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberUncheckedUpdateWithoutVacationsInput = {
@@ -690,18 +726,20 @@ export type BarberUncheckedUpdateWithoutVacationsInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberCreateWithoutBranchInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   user: Prisma.UserCreateNestedOneWithoutBarberInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
+  slot?: Prisma.SlotCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
 }
 
 export type BarberUncheckedCreateWithoutBranchInput = {
@@ -709,9 +747,10 @@ export type BarberUncheckedCreateWithoutBranchInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
 }
 
 export type BarberCreateOrConnectWithoutBranchInput = {
@@ -749,16 +788,18 @@ export type BarberScalarWhereInput = {
   rate?: Prisma.FloatFilter<"Barber"> | number
   isAvailable?: Prisma.BoolFilter<"Barber"> | boolean
   type?: Prisma.EnumCategoryTypeFilter<"Barber"> | $Enums.CategoryType
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Barber">
 }
 
 export type BarberCreateWithoutSlotInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutBarberInput
   user: Prisma.UserCreateNestedOneWithoutBarberInput
   vacations?: Prisma.VacationCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutBarberInput
 }
 
 export type BarberUncheckedCreateWithoutSlotInput = {
@@ -767,8 +808,9 @@ export type BarberUncheckedCreateWithoutSlotInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutBarberInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutBarberInput
 }
 
 export type BarberCreateOrConnectWithoutSlotInput = {
@@ -791,10 +833,11 @@ export type BarberUpdateWithoutSlotInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutBarberNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutBarberNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberUncheckedUpdateWithoutSlotInput = {
@@ -803,8 +846,9 @@ export type BarberUncheckedUpdateWithoutSlotInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberCreateManyBranchInput = {
@@ -812,16 +856,18 @@ export type BarberCreateManyBranchInput = {
   rate?: number
   isAvailable?: boolean
   type?: $Enums.CategoryType
+  daysOff?: Prisma.BarberCreatedaysOffInput | $Enums.Days[]
 }
 
 export type BarberUpdateWithoutBranchInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
   user?: Prisma.UserUpdateOneRequiredWithoutBarberNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberUncheckedUpdateWithoutBranchInput = {
@@ -829,9 +875,10 @@ export type BarberUncheckedUpdateWithoutBranchInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutBarberNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutBarberNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutBarberNestedInput
 }
 
 export type BarberUncheckedUpdateManyWithoutBranchInput = {
@@ -839,6 +886,7 @@ export type BarberUncheckedUpdateManyWithoutBranchInput = {
   rate?: Prisma.FloatFieldUpdateOperationsInput | number
   isAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
   type?: Prisma.EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType
+  daysOff?: Prisma.BarberUpdatedaysOffInput | $Enums.Days[]
 }
 
 
@@ -848,12 +896,12 @@ export type BarberUncheckedUpdateManyWithoutBranchInput = {
 
 export type BarberCountOutputType = {
   vacations: number
-  BarberRating: number
+  barberRating: number
 }
 
 export type BarberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   vacations?: boolean | BarberCountOutputTypeCountVacationsArgs
-  BarberRating?: boolean | BarberCountOutputTypeCountBarberRatingArgs
+  barberRating?: boolean | BarberCountOutputTypeCountBarberRatingArgs
 }
 
 /**
@@ -887,11 +935,12 @@ export type BarberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   rate?: boolean
   isAvailable?: boolean
   type?: boolean
+  daysOff?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  Slot?: boolean | Prisma.Barber$SlotArgs<ExtArgs>
+  slot?: boolean | Prisma.Barber$slotArgs<ExtArgs>
   vacations?: boolean | Prisma.Barber$vacationsArgs<ExtArgs>
-  BarberRating?: boolean | Prisma.Barber$BarberRatingArgs<ExtArgs>
+  barberRating?: boolean | Prisma.Barber$barberRatingArgs<ExtArgs>
   _count?: boolean | Prisma.BarberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["barber"]>
 
@@ -901,6 +950,7 @@ export type BarberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   rate?: boolean
   isAvailable?: boolean
   type?: boolean
+  daysOff?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["barber"]>
@@ -911,6 +961,7 @@ export type BarberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   rate?: boolean
   isAvailable?: boolean
   type?: boolean
+  daysOff?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["barber"]>
@@ -921,15 +972,16 @@ export type BarberSelectScalar = {
   rate?: boolean
   isAvailable?: boolean
   type?: boolean
+  daysOff?: boolean
 }
 
-export type BarberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "rate" | "isAvailable" | "type", ExtArgs["result"]["barber"]>
+export type BarberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "rate" | "isAvailable" | "type" | "daysOff", ExtArgs["result"]["barber"]>
 export type BarberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  Slot?: boolean | Prisma.Barber$SlotArgs<ExtArgs>
+  slot?: boolean | Prisma.Barber$slotArgs<ExtArgs>
   vacations?: boolean | Prisma.Barber$vacationsArgs<ExtArgs>
-  BarberRating?: boolean | Prisma.Barber$BarberRatingArgs<ExtArgs>
+  barberRating?: boolean | Prisma.Barber$barberRatingArgs<ExtArgs>
   _count?: boolean | Prisma.BarberCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BarberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -946,9 +998,9 @@ export type $BarberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     branch: Prisma.$BranchPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
-    Slot: Prisma.$SlotPayload<ExtArgs> | null
+    slot: Prisma.$SlotPayload<ExtArgs> | null
     vacations: Prisma.$VacationPayload<ExtArgs>[]
-    BarberRating: Prisma.$BarberRatingPayload<ExtArgs>[]
+    barberRating: Prisma.$BarberRatingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -956,6 +1008,7 @@ export type $BarberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     rate: number
     isAvailable: boolean
     type: $Enums.CategoryType
+    daysOff: $Enums.Days[]
   }, ExtArgs["result"]["barber"]>
   composites: {}
 }
@@ -1352,9 +1405,9 @@ export interface Prisma__BarberClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Slot<T extends Prisma.Barber$SlotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barber$SlotArgs<ExtArgs>>): Prisma.Prisma__SlotClient<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  slot<T extends Prisma.Barber$slotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barber$slotArgs<ExtArgs>>): Prisma.Prisma__SlotClient<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   vacations<T extends Prisma.Barber$vacationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barber$vacationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VacationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  BarberRating<T extends Prisma.Barber$BarberRatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barber$BarberRatingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BarberRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  barberRating<T extends Prisma.Barber$barberRatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Barber$barberRatingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BarberRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1389,6 +1442,7 @@ export interface BarberFieldRefs {
   readonly rate: Prisma.FieldRef<"Barber", 'Float'>
   readonly isAvailable: Prisma.FieldRef<"Barber", 'Boolean'>
   readonly type: Prisma.FieldRef<"Barber", 'CategoryType'>
+  readonly daysOff: Prisma.FieldRef<"Barber", 'Days[]'>
 }
     
 
@@ -1790,9 +1844,9 @@ export type BarberDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Barber.Slot
+ * Barber.slot
  */
-export type Barber$SlotArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Barber$slotArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Slot
    */
@@ -1833,9 +1887,9 @@ export type Barber$vacationsArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Barber.BarberRating
+ * Barber.barberRating
  */
-export type Barber$BarberRatingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Barber$barberRatingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the BarberRating
    */

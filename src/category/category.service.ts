@@ -37,7 +37,7 @@ export class CategoryService {
           services: {
             where: { available: true },
             include: {
-              Translation: {
+              translation: {
                 where: { language: { in: ['EN', 'AR', language] } },
                 select: {
                   name: true,
@@ -46,7 +46,7 @@ export class CategoryService {
               },
             },
           },
-          Translation: {
+          translation: {
             where: { language: { in: ['EN', 'AR', language] } },
             select: {
               name: true,
@@ -64,7 +64,7 @@ export class CategoryService {
 
     // Optimize data transformation using Maps for O(1) lookups instead of O(n) finds
     const categories = fetchedCategories.map((category) => {
-      const { Translation: categoryTranslation, services, ...rest } = category;
+      const { translation: categoryTranslation, services, ...rest } = category;
 
       // Create translation map for fast lookups
       const categoryTransMap = new Map(
@@ -72,7 +72,7 @@ export class CategoryService {
       );
 
       const optimizedServices = services.map((service) => {
-        const { Translation: serviceTranslation, ...serviceRest } = service;
+        const { translation: serviceTranslation, ...serviceRest } = service;
 
         // Create translation map for fast lookups
         const serviceTransMap = new Map(
@@ -108,14 +108,14 @@ export class CategoryService {
       select: {
         client: {
           select: {
-            ClientPackages: {
+            clientPackages: {
               where: { isActive: true, type: 'MULTIPLE' },
               select: {
                 id: true,
                 createdAt: true,
                 updatedAt: true,
                 type: true,
-                Translation: {
+                translation: {
                   where: { language },
                   select: {
                     name: true,
@@ -134,16 +134,16 @@ export class CategoryService {
       },
     });
 
-    if (!userWithPackages?.client?.ClientPackages) return [];
+    if (!userWithPackages?.client?.clientPackages) return [];
 
-    return userWithPackages.client.ClientPackages.flatMap((item) =>
-      item.Translation.map((translate) => ({
+    return userWithPackages.client.clientPackages.flatMap((item) =>
+      item.translation.map((t) => ({
         id: item.id,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
         type: item.type,
-        name: translate.name,
-        description: translate.description,
+        name: t.name,
+        description: t.description,
         services: item.packageService.flatMap((service) => service.service),
       })),
     );
@@ -165,12 +165,12 @@ export class CategoryService {
     const newCategory = await this.prisma.category.create({
       data: {
         ...createCategoryDto,
-        Translation: createTranslation(createCategoryDto),
+        translation: createTranslation(createCategoryDto),
       },
       include: Translation(false, language),
     });
 
-    const { Translation: categoryTranslation, ...rest } = newCategory;
+    const { translation: categoryTranslation, ...rest } = newCategory;
 
     const category = {
       ...rest,
@@ -191,12 +191,12 @@ export class CategoryService {
       where: { id },
       data: {
         ...updateCategoryDto,
-        Translation: updateTranslation(updateCategoryDto),
+        translation: updateTranslation(updateCategoryDto),
       },
       include: Translation(false, language),
     });
 
-    const { Translation: categoryTranslation, ...rest } = updatedCategory;
+    const { translation: categoryTranslation, ...rest } = updatedCategory;
 
     const category = {
       ...rest,
@@ -252,13 +252,13 @@ export class CategoryService {
     });
 
     const {
-      Translation: categoryTranslation,
+      translation: categoryTranslation,
       services,
       ...rest
     } = fetchedCategory;
 
     const service = services.map((service) => {
-      const { Translation: serviceTranslation, ...rest } = service;
+      const { translation: serviceTranslation, ...rest } = service;
       return {
         ...rest,
         name: serviceTranslation[0].name,

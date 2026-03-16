@@ -230,9 +230,10 @@ export type ClientWhereInput = {
   canceledOrders?: Prisma.IntFilter<"Client"> | number
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   complain?: Prisma.ComplainListRelationFilter
-  ClientPackages?: Prisma.ClientPackagesListRelationFilter
-  Offers?: Prisma.OffersListRelationFilter
-  BarberRating?: Prisma.BarberRatingListRelationFilter
+  clientPackages?: Prisma.ClientPackagesListRelationFilter
+  offers?: Prisma.OffersListRelationFilter
+  barberRating?: Prisma.BarberRatingListRelationFilter
+  pointTransactions?: Prisma.PointTransactionListRelationFilter
 }
 
 export type ClientOrderByWithRelationInput = {
@@ -244,9 +245,10 @@ export type ClientOrderByWithRelationInput = {
   canceledOrders?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   complain?: Prisma.ComplainOrderByRelationAggregateInput
-  ClientPackages?: Prisma.ClientPackagesOrderByRelationAggregateInput
-  Offers?: Prisma.OffersOrderByRelationAggregateInput
-  BarberRating?: Prisma.BarberRatingOrderByRelationAggregateInput
+  clientPackages?: Prisma.ClientPackagesOrderByRelationAggregateInput
+  offers?: Prisma.OffersOrderByRelationAggregateInput
+  barberRating?: Prisma.BarberRatingOrderByRelationAggregateInput
+  pointTransactions?: Prisma.PointTransactionOrderByRelationAggregateInput
 }
 
 export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -261,9 +263,10 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   canceledOrders?: Prisma.IntFilter<"Client"> | number
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   complain?: Prisma.ComplainListRelationFilter
-  ClientPackages?: Prisma.ClientPackagesListRelationFilter
-  Offers?: Prisma.OffersListRelationFilter
-  BarberRating?: Prisma.BarberRatingListRelationFilter
+  clientPackages?: Prisma.ClientPackagesListRelationFilter
+  offers?: Prisma.OffersListRelationFilter
+  barberRating?: Prisma.BarberRatingListRelationFilter
+  pointTransactions?: Prisma.PointTransactionListRelationFilter
 }, "id" | "referralCode">
 
 export type ClientOrderByWithAggregationInput = {
@@ -300,9 +303,10 @@ export type ClientCreateInput = {
   canceledOrders?: number
   user: Prisma.UserCreateNestedOneWithoutClientInput
   complain?: Prisma.ComplainCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateInput = {
@@ -313,9 +317,10 @@ export type ClientUncheckedCreateInput = {
   offersId?: string | null
   canceledOrders?: number
   complain?: Prisma.ComplainUncheckedCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientUpdateInput = {
@@ -326,9 +331,10 @@ export type ClientUpdateInput = {
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
   complain?: Prisma.ComplainUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateInput = {
@@ -339,9 +345,10 @@ export type ClientUncheckedUpdateInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   complain?: Prisma.ComplainUncheckedUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateManyInput = {
@@ -547,6 +554,20 @@ export type ClientUpdateOneRequiredWithoutClientPackagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutClientPackagesInput, Prisma.ClientUpdateWithoutClientPackagesInput>, Prisma.ClientUncheckedUpdateWithoutClientPackagesInput>
 }
 
+export type ClientCreateNestedOneWithoutPointTransactionsInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutPointTransactionsInput, Prisma.ClientUncheckedCreateWithoutPointTransactionsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutPointTransactionsInput
+  connect?: Prisma.ClientWhereUniqueInput
+}
+
+export type ClientUpdateOneRequiredWithoutPointTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutPointTransactionsInput, Prisma.ClientUncheckedCreateWithoutPointTransactionsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutPointTransactionsInput
+  upsert?: Prisma.ClientUpsertWithoutPointTransactionsInput
+  connect?: Prisma.ClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutPointTransactionsInput, Prisma.ClientUpdateWithoutPointTransactionsInput>, Prisma.ClientUncheckedUpdateWithoutPointTransactionsInput>
+}
+
 export type ClientCreateWithoutUserInput = {
   referralCode?: string | null
   points?: number
@@ -554,9 +575,10 @@ export type ClientCreateWithoutUserInput = {
   offersId?: string | null
   canceledOrders?: number
   complain?: Prisma.ComplainCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutUserInput = {
@@ -566,9 +588,10 @@ export type ClientUncheckedCreateWithoutUserInput = {
   offersId?: string | null
   canceledOrders?: number
   complain?: Prisma.ComplainUncheckedCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutUserInput = {
@@ -594,9 +617,10 @@ export type ClientUpdateWithoutUserInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   complain?: Prisma.ComplainUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutUserInput = {
@@ -606,9 +630,10 @@ export type ClientUncheckedUpdateWithoutUserInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   complain?: Prisma.ComplainUncheckedUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutBarberRatingInput = {
@@ -619,8 +644,9 @@ export type ClientCreateWithoutBarberRatingInput = {
   canceledOrders?: number
   user: Prisma.UserCreateNestedOneWithoutClientInput
   complain?: Prisma.ComplainCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  clientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutBarberRatingInput = {
@@ -631,8 +657,9 @@ export type ClientUncheckedCreateWithoutBarberRatingInput = {
   offersId?: string | null
   canceledOrders?: number
   complain?: Prisma.ComplainUncheckedCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  clientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutBarberRatingInput = {
@@ -659,8 +686,9 @@ export type ClientUpdateWithoutBarberRatingInput = {
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
   complain?: Prisma.ComplainUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutBarberRatingInput = {
@@ -671,8 +699,9 @@ export type ClientUncheckedUpdateWithoutBarberRatingInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   complain?: Prisma.ComplainUncheckedUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  clientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutComplainInput = {
@@ -682,9 +711,10 @@ export type ClientCreateWithoutComplainInput = {
   offersId?: string | null
   canceledOrders?: number
   user: Prisma.UserCreateNestedOneWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutComplainInput = {
@@ -694,9 +724,10 @@ export type ClientUncheckedCreateWithoutComplainInput = {
   ban?: boolean
   offersId?: string | null
   canceledOrders?: number
-  ClientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutComplainInput = {
@@ -722,9 +753,10 @@ export type ClientUpdateWithoutComplainInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutComplainInput = {
@@ -734,9 +766,10 @@ export type ClientUncheckedUpdateWithoutComplainInput = {
   ban?: Prisma.BoolFieldUpdateOperationsInput | boolean
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
-  ClientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutOffersInput = {
@@ -747,8 +780,9 @@ export type ClientCreateWithoutOffersInput = {
   canceledOrders?: number
   user: Prisma.UserCreateNestedOneWithoutClientInput
   complain?: Prisma.ComplainCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutOffersInput = {
@@ -759,8 +793,9 @@ export type ClientUncheckedCreateWithoutOffersInput = {
   offersId?: string | null
   canceledOrders?: number
   complain?: Prisma.ComplainUncheckedCreateNestedManyWithoutClientInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutOffersInput = {
@@ -804,8 +839,9 @@ export type ClientCreateWithoutClientPackagesInput = {
   canceledOrders?: number
   user: Prisma.UserCreateNestedOneWithoutClientInput
   complain?: Prisma.ComplainCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutClientPackagesInput = {
@@ -816,8 +852,9 @@ export type ClientUncheckedCreateWithoutClientPackagesInput = {
   offersId?: string | null
   canceledOrders?: number
   complain?: Prisma.ComplainUncheckedCreateNestedManyWithoutClientInput
-  Offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
-  BarberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+  pointTransactions?: Prisma.PointTransactionUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutClientPackagesInput = {
@@ -844,8 +881,9 @@ export type ClientUpdateWithoutClientPackagesInput = {
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
   complain?: Prisma.ComplainUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutClientPackagesInput = {
@@ -856,8 +894,77 @@ export type ClientUncheckedUpdateWithoutClientPackagesInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   complain?: Prisma.ComplainUncheckedUpdateManyWithoutClientNestedInput
-  Offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutClientNestedInput
+}
+
+export type ClientCreateWithoutPointTransactionsInput = {
+  referralCode?: string | null
+  points?: number
+  ban?: boolean
+  offersId?: string | null
+  canceledOrders?: number
+  user: Prisma.UserCreateNestedOneWithoutClientInput
+  complain?: Prisma.ComplainCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingCreateNestedManyWithoutClientInput
+}
+
+export type ClientUncheckedCreateWithoutPointTransactionsInput = {
+  id: string
+  referralCode?: string | null
+  points?: number
+  ban?: boolean
+  offersId?: string | null
+  canceledOrders?: number
+  complain?: Prisma.ComplainUncheckedCreateNestedManyWithoutClientInput
+  clientPackages?: Prisma.ClientPackagesUncheckedCreateNestedManyWithoutClientInput
+  offers?: Prisma.OffersUncheckedCreateNestedManyWithoutClientsInput
+  barberRating?: Prisma.BarberRatingUncheckedCreateNestedManyWithoutClientInput
+}
+
+export type ClientCreateOrConnectWithoutPointTransactionsInput = {
+  where: Prisma.ClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientCreateWithoutPointTransactionsInput, Prisma.ClientUncheckedCreateWithoutPointTransactionsInput>
+}
+
+export type ClientUpsertWithoutPointTransactionsInput = {
+  update: Prisma.XOR<Prisma.ClientUpdateWithoutPointTransactionsInput, Prisma.ClientUncheckedUpdateWithoutPointTransactionsInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutPointTransactionsInput, Prisma.ClientUncheckedCreateWithoutPointTransactionsInput>
+  where?: Prisma.ClientWhereInput
+}
+
+export type ClientUpdateToOneWithWhereWithoutPointTransactionsInput = {
+  where?: Prisma.ClientWhereInput
+  data: Prisma.XOR<Prisma.ClientUpdateWithoutPointTransactionsInput, Prisma.ClientUncheckedUpdateWithoutPointTransactionsInput>
+}
+
+export type ClientUpdateWithoutPointTransactionsInput = {
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  ban?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
+  complain?: Prisma.ComplainUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+}
+
+export type ClientUncheckedUpdateWithoutPointTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  ban?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
+  complain?: Prisma.ComplainUncheckedUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
+  offers?: Prisma.OffersUncheckedUpdateManyWithoutClientsNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUpdateWithoutOffersInput = {
@@ -868,8 +975,9 @@ export type ClientUpdateWithoutOffersInput = {
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   user?: Prisma.UserUpdateOneRequiredWithoutClientNestedInput
   complain?: Prisma.ComplainUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
-  BarberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateManyWithoutClientNestedInput
+  barberRating?: Prisma.BarberRatingUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutOffersInput = {
@@ -880,8 +988,9 @@ export type ClientUncheckedUpdateWithoutOffersInput = {
   offersId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canceledOrders?: Prisma.IntFieldUpdateOperationsInput | number
   complain?: Prisma.ComplainUncheckedUpdateManyWithoutClientNestedInput
-  ClientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
-  BarberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  clientPackages?: Prisma.ClientPackagesUncheckedUpdateManyWithoutClientNestedInput
+  barberRating?: Prisma.BarberRatingUncheckedUpdateManyWithoutClientNestedInput
+  pointTransactions?: Prisma.PointTransactionUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateManyWithoutOffersInput = {
@@ -900,16 +1009,18 @@ export type ClientUncheckedUpdateManyWithoutOffersInput = {
 
 export type ClientCountOutputType = {
   complain: number
-  ClientPackages: number
-  Offers: number
-  BarberRating: number
+  clientPackages: number
+  offers: number
+  barberRating: number
+  pointTransactions: number
 }
 
 export type ClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   complain?: boolean | ClientCountOutputTypeCountComplainArgs
-  ClientPackages?: boolean | ClientCountOutputTypeCountClientPackagesArgs
-  Offers?: boolean | ClientCountOutputTypeCountOffersArgs
-  BarberRating?: boolean | ClientCountOutputTypeCountBarberRatingArgs
+  clientPackages?: boolean | ClientCountOutputTypeCountClientPackagesArgs
+  offers?: boolean | ClientCountOutputTypeCountOffersArgs
+  barberRating?: boolean | ClientCountOutputTypeCountBarberRatingArgs
+  pointTransactions?: boolean | ClientCountOutputTypeCountPointTransactionsArgs
 }
 
 /**
@@ -950,6 +1061,13 @@ export type ClientCountOutputTypeCountBarberRatingArgs<ExtArgs extends runtime.T
   where?: Prisma.BarberRatingWhereInput
 }
 
+/**
+ * ClientCountOutputType without action
+ */
+export type ClientCountOutputTypeCountPointTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PointTransactionWhereInput
+}
+
 
 export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -960,9 +1078,10 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   canceledOrders?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   complain?: boolean | Prisma.Client$complainArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.Client$ClientPackagesArgs<ExtArgs>
-  Offers?: boolean | Prisma.Client$OffersArgs<ExtArgs>
-  BarberRating?: boolean | Prisma.Client$BarberRatingArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.Client$clientPackagesArgs<ExtArgs>
+  offers?: boolean | Prisma.Client$offersArgs<ExtArgs>
+  barberRating?: boolean | Prisma.Client$barberRatingArgs<ExtArgs>
+  pointTransactions?: boolean | Prisma.Client$pointTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
@@ -999,9 +1118,10 @@ export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   complain?: boolean | Prisma.Client$complainArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.Client$ClientPackagesArgs<ExtArgs>
-  Offers?: boolean | Prisma.Client$OffersArgs<ExtArgs>
-  BarberRating?: boolean | Prisma.Client$BarberRatingArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.Client$clientPackagesArgs<ExtArgs>
+  offers?: boolean | Prisma.Client$offersArgs<ExtArgs>
+  barberRating?: boolean | Prisma.Client$barberRatingArgs<ExtArgs>
+  pointTransactions?: boolean | Prisma.Client$pointTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClientIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1016,9 +1136,10 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     complain: Prisma.$ComplainPayload<ExtArgs>[]
-    ClientPackages: Prisma.$ClientPackagesPayload<ExtArgs>[]
-    Offers: Prisma.$OffersPayload<ExtArgs>[]
-    BarberRating: Prisma.$BarberRatingPayload<ExtArgs>[]
+    clientPackages: Prisma.$ClientPackagesPayload<ExtArgs>[]
+    offers: Prisma.$OffersPayload<ExtArgs>[]
+    barberRating: Prisma.$BarberRatingPayload<ExtArgs>[]
+    pointTransactions: Prisma.$PointTransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1423,9 +1544,10 @@ export interface Prisma__ClientClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   complain<T extends Prisma.Client$complainArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$complainArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplainPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  ClientPackages<T extends Prisma.Client$ClientPackagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$ClientPackagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPackagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  Offers<T extends Prisma.Client$OffersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$OffersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  BarberRating<T extends Prisma.Client$BarberRatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$BarberRatingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BarberRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  clientPackages<T extends Prisma.Client$clientPackagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$clientPackagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPackagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  offers<T extends Prisma.Client$offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OffersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  barberRating<T extends Prisma.Client$barberRatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$barberRatingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BarberRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pointTransactions<T extends Prisma.Client$pointTransactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$pointTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PointTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1886,9 +2008,9 @@ export type Client$complainArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Client.ClientPackages
+ * Client.clientPackages
  */
-export type Client$ClientPackagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Client$clientPackagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the ClientPackages
    */
@@ -1910,9 +2032,9 @@ export type Client$ClientPackagesArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Client.Offers
+ * Client.offers
  */
-export type Client$OffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Client$offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Offers
    */
@@ -1934,9 +2056,9 @@ export type Client$OffersArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Client.BarberRating
+ * Client.barberRating
  */
-export type Client$BarberRatingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Client$barberRatingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the BarberRating
    */
@@ -1955,6 +2077,30 @@ export type Client$BarberRatingArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.BarberRatingScalarFieldEnum | Prisma.BarberRatingScalarFieldEnum[]
+}
+
+/**
+ * Client.pointTransactions
+ */
+export type Client$pointTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PointTransaction
+   */
+  select?: Prisma.PointTransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PointTransaction
+   */
+  omit?: Prisma.PointTransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PointTransactionInclude<ExtArgs> | null
+  where?: Prisma.PointTransactionWhereInput
+  orderBy?: Prisma.PointTransactionOrderByWithRelationInput | Prisma.PointTransactionOrderByWithRelationInput[]
+  cursor?: Prisma.PointTransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PointTransactionScalarFieldEnum | Prisma.PointTransactionScalarFieldEnum[]
 }
 
 /**

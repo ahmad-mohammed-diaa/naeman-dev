@@ -4,13 +4,13 @@ import { IsOptional, IsString } from 'class-validator';
 
 export const createTranslation = <
   T extends {
-    Translation: { name: string; language: string; description?: string }[];
+    translation: { name: string; language: string; description?: string }[];
   },
 >(
   data: T,
 ) => ({
   createMany: {
-    data: data.Translation.map((translation) => ({
+    data: data.translation.map((translation) => ({
       name: translation.name,
       language: translation.language as Language,
       ...(translation.description && { description: translation.description }),
@@ -19,7 +19,7 @@ export const createTranslation = <
 });
 export const updateTranslation = <
   T extends {
-    Translation?: {
+    translation?: {
       id?: string;
       name: string;
       language: string;
@@ -29,11 +29,11 @@ export const updateTranslation = <
 >(
   data: T,
 ) => {
-  if (!data.Translation || !Array.isArray(data.Translation)) {
+  if (!data.translation || !Array.isArray(data.translation)) {
     return {};
   }
 
-  const updates = data.Translation.map((translation) => ({
+  const updates = data.translation.map((translation) => ({
     where: { language: translation.language as Language },
     data: {
       name: translation.name,
@@ -48,7 +48,7 @@ export const updateTranslation = <
 
 export const Translation = (des?: boolean, language?: Language) => {
   return {
-    Translation: {
+    translation: {
       ...(language && { where: { language: Language[language] } }),
       select: {
         name: true,
@@ -61,7 +61,7 @@ export const Translation = (des?: boolean, language?: Language) => {
 
 export const translationDes = (language?: Language) => {
   return {
-    Translation: {
+    translation: {
       ...(language && { where: { language: Language[language] } }),
       select: {
         name: true,

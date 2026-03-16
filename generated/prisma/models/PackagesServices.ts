@@ -27,11 +27,11 @@ export type AggregatePackagesServices = {
 }
 
 export type PackagesServicesAvgAggregateOutputType = {
-  remainingCount: number | null
+  quantity: number | null
 }
 
 export type PackagesServicesSumAggregateOutputType = {
-  remainingCount: number | null
+  quantity: number | null
 }
 
 export type PackagesServicesMinAggregateOutputType = {
@@ -40,8 +40,8 @@ export type PackagesServicesMinAggregateOutputType = {
   isActive: boolean | null
   usedAt: Date | null
   createdAt: Date | null
-  remainingCount: number | null
-  ClientPackagesId: string | null
+  quantity: number | null
+  clientPackagesId: string | null
 }
 
 export type PackagesServicesMaxAggregateOutputType = {
@@ -50,8 +50,8 @@ export type PackagesServicesMaxAggregateOutputType = {
   isActive: boolean | null
   usedAt: Date | null
   createdAt: Date | null
-  remainingCount: number | null
-  ClientPackagesId: string | null
+  quantity: number | null
+  clientPackagesId: string | null
 }
 
 export type PackagesServicesCountAggregateOutputType = {
@@ -60,18 +60,18 @@ export type PackagesServicesCountAggregateOutputType = {
   isActive: number
   usedAt: number
   createdAt: number
-  remainingCount: number
-  ClientPackagesId: number
+  quantity: number
+  clientPackagesId: number
   _all: number
 }
 
 
 export type PackagesServicesAvgAggregateInputType = {
-  remainingCount?: true
+  quantity?: true
 }
 
 export type PackagesServicesSumAggregateInputType = {
-  remainingCount?: true
+  quantity?: true
 }
 
 export type PackagesServicesMinAggregateInputType = {
@@ -80,8 +80,8 @@ export type PackagesServicesMinAggregateInputType = {
   isActive?: true
   usedAt?: true
   createdAt?: true
-  remainingCount?: true
-  ClientPackagesId?: true
+  quantity?: true
+  clientPackagesId?: true
 }
 
 export type PackagesServicesMaxAggregateInputType = {
@@ -90,8 +90,8 @@ export type PackagesServicesMaxAggregateInputType = {
   isActive?: true
   usedAt?: true
   createdAt?: true
-  remainingCount?: true
-  ClientPackagesId?: true
+  quantity?: true
+  clientPackagesId?: true
 }
 
 export type PackagesServicesCountAggregateInputType = {
@@ -100,8 +100,8 @@ export type PackagesServicesCountAggregateInputType = {
   isActive?: true
   usedAt?: true
   createdAt?: true
-  remainingCount?: true
-  ClientPackagesId?: true
+  quantity?: true
+  clientPackagesId?: true
   _all?: true
 }
 
@@ -197,8 +197,8 @@ export type PackagesServicesGroupByOutputType = {
   isActive: boolean
   usedAt: Date | null
   createdAt: Date
-  remainingCount: number | null
-  ClientPackagesId: string
+  quantity: number
+  clientPackagesId: string
   _count: PackagesServicesCountAggregateOutputType | null
   _avg: PackagesServicesAvgAggregateOutputType | null
   _sum: PackagesServicesSumAggregateOutputType | null
@@ -230,10 +230,10 @@ export type PackagesServicesWhereInput = {
   isActive?: Prisma.BoolFilter<"PackagesServices"> | boolean
   usedAt?: Prisma.DateTimeNullableFilter<"PackagesServices"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PackagesServices"> | Date | string
-  remainingCount?: Prisma.IntNullableFilter<"PackagesServices"> | number | null
-  ClientPackagesId?: Prisma.StringFilter<"PackagesServices"> | string
+  quantity?: Prisma.IntFilter<"PackagesServices"> | number
+  clientPackagesId?: Prisma.StringFilter<"PackagesServices"> | string
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
-  ClientPackages?: Prisma.XOR<Prisma.ClientPackagesScalarRelationFilter, Prisma.ClientPackagesWhereInput>
+  clientPackages?: Prisma.XOR<Prisma.ClientPackagesScalarRelationFilter, Prisma.ClientPackagesWhereInput>
 }
 
 export type PackagesServicesOrderByWithRelationInput = {
@@ -242,10 +242,10 @@ export type PackagesServicesOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   usedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  remainingCount?: Prisma.SortOrderInput | Prisma.SortOrder
-  ClientPackagesId?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  clientPackagesId?: Prisma.SortOrder
   service?: Prisma.ServiceOrderByWithRelationInput
-  ClientPackages?: Prisma.ClientPackagesOrderByWithRelationInput
+  clientPackages?: Prisma.ClientPackagesOrderByWithRelationInput
 }
 
 export type PackagesServicesWhereUniqueInput = Prisma.AtLeast<{
@@ -257,10 +257,10 @@ export type PackagesServicesWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"PackagesServices"> | boolean
   usedAt?: Prisma.DateTimeNullableFilter<"PackagesServices"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PackagesServices"> | Date | string
-  remainingCount?: Prisma.IntNullableFilter<"PackagesServices"> | number | null
-  ClientPackagesId?: Prisma.StringFilter<"PackagesServices"> | string
+  quantity?: Prisma.IntFilter<"PackagesServices"> | number
+  clientPackagesId?: Prisma.StringFilter<"PackagesServices"> | string
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
-  ClientPackages?: Prisma.XOR<Prisma.ClientPackagesScalarRelationFilter, Prisma.ClientPackagesWhereInput>
+  clientPackages?: Prisma.XOR<Prisma.ClientPackagesScalarRelationFilter, Prisma.ClientPackagesWhereInput>
 }, "id">
 
 export type PackagesServicesOrderByWithAggregationInput = {
@@ -269,8 +269,8 @@ export type PackagesServicesOrderByWithAggregationInput = {
   isActive?: Prisma.SortOrder
   usedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  remainingCount?: Prisma.SortOrderInput | Prisma.SortOrder
-  ClientPackagesId?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  clientPackagesId?: Prisma.SortOrder
   _count?: Prisma.PackagesServicesCountOrderByAggregateInput
   _avg?: Prisma.PackagesServicesAvgOrderByAggregateInput
   _max?: Prisma.PackagesServicesMaxOrderByAggregateInput
@@ -287,8 +287,8 @@ export type PackagesServicesScalarWhereWithAggregatesInput = {
   isActive?: Prisma.BoolWithAggregatesFilter<"PackagesServices"> | boolean
   usedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PackagesServices"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PackagesServices"> | Date | string
-  remainingCount?: Prisma.IntNullableWithAggregatesFilter<"PackagesServices"> | number | null
-  ClientPackagesId?: Prisma.StringWithAggregatesFilter<"PackagesServices"> | string
+  quantity?: Prisma.IntWithAggregatesFilter<"PackagesServices"> | number
+  clientPackagesId?: Prisma.StringWithAggregatesFilter<"PackagesServices"> | string
 }
 
 export type PackagesServicesCreateInput = {
@@ -296,9 +296,9 @@ export type PackagesServicesCreateInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
+  quantity?: number
   service: Prisma.ServiceCreateNestedOneWithoutPackagesServicesInput
-  ClientPackages: Prisma.ClientPackagesCreateNestedOneWithoutPackageServiceInput
+  clientPackages: Prisma.ClientPackagesCreateNestedOneWithoutPackageServiceInput
 }
 
 export type PackagesServicesUncheckedCreateInput = {
@@ -307,8 +307,8 @@ export type PackagesServicesUncheckedCreateInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
-  ClientPackagesId: string
+  quantity?: number
+  clientPackagesId: string
 }
 
 export type PackagesServicesUpdateInput = {
@@ -316,9 +316,9 @@ export type PackagesServicesUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.ServiceUpdateOneRequiredWithoutPackagesServicesNestedInput
-  ClientPackages?: Prisma.ClientPackagesUpdateOneRequiredWithoutPackageServiceNestedInput
+  clientPackages?: Prisma.ClientPackagesUpdateOneRequiredWithoutPackageServiceNestedInput
 }
 
 export type PackagesServicesUncheckedUpdateInput = {
@@ -327,8 +327,8 @@ export type PackagesServicesUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ClientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  clientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PackagesServicesCreateManyInput = {
@@ -337,8 +337,8 @@ export type PackagesServicesCreateManyInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
-  ClientPackagesId: string
+  quantity?: number
+  clientPackagesId: string
 }
 
 export type PackagesServicesUpdateManyMutationInput = {
@@ -346,7 +346,7 @@ export type PackagesServicesUpdateManyMutationInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackagesServicesUncheckedUpdateManyInput = {
@@ -355,8 +355,8 @@ export type PackagesServicesUncheckedUpdateManyInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ClientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  clientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PackagesServicesListRelationFilter = {
@@ -375,12 +375,12 @@ export type PackagesServicesCountOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   usedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  remainingCount?: Prisma.SortOrder
-  ClientPackagesId?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  clientPackagesId?: Prisma.SortOrder
 }
 
 export type PackagesServicesAvgOrderByAggregateInput = {
-  remainingCount?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
 }
 
 export type PackagesServicesMaxOrderByAggregateInput = {
@@ -389,8 +389,8 @@ export type PackagesServicesMaxOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   usedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  remainingCount?: Prisma.SortOrder
-  ClientPackagesId?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  clientPackagesId?: Prisma.SortOrder
 }
 
 export type PackagesServicesMinOrderByAggregateInput = {
@@ -399,12 +399,12 @@ export type PackagesServicesMinOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   usedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  remainingCount?: Prisma.SortOrder
-  ClientPackagesId?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  clientPackagesId?: Prisma.SortOrder
 }
 
 export type PackagesServicesSumOrderByAggregateInput = {
-  remainingCount?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
 }
 
 export type PackagesServicesCreateNestedManyWithoutServiceInput = {
@@ -447,14 +447,6 @@ export type PackagesServicesUncheckedUpdateManyWithoutServiceNestedInput = {
   update?: Prisma.PackagesServicesUpdateWithWhereUniqueWithoutServiceInput | Prisma.PackagesServicesUpdateWithWhereUniqueWithoutServiceInput[]
   updateMany?: Prisma.PackagesServicesUpdateManyWithWhereWithoutServiceInput | Prisma.PackagesServicesUpdateManyWithWhereWithoutServiceInput[]
   deleteMany?: Prisma.PackagesServicesScalarWhereInput | Prisma.PackagesServicesScalarWhereInput[]
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type PackagesServicesCreateNestedManyWithoutClientPackagesInput = {
@@ -504,8 +496,8 @@ export type PackagesServicesCreateWithoutServiceInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
-  ClientPackages: Prisma.ClientPackagesCreateNestedOneWithoutPackageServiceInput
+  quantity?: number
+  clientPackages: Prisma.ClientPackagesCreateNestedOneWithoutPackageServiceInput
 }
 
 export type PackagesServicesUncheckedCreateWithoutServiceInput = {
@@ -513,8 +505,8 @@ export type PackagesServicesUncheckedCreateWithoutServiceInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
-  ClientPackagesId: string
+  quantity?: number
+  clientPackagesId: string
 }
 
 export type PackagesServicesCreateOrConnectWithoutServiceInput = {
@@ -552,8 +544,8 @@ export type PackagesServicesScalarWhereInput = {
   isActive?: Prisma.BoolFilter<"PackagesServices"> | boolean
   usedAt?: Prisma.DateTimeNullableFilter<"PackagesServices"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PackagesServices"> | Date | string
-  remainingCount?: Prisma.IntNullableFilter<"PackagesServices"> | number | null
-  ClientPackagesId?: Prisma.StringFilter<"PackagesServices"> | string
+  quantity?: Prisma.IntFilter<"PackagesServices"> | number
+  clientPackagesId?: Prisma.StringFilter<"PackagesServices"> | string
 }
 
 export type PackagesServicesCreateWithoutClientPackagesInput = {
@@ -561,7 +553,7 @@ export type PackagesServicesCreateWithoutClientPackagesInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
+  quantity?: number
   service: Prisma.ServiceCreateNestedOneWithoutPackagesServicesInput
 }
 
@@ -571,7 +563,7 @@ export type PackagesServicesUncheckedCreateWithoutClientPackagesInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
+  quantity?: number
 }
 
 export type PackagesServicesCreateOrConnectWithoutClientPackagesInput = {
@@ -605,8 +597,8 @@ export type PackagesServicesCreateManyServiceInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
-  ClientPackagesId: string
+  quantity?: number
+  clientPackagesId: string
 }
 
 export type PackagesServicesUpdateWithoutServiceInput = {
@@ -614,8 +606,8 @@ export type PackagesServicesUpdateWithoutServiceInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ClientPackages?: Prisma.ClientPackagesUpdateOneRequiredWithoutPackageServiceNestedInput
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  clientPackages?: Prisma.ClientPackagesUpdateOneRequiredWithoutPackageServiceNestedInput
 }
 
 export type PackagesServicesUncheckedUpdateWithoutServiceInput = {
@@ -623,8 +615,8 @@ export type PackagesServicesUncheckedUpdateWithoutServiceInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ClientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  clientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PackagesServicesUncheckedUpdateManyWithoutServiceInput = {
@@ -632,8 +624,8 @@ export type PackagesServicesUncheckedUpdateManyWithoutServiceInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  ClientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  clientPackagesId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PackagesServicesCreateManyClientPackagesInput = {
@@ -642,7 +634,7 @@ export type PackagesServicesCreateManyClientPackagesInput = {
   isActive?: boolean
   usedAt?: Date | string | null
   createdAt?: Date | string
-  remainingCount?: number | null
+  quantity?: number
 }
 
 export type PackagesServicesUpdateWithoutClientPackagesInput = {
@@ -650,7 +642,7 @@ export type PackagesServicesUpdateWithoutClientPackagesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.ServiceUpdateOneRequiredWithoutPackagesServicesNestedInput
 }
 
@@ -660,7 +652,7 @@ export type PackagesServicesUncheckedUpdateWithoutClientPackagesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackagesServicesUncheckedUpdateManyWithoutClientPackagesInput = {
@@ -669,7 +661,7 @@ export type PackagesServicesUncheckedUpdateManyWithoutClientPackagesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   usedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  remainingCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -680,10 +672,10 @@ export type PackagesServicesSelect<ExtArgs extends runtime.Types.Extensions.Inte
   isActive?: boolean
   usedAt?: boolean
   createdAt?: boolean
-  remainingCount?: boolean
-  ClientPackagesId?: boolean
+  quantity?: boolean
+  clientPackagesId?: boolean
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packagesServices"]>
 
 export type PackagesServicesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -692,10 +684,10 @@ export type PackagesServicesSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   isActive?: boolean
   usedAt?: boolean
   createdAt?: boolean
-  remainingCount?: boolean
-  ClientPackagesId?: boolean
+  quantity?: boolean
+  clientPackagesId?: boolean
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packagesServices"]>
 
 export type PackagesServicesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -704,10 +696,10 @@ export type PackagesServicesSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   isActive?: boolean
   usedAt?: boolean
   createdAt?: boolean
-  remainingCount?: boolean
-  ClientPackagesId?: boolean
+  quantity?: boolean
+  clientPackagesId?: boolean
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packagesServices"]>
 
 export type PackagesServicesSelectScalar = {
@@ -716,29 +708,29 @@ export type PackagesServicesSelectScalar = {
   isActive?: boolean
   usedAt?: boolean
   createdAt?: boolean
-  remainingCount?: boolean
-  ClientPackagesId?: boolean
+  quantity?: boolean
+  clientPackagesId?: boolean
 }
 
-export type PackagesServicesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceId" | "isActive" | "usedAt" | "createdAt" | "remainingCount" | "ClientPackagesId", ExtArgs["result"]["packagesServices"]>
+export type PackagesServicesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceId" | "isActive" | "usedAt" | "createdAt" | "quantity" | "clientPackagesId", ExtArgs["result"]["packagesServices"]>
 export type PackagesServicesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
 }
 export type PackagesServicesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
 }
 export type PackagesServicesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
-  ClientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
+  clientPackages?: boolean | Prisma.ClientPackagesDefaultArgs<ExtArgs>
 }
 
 export type $PackagesServicesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PackagesServices"
   objects: {
     service: Prisma.$ServicePayload<ExtArgs>
-    ClientPackages: Prisma.$ClientPackagesPayload<ExtArgs>
+    clientPackages: Prisma.$ClientPackagesPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -746,8 +738,8 @@ export type $PackagesServicesPayload<ExtArgs extends runtime.Types.Extensions.In
     isActive: boolean
     usedAt: Date | null
     createdAt: Date
-    remainingCount: number | null
-    ClientPackagesId: string
+    quantity: number
+    clientPackagesId: string
   }, ExtArgs["result"]["packagesServices"]>
   composites: {}
 }
@@ -1143,7 +1135,7 @@ readonly fields: PackagesServicesFieldRefs;
 export interface Prisma__PackagesServicesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   service<T extends Prisma.ServiceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceDefaultArgs<ExtArgs>>): Prisma.Prisma__ServiceClient<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  ClientPackages<T extends Prisma.ClientPackagesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientPackagesDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientPackagesClient<runtime.Types.Result.GetResult<Prisma.$ClientPackagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  clientPackages<T extends Prisma.ClientPackagesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientPackagesDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientPackagesClient<runtime.Types.Result.GetResult<Prisma.$ClientPackagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1178,8 +1170,8 @@ export interface PackagesServicesFieldRefs {
   readonly isActive: Prisma.FieldRef<"PackagesServices", 'Boolean'>
   readonly usedAt: Prisma.FieldRef<"PackagesServices", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"PackagesServices", 'DateTime'>
-  readonly remainingCount: Prisma.FieldRef<"PackagesServices", 'Int'>
-  readonly ClientPackagesId: Prisma.FieldRef<"PackagesServices", 'String'>
+  readonly quantity: Prisma.FieldRef<"PackagesServices", 'Int'>
+  readonly clientPackagesId: Prisma.FieldRef<"PackagesServices", 'String'>
 }
     
 

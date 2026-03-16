@@ -167,7 +167,7 @@ export class AdminService {
     const fetchedBranches = await this.prisma.branch.findMany({
       select: {
         id: true,
-        Translation: true,
+        translation: true,
         barber: {
           select: {
             id: true,
@@ -185,7 +185,7 @@ export class AdminService {
                   select: {
                     total: true, // ✅ Get the actual order total
                     service: {
-                      select: { Translation: true, price: true, id: true },
+                      select: { translation: true, price: true, id: true },
                     },
                   },
                 },
@@ -197,7 +197,7 @@ export class AdminService {
     });
 
     const branches = fetchedBranches.map((branch) => {
-      const { Translation, barber, id } = branch;
+      const { translation, barber, id } = branch;
       const result = barber.map((barber) => {
         const servicesSummary: {
           id: string;
@@ -216,7 +216,7 @@ export class AdminService {
         barber.user.BarberOrders.forEach((order) => {
           order.service.forEach((srv) => {
             const name =
-              TranslateName({ Translation: srv.Translation }, 'EN')?.name ??
+              TranslateName({ translation: srv.translation }, 'EN')?.name ??
               'Unknown';
 
             const existing = servicesSummary.find((s) => s.id === srv.id);
@@ -245,7 +245,7 @@ export class AdminService {
       });
       return {
         id,
-        ...TranslateName({ Translation }, 'EN'),
+        ...TranslateName({ translation }, 'EN'),
         barbers: result,
       };
     });
@@ -255,11 +255,11 @@ export class AdminService {
 
   private async ServiceUsageSummary() {
     const branches = await this.prisma.branch.findMany({
-      include: { Translation: true },
+      include: { translation: true },
     });
 
     const allServices = await this.prisma.service.findMany({
-      include: { Translation: true, _count: { select: { order: true } } },
+      include: { translation: true, _count: { select: { order: true } } },
       orderBy: { order: { _count: 'desc' } },
     });
 
@@ -269,14 +269,14 @@ export class AdminService {
         .map((service) => {
           return {
             serviceId: service.id,
-            ...TranslateName({ Translation: service.Translation }, 'EN'),
+            ...TranslateName({ translation: service.translation }, 'EN'),
             usageCount: service._count.order || 0,
           };
         });
 
       return {
         branchId: branch.id,
-        ...TranslateName({ Translation: branch.Translation }, 'EN'),
+        ...TranslateName({ translation: branch.translation }, 'EN'),
         services,
       };
     });

@@ -157,7 +157,7 @@ export class AuthService {
                 type: createAuthDto.type,
                 branchId,
                 rate: 5,
-                Slot: {
+                slot: {
                   create: {
                     start,
                     end,
@@ -186,7 +186,7 @@ export class AuthService {
             cashier: {
               create: {
                 branchId,
-                Slot: {
+                slot: {
                   create: {
                     start,
                     end,
@@ -360,7 +360,7 @@ export class AuthService {
           },
           omit: { password: true },
           include: {
-            barber: { include: { Slot: true } },
+            barber: { include: { slot: true } },
           },
         });
       });

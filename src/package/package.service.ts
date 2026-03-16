@@ -57,7 +57,7 @@ export class PackageService {
             count,
             services: { connect: serviceIds.map((id) => ({ id })) },
             ...(image && { image }),
-            Translation: createTranslation(createPackageDto),
+            translation: createTranslation(createPackageDto),
           },
         },
       },
@@ -65,7 +65,7 @@ export class PackageService {
 
     const send = await this.notification.sendNotificationToAllUsers({
       title: 'New Package added',
-      message: `A new package has been added: ${rest.Translation.find((t) => t.language === 'EN').name}`,
+      message: `A new package has been added: ${rest.translation.find((t) => t.language === 'EN').name}`,
     });
     console.log(send);
     return new AppSuccess(offer, 'Package created successfully', 201);
@@ -95,10 +95,10 @@ export class PackageService {
         createdAt,
         updatedAt,
         id,
-        packages: { Translation: packageTrans, services: s, price, count },
+        packages: { translation: packageTrans, services: s, price, count },
       } = packageData;
       const services = s.map((s) => {
-        const { Translation: serviceTrans, ...rest } = s;
+        const { translation: serviceTrans, ...rest } = s;
         return {
           ...rest,
           nameEN: serviceTrans.find((t) => t.language === 'EN')?.name,
@@ -141,12 +141,12 @@ export class PackageService {
 
     if (!fetchedPackage) new NotFoundException('Package not found');
 
-    const { Translation: t, services: s, ...rest } = fetchedPackage;
+    const { translation: t, services: s, ...rest } = fetchedPackage;
     const services = s.map((s) => {
-      const { Translation, ...rest } = s;
+      const { translation, ...rest } = s;
       return {
         ...rest,
-        name: Translation[0].name,
+        name: translation[0].name,
       };
     });
 

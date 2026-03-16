@@ -37,6 +37,7 @@ export type CashierMaxAggregateOutputType = {
 export type CashierCountAggregateOutputType = {
   id: number
   branchId: number
+  daysOff: number
   _all: number
 }
 
@@ -54,6 +55,7 @@ export type CashierMaxAggregateInputType = {
 export type CashierCountAggregateInputType = {
   id?: true
   branchId?: true
+  daysOff?: true
   _all?: true
 }
 
@@ -132,6 +134,7 @@ export type CashierGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type CashierGroupByOutputType = {
   id: string
   branchId: string
+  daysOff: $Enums.Days[]
   _count: CashierCountAggregateOutputType | null
   _min: CashierMinAggregateOutputType | null
   _max: CashierMaxAggregateOutputType | null
@@ -158,18 +161,20 @@ export type CashierWhereInput = {
   NOT?: Prisma.CashierWhereInput | Prisma.CashierWhereInput[]
   id?: Prisma.StringFilter<"Cashier"> | string
   branchId?: Prisma.StringFilter<"Cashier"> | string
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Cashier">
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  Slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
+  slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
   vacations?: Prisma.VacationListRelationFilter
 }
 
 export type CashierOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  daysOff?: Prisma.SortOrder
   branch?: Prisma.BranchOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
-  Slot?: Prisma.SlotOrderByWithRelationInput
+  slot?: Prisma.SlotOrderByWithRelationInput
   vacations?: Prisma.VacationOrderByRelationAggregateInput
 }
 
@@ -179,15 +184,17 @@ export type CashierWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CashierWhereInput[]
   NOT?: Prisma.CashierWhereInput | Prisma.CashierWhereInput[]
   branchId?: Prisma.StringFilter<"Cashier"> | string
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Cashier">
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  Slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
+  slot?: Prisma.XOR<Prisma.SlotNullableScalarRelationFilter, Prisma.SlotWhereInput> | null
   vacations?: Prisma.VacationListRelationFilter
 }, "id">
 
 export type CashierOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  daysOff?: Prisma.SortOrder
   _count?: Prisma.CashierCountOrderByAggregateInput
   _max?: Prisma.CashierMaxOrderByAggregateInput
   _min?: Prisma.CashierMinOrderByAggregateInput
@@ -199,48 +206,55 @@ export type CashierScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CashierScalarWhereWithAggregatesInput | Prisma.CashierScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Cashier"> | string
   branchId?: Prisma.StringWithAggregatesFilter<"Cashier"> | string
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Cashier">
 }
 
 export type CashierCreateInput = {
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutCashierInput
   user: Prisma.UserCreateNestedOneWithoutCashierInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
+  slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationCreateNestedManyWithoutCashierInput
 }
 
 export type CashierUncheckedCreateInput = {
   id: string
   branchId: string
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutCashierInput
 }
 
 export type CashierUpdateInput = {
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutCashierNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCashierNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierCreateManyInput = {
   id: string
   branchId: string
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
 }
 
 export type CashierUpdateManyMutationInput = {
-
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
 }
 
 export type CashierUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
 }
 
 export type CashierNullableScalarRelationFilter = {
@@ -248,9 +262,18 @@ export type CashierNullableScalarRelationFilter = {
   isNot?: Prisma.CashierWhereInput | null
 }
 
+export type EnumDaysNullableListFilter<$PrismaModel = never> = {
+  equals?: $Enums.Days[] | Prisma.ListEnumDaysFieldRefInput<$PrismaModel> | null
+  has?: $Enums.Days | Prisma.EnumDaysFieldRefInput<$PrismaModel> | null
+  hasEvery?: $Enums.Days[] | Prisma.ListEnumDaysFieldRefInput<$PrismaModel>
+  hasSome?: $Enums.Days[] | Prisma.ListEnumDaysFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type CashierCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  daysOff?: Prisma.SortOrder
 }
 
 export type CashierMaxOrderByAggregateInput = {
@@ -303,6 +326,15 @@ export type CashierUncheckedUpdateOneWithoutUserNestedInput = {
   delete?: Prisma.CashierWhereInput | boolean
   connect?: Prisma.CashierWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CashierUpdateToOneWithWhereWithoutUserInput, Prisma.CashierUpdateWithoutUserInput>, Prisma.CashierUncheckedUpdateWithoutUserInput>
+}
+
+export type CashierCreatedaysOffInput = {
+  set: $Enums.Days[]
+}
+
+export type CashierUpdatedaysOffInput = {
+  set?: $Enums.Days[]
+  push?: $Enums.Days | $Enums.Days[]
 }
 
 export type CashierCreateNestedOneWithoutVacationsInput = {
@@ -380,14 +412,16 @@ export type CashierUpdateOneWithoutSlotNestedInput = {
 }
 
 export type CashierCreateWithoutUserInput = {
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutCashierInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
+  slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationCreateNestedManyWithoutCashierInput
 }
 
 export type CashierUncheckedCreateWithoutUserInput = {
   branchId: string
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutCashierInput
 }
 
@@ -408,27 +442,31 @@ export type CashierUpdateToOneWithWhereWithoutUserInput = {
 }
 
 export type CashierUpdateWithoutUserInput = {
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutCashierNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierUncheckedUpdateWithoutUserInput = {
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierCreateWithoutVacationsInput = {
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutCashierInput
   user: Prisma.UserCreateNestedOneWithoutCashierInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
+  slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
 }
 
 export type CashierUncheckedCreateWithoutVacationsInput = {
   id: string
   branchId: string
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
 }
 
 export type CashierCreateOrConnectWithoutVacationsInput = {
@@ -448,26 +486,30 @@ export type CashierUpdateToOneWithWhereWithoutVacationsInput = {
 }
 
 export type CashierUpdateWithoutVacationsInput = {
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutCashierNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCashierNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
 }
 
 export type CashierUncheckedUpdateWithoutVacationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
 }
 
 export type CashierCreateWithoutBranchInput = {
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
   user: Prisma.UserCreateNestedOneWithoutCashierInput
-  Slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
+  slot?: Prisma.SlotCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationCreateNestedManyWithoutCashierInput
 }
 
 export type CashierUncheckedCreateWithoutBranchInput = {
   id: string
-  Slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutCashierInput
 }
 
@@ -503,9 +545,11 @@ export type CashierScalarWhereInput = {
   NOT?: Prisma.CashierScalarWhereInput | Prisma.CashierScalarWhereInput[]
   id?: Prisma.StringFilter<"Cashier"> | string
   branchId?: Prisma.StringFilter<"Cashier"> | string
+  daysOff?: Prisma.EnumDaysNullableListFilter<"Cashier">
 }
 
 export type CashierCreateWithoutSlotInput = {
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
   branch: Prisma.BranchCreateNestedOneWithoutCashierInput
   user: Prisma.UserCreateNestedOneWithoutCashierInput
   vacations?: Prisma.VacationCreateNestedManyWithoutCashierInput
@@ -514,6 +558,7 @@ export type CashierCreateWithoutSlotInput = {
 export type CashierUncheckedCreateWithoutSlotInput = {
   id: string
   branchId: string
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
   vacations?: Prisma.VacationUncheckedCreateNestedManyWithoutCashierInput
 }
 
@@ -534,6 +579,7 @@ export type CashierUpdateToOneWithWhereWithoutSlotInput = {
 }
 
 export type CashierUpdateWithoutSlotInput = {
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
   branch?: Prisma.BranchUpdateOneRequiredWithoutCashierNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCashierNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutCashierNestedInput
@@ -542,27 +588,32 @@ export type CashierUpdateWithoutSlotInput = {
 export type CashierUncheckedUpdateWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   branchId?: Prisma.StringFieldUpdateOperationsInput | string
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierCreateManyBranchInput = {
   id: string
+  daysOff?: Prisma.CashierCreatedaysOffInput | $Enums.Days[]
 }
 
 export type CashierUpdateWithoutBranchInput = {
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
   user?: Prisma.UserUpdateOneRequiredWithoutCashierNestedInput
-  Slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
+  slot?: Prisma.SlotUpdateOneWithoutCashierNestedInput
   vacations?: Prisma.VacationUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierUncheckedUpdateWithoutBranchInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  Slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
+  slot?: Prisma.SlotUncheckedUpdateOneWithoutCashierNestedInput
   vacations?: Prisma.VacationUncheckedUpdateManyWithoutCashierNestedInput
 }
 
 export type CashierUncheckedUpdateManyWithoutBranchInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  daysOff?: Prisma.CashierUpdatedaysOffInput | $Enums.Days[]
 }
 
 
@@ -599,9 +650,10 @@ export type CashierCountOutputTypeCountVacationsArgs<ExtArgs extends runtime.Typ
 export type CashierSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   branchId?: boolean
+  daysOff?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  Slot?: boolean | Prisma.Cashier$SlotArgs<ExtArgs>
+  slot?: boolean | Prisma.Cashier$slotArgs<ExtArgs>
   vacations?: boolean | Prisma.Cashier$vacationsArgs<ExtArgs>
   _count?: boolean | Prisma.CashierCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cashier"]>
@@ -609,6 +661,7 @@ export type CashierSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type CashierSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   branchId?: boolean
+  daysOff?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cashier"]>
@@ -616,6 +669,7 @@ export type CashierSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type CashierSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   branchId?: boolean
+  daysOff?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cashier"]>
@@ -623,13 +677,14 @@ export type CashierSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type CashierSelectScalar = {
   id?: boolean
   branchId?: boolean
+  daysOff?: boolean
 }
 
-export type CashierOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId", ExtArgs["result"]["cashier"]>
+export type CashierOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "daysOff", ExtArgs["result"]["cashier"]>
 export type CashierInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  Slot?: boolean | Prisma.Cashier$SlotArgs<ExtArgs>
+  slot?: boolean | Prisma.Cashier$slotArgs<ExtArgs>
   vacations?: boolean | Prisma.Cashier$vacationsArgs<ExtArgs>
   _count?: boolean | Prisma.CashierCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -647,12 +702,13 @@ export type $CashierPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     branch: Prisma.$BranchPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
-    Slot: Prisma.$SlotPayload<ExtArgs> | null
+    slot: Prisma.$SlotPayload<ExtArgs> | null
     vacations: Prisma.$VacationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     branchId: string
+    daysOff: $Enums.Days[]
   }, ExtArgs["result"]["cashier"]>
   composites: {}
 }
@@ -1049,7 +1105,7 @@ export interface Prisma__CashierClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Slot<T extends Prisma.Cashier$SlotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cashier$SlotArgs<ExtArgs>>): Prisma.Prisma__SlotClient<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  slot<T extends Prisma.Cashier$slotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cashier$slotArgs<ExtArgs>>): Prisma.Prisma__SlotClient<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   vacations<T extends Prisma.Cashier$vacationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Cashier$vacationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VacationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1082,6 +1138,7 @@ export interface Prisma__CashierClient<T, Null = never, ExtArgs extends runtime.
 export interface CashierFieldRefs {
   readonly id: Prisma.FieldRef<"Cashier", 'String'>
   readonly branchId: Prisma.FieldRef<"Cashier", 'String'>
+  readonly daysOff: Prisma.FieldRef<"Cashier", 'Days[]'>
 }
     
 
@@ -1483,9 +1540,9 @@ export type CashierDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Cashier.Slot
+ * Cashier.slot
  */
-export type Cashier$SlotArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Cashier$slotArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Slot
    */

@@ -6,6 +6,7 @@ import { PrismaService } from './prisma/prisma.service';
 import * as express from 'express';
 import { join } from 'path';
 import { FirstErrorOnlyFilter } from '../filters/validation-fields-only.filter';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 config();
 
@@ -31,8 +32,51 @@ async function bootstrap() {
       },
     }),
   );
-  await app.listen(process.env.PORT ?? 8080, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+
+  const isDev = process.env.NODE_ENV === 'development';
+  const devApiKey =
+    isDev && Buffer.from(process.env.API_KEY || '').toString('base64');
+
+  const config = new DocumentBuilder()
+    .setTitle('Naeman API')
+    .setDescription('Barber booking system API')
+    .setVersion('1.0')
+    .addBearerAuth()
+    // .addApiKey(
+    //   {
+    //     name: 'x-api-key',
+    //     in: 'header',
+    //     description: 'API key for authentication (dev only)',
+    //     type: 'apiKey',
+    //   },
+    //   'x-api-key',
+    // )
+    // .addApiKey(
+    //   {
+    //     name: 'Accept-Language',
+    //     in: 'header',
+    //     description: 'Language for response messages (en or ar)',
+    //     type: 'apiKey',
+    //   },
+    //   'Accept-Language',
+    // )
+    // .addSecurityRequirements('Accept-Language')
+    // .addSecurityRequirements('x-api-key')
+    .build();
+
+  app.use((req: Request, res, next) => {
+    if (!isDev) req.headers['x-api-key'] = devApiKey;
+    req.headers['Accept-Language'] = 'en';
+    next();
+  });
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document);
+
+  await app.listen(process.env.PORT ?? 3000, () => {
+    console.log(`Application is running on: ${process.env.PORT ?? 3000}`);
+    console.log(
+      `swagger is running on: http://localhost:${process.env.PORT ?? 3000}/api/docs`,
+    );
   });
 }
 

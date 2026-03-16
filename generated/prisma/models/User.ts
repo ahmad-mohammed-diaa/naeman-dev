@@ -35,6 +35,7 @@ export type UserMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   role: $Enums.Role | null
+  roleId: string | null
   deleted: boolean | null
 }
 
@@ -49,6 +50,7 @@ export type UserMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   role: $Enums.Role | null
+  roleId: string | null
   deleted: boolean | null
 }
 
@@ -63,6 +65,7 @@ export type UserCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   role: number
+  roleId: number
   deleted: number
   _all: number
 }
@@ -79,6 +82,7 @@ export type UserMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   role?: true
+  roleId?: true
   deleted?: true
 }
 
@@ -93,6 +97,7 @@ export type UserMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   role?: true
+  roleId?: true
   deleted?: true
 }
 
@@ -107,6 +112,7 @@ export type UserCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   role?: true
+  roleId?: true
   deleted?: true
   _all?: true
 }
@@ -194,6 +200,7 @@ export type UserGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   role: $Enums.Role
+  roleId: string | null
   deleted: boolean
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
@@ -229,7 +236,9 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  roleId?: Prisma.StringNullableFilter<"User"> | string | null
   deleted?: Prisma.BoolFilter<"User"> | boolean
+  roleRef?: Prisma.XOR<Prisma.RolesNullableScalarRelationFilter, Prisma.RolesWhereInput> | null
   admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
   barber?: Prisma.XOR<Prisma.BarberNullableScalarRelationFilter, Prisma.BarberWhereInput> | null
   cashier?: Prisma.XOR<Prisma.CashierNullableScalarRelationFilter, Prisma.CashierWhereInput> | null
@@ -238,6 +247,7 @@ export type UserWhereInput = {
   CashierOrders?: Prisma.OrderListRelationFilter
   UserOrders?: Prisma.OrderListRelationFilter
   notification?: Prisma.NotificationListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -251,7 +261,9 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  roleId?: Prisma.SortOrderInput | Prisma.SortOrder
   deleted?: Prisma.SortOrder
+  roleRef?: Prisma.RolesOrderByWithRelationInput
   admin?: Prisma.AdminOrderByWithRelationInput
   barber?: Prisma.BarberOrderByWithRelationInput
   cashier?: Prisma.CashierOrderByWithRelationInput
@@ -260,6 +272,7 @@ export type UserOrderByWithRelationInput = {
   CashierOrders?: Prisma.OrderOrderByRelationAggregateInput
   UserOrders?: Prisma.OrderOrderByRelationAggregateInput
   notification?: Prisma.notificationOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -276,7 +289,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  roleId?: Prisma.StringNullableFilter<"User"> | string | null
   deleted?: Prisma.BoolFilter<"User"> | boolean
+  roleRef?: Prisma.XOR<Prisma.RolesNullableScalarRelationFilter, Prisma.RolesWhereInput> | null
   admin?: Prisma.XOR<Prisma.AdminNullableScalarRelationFilter, Prisma.AdminWhereInput> | null
   barber?: Prisma.XOR<Prisma.BarberNullableScalarRelationFilter, Prisma.BarberWhereInput> | null
   cashier?: Prisma.XOR<Prisma.CashierNullableScalarRelationFilter, Prisma.CashierWhereInput> | null
@@ -285,6 +300,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   CashierOrders?: Prisma.OrderListRelationFilter
   UserOrders?: Prisma.OrderListRelationFilter
   notification?: Prisma.NotificationListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
 }, "id" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -298,6 +314,7 @@ export type UserOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  roleId?: Prisma.SortOrderInput | Prisma.SortOrder
   deleted?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -318,6 +335,7 @@ export type UserScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  roleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   deleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
@@ -333,6 +351,7 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
@@ -341,6 +360,7 @@ export type UserCreateInput = {
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -354,6 +374,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
@@ -363,6 +384,7 @@ export type UserUncheckedCreateInput = {
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUpdateInput = {
@@ -377,6 +399,7 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
@@ -385,6 +408,7 @@ export type UserUpdateInput = {
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -398,6 +422,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
@@ -407,6 +432,7 @@ export type UserUncheckedUpdateInput = {
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -420,6 +446,7 @@ export type UserCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
 }
 
@@ -448,6 +475,7 @@ export type UserUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -462,6 +490,7 @@ export type UserCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  roleId?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
 }
 
@@ -476,6 +505,7 @@ export type UserMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  roleId?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
 }
 
@@ -490,17 +520,8 @@ export type UserMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  roleId?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-}
-
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
-}
-
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserListRelationFilter = {
@@ -511,6 +532,16 @@ export type UserListRelationFilter = {
 
 export type UserOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -531,6 +562,48 @@ export type EnumRoleFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type UserCreateNestedManyWithoutRoleRefInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleRefInput, Prisma.UserUncheckedCreateWithoutRoleRefInput> | Prisma.UserCreateWithoutRoleRefInput[] | Prisma.UserUncheckedCreateWithoutRoleRefInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleRefInput | Prisma.UserCreateOrConnectWithoutRoleRefInput[]
+  createMany?: Prisma.UserCreateManyRoleRefInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutRoleRefInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleRefInput, Prisma.UserUncheckedCreateWithoutRoleRefInput> | Prisma.UserCreateWithoutRoleRefInput[] | Prisma.UserUncheckedCreateWithoutRoleRefInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleRefInput | Prisma.UserCreateOrConnectWithoutRoleRefInput[]
+  createMany?: Prisma.UserCreateManyRoleRefInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutRoleRefNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleRefInput, Prisma.UserUncheckedCreateWithoutRoleRefInput> | Prisma.UserCreateWithoutRoleRefInput[] | Prisma.UserUncheckedCreateWithoutRoleRefInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleRefInput | Prisma.UserCreateOrConnectWithoutRoleRefInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutRoleRefInput | Prisma.UserUpsertWithWhereUniqueWithoutRoleRefInput[]
+  createMany?: Prisma.UserCreateManyRoleRefInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutRoleRefInput | Prisma.UserUpdateWithWhereUniqueWithoutRoleRefInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutRoleRefInput | Prisma.UserUpdateManyWithWhereWithoutRoleRefInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutRoleRefNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleRefInput, Prisma.UserUncheckedCreateWithoutRoleRefInput> | Prisma.UserCreateWithoutRoleRefInput[] | Prisma.UserUncheckedCreateWithoutRoleRefInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleRefInput | Prisma.UserCreateOrConnectWithoutRoleRefInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutRoleRefInput | Prisma.UserUpsertWithWhereUniqueWithoutRoleRefInput[]
+  createMany?: Prisma.UserCreateManyRoleRefInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutRoleRefInput | Prisma.UserUpdateWithWhereUniqueWithoutRoleRefInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutRoleRefInput | Prisma.UserUpdateManyWithWhereWithoutRoleRefInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
 export type UserCreateNestedOneWithoutClientInput = {
@@ -589,6 +662,12 @@ export type UserUpdateOneRequiredWithoutAdminNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAdminInput, Prisma.UserUpdateWithoutAdminInput>, Prisma.UserUncheckedUpdateWithoutAdminInput>
 }
 
+export type UserCreateNestedOneWithoutOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserCreateNestedOneWithoutUserOrdersInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutUserOrdersInput, Prisma.UserUncheckedCreateWithoutUserOrdersInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutUserOrdersInput
@@ -605,6 +684,16 @@ export type UserCreateNestedOneWithoutCashierOrdersInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCashierOrdersInput, Prisma.UserUncheckedCreateWithoutCashierOrdersInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCashierOrdersInput
   connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+  upsert?: Prisma.UserUpsertWithoutOrdersInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
 }
 
 export type UserUpdateOneWithoutUserOrdersNestedInput = {
@@ -675,7 +764,7 @@ export type UserUncheckedUpdateManyWithoutNotificationNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
-export type UserCreateWithoutClientInput = {
+export type UserCreateWithoutRoleRefInput = {
   id?: string
   firstName: string
   lastName: string
@@ -690,13 +779,15 @@ export type UserCreateWithoutClientInput = {
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
+  client?: Prisma.ClientCreateNestedOneWithoutUserInput
   BarberOrders?: Prisma.OrderCreateNestedManyWithoutBarberInput
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
-export type UserUncheckedCreateWithoutClientInput = {
+export type UserUncheckedCreateWithoutRoleRefInput = {
   id?: string
   firstName: string
   lastName: string
@@ -711,10 +802,102 @@ export type UserUncheckedCreateWithoutClientInput = {
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierUncheckedCreateNestedOneWithoutUserInput
+  client?: Prisma.ClientUncheckedCreateNestedOneWithoutUserInput
   BarberOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutBarberInput
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
+}
+
+export type UserCreateOrConnectWithoutRoleRefInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoleRefInput, Prisma.UserUncheckedCreateWithoutRoleRefInput>
+}
+
+export type UserCreateManyRoleRefInputEnvelope = {
+  data: Prisma.UserCreateManyRoleRefInput | Prisma.UserCreateManyRoleRefInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutRoleRefInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRoleRefInput, Prisma.UserUncheckedUpdateWithoutRoleRefInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRoleRefInput, Prisma.UserUncheckedCreateWithoutRoleRefInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutRoleRefInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRoleRefInput, Prisma.UserUncheckedUpdateWithoutRoleRefInput>
+}
+
+export type UserUpdateManyWithWhereWithoutRoleRefInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutRoleRefInput>
+}
+
+export type UserScalarWhereInput = {
+  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  OR?: Prisma.UserScalarWhereInput[]
+  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  id?: Prisma.StringFilter<"User"> | string
+  firstName?: Prisma.StringFilter<"User"> | string
+  lastName?: Prisma.StringFilter<"User"> | string
+  avatar?: Prisma.StringFilter<"User"> | string
+  phone?: Prisma.StringFilter<"User"> | string
+  password?: Prisma.StringFilter<"User"> | string
+  fcmToken?: Prisma.StringNullableFilter<"User"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  roleId?: Prisma.StringNullableFilter<"User"> | string | null
+  deleted?: Prisma.BoolFilter<"User"> | boolean
+}
+
+export type UserCreateWithoutClientInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  avatar?: string
+  phone: string
+  password: string
+  fcmToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.Role
+  deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
+  barber?: Prisma.BarberCreateNestedOneWithoutUserInput
+  cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
+  BarberOrders?: Prisma.OrderCreateNestedManyWithoutBarberInput
+  CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
+  UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
+  notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
+}
+
+export type UserUncheckedCreateWithoutClientInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  avatar?: string
+  phone: string
+  password: string
+  fcmToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.Role
+  roleId?: string | null
+  deleted?: boolean
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
+  barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
+  cashier?: Prisma.CashierUncheckedCreateNestedOneWithoutUserInput
+  BarberOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutBarberInput
+  CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
+  UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
+  notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutClientInput = {
@@ -745,6 +928,7 @@ export type UserUpdateWithoutClientInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
@@ -752,6 +936,7 @@ export type UserUpdateWithoutClientInput = {
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClientInput = {
@@ -765,6 +950,7 @@ export type UserUncheckedUpdateWithoutClientInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
@@ -773,6 +959,7 @@ export type UserUncheckedUpdateWithoutClientInput = {
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserCreateWithoutCashierInput = {
@@ -787,6 +974,7 @@ export type UserCreateWithoutCashierInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   client?: Prisma.ClientCreateNestedOneWithoutUserInput
@@ -794,6 +982,7 @@ export type UserCreateWithoutCashierInput = {
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutCashierInput = {
@@ -807,6 +996,7 @@ export type UserUncheckedCreateWithoutCashierInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
@@ -815,6 +1005,7 @@ export type UserUncheckedCreateWithoutCashierInput = {
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutCashierInput = {
@@ -845,6 +1036,7 @@ export type UserUpdateWithoutCashierInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   client?: Prisma.ClientUpdateOneWithoutUserNestedInput
@@ -852,6 +1044,7 @@ export type UserUpdateWithoutCashierInput = {
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCashierInput = {
@@ -865,6 +1058,7 @@ export type UserUncheckedUpdateWithoutCashierInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
@@ -873,6 +1067,7 @@ export type UserUncheckedUpdateWithoutCashierInput = {
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserCreateWithoutBarberInput = {
@@ -887,6 +1082,7 @@ export type UserCreateWithoutBarberInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
   client?: Prisma.ClientCreateNestedOneWithoutUserInput
@@ -894,6 +1090,7 @@ export type UserCreateWithoutBarberInput = {
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutBarberInput = {
@@ -907,6 +1104,7 @@ export type UserUncheckedCreateWithoutBarberInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierUncheckedCreateNestedOneWithoutUserInput
@@ -915,6 +1113,7 @@ export type UserUncheckedCreateWithoutBarberInput = {
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutBarberInput = {
@@ -945,6 +1144,7 @@ export type UserUpdateWithoutBarberInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
   client?: Prisma.ClientUpdateOneWithoutUserNestedInput
@@ -952,6 +1152,7 @@ export type UserUpdateWithoutBarberInput = {
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBarberInput = {
@@ -965,6 +1166,7 @@ export type UserUncheckedUpdateWithoutBarberInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUncheckedUpdateOneWithoutUserNestedInput
@@ -973,6 +1175,7 @@ export type UserUncheckedUpdateWithoutBarberInput = {
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserCreateWithoutAdminInput = {
@@ -987,6 +1190,7 @@ export type UserCreateWithoutAdminInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
   client?: Prisma.ClientCreateNestedOneWithoutUserInput
@@ -994,6 +1198,7 @@ export type UserCreateWithoutAdminInput = {
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutAdminInput = {
@@ -1007,6 +1212,7 @@ export type UserUncheckedCreateWithoutAdminInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierUncheckedCreateNestedOneWithoutUserInput
@@ -1015,6 +1221,7 @@ export type UserUncheckedCreateWithoutAdminInput = {
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutAdminInput = {
@@ -1045,6 +1252,7 @@ export type UserUpdateWithoutAdminInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
   client?: Prisma.ClientUpdateOneWithoutUserNestedInput
@@ -1052,6 +1260,7 @@ export type UserUpdateWithoutAdminInput = {
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAdminInput = {
@@ -1065,6 +1274,7 @@ export type UserUncheckedUpdateWithoutAdminInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUncheckedUpdateOneWithoutUserNestedInput
@@ -1073,6 +1283,58 @@ export type UserUncheckedUpdateWithoutAdminInput = {
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
+}
+
+export type UserCreateWithoutOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  avatar?: string
+  phone: string
+  password: string
+  fcmToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.Role
+  deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
+  admin?: Prisma.AdminCreateNestedOneWithoutUserInput
+  barber?: Prisma.BarberCreateNestedOneWithoutUserInput
+  cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
+  client?: Prisma.ClientCreateNestedOneWithoutUserInput
+  BarberOrders?: Prisma.OrderCreateNestedManyWithoutBarberInput
+  CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
+  UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
+  notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  avatar?: string
+  phone: string
+  password: string
+  fcmToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.Role
+  roleId?: string | null
+  deleted?: boolean
+  admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
+  barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
+  cashier?: Prisma.CashierUncheckedCreateNestedOneWithoutUserInput
+  client?: Prisma.ClientUncheckedCreateNestedOneWithoutUserInput
+  BarberOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutBarberInput
+  CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
+  UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
+  notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
 }
 
 export type UserCreateWithoutUserOrdersInput = {
@@ -1087,6 +1349,7 @@ export type UserCreateWithoutUserOrdersInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
@@ -1094,6 +1357,7 @@ export type UserCreateWithoutUserOrdersInput = {
   BarberOrders?: Prisma.OrderCreateNestedManyWithoutBarberInput
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutUserOrdersInput = {
@@ -1107,6 +1371,7 @@ export type UserUncheckedCreateWithoutUserOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
@@ -1115,6 +1380,7 @@ export type UserUncheckedCreateWithoutUserOrdersInput = {
   BarberOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutBarberInput
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutUserOrdersInput = {
@@ -1134,6 +1400,7 @@ export type UserCreateWithoutBarberOrdersInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
@@ -1141,6 +1408,7 @@ export type UserCreateWithoutBarberOrdersInput = {
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutBarberOrdersInput = {
@@ -1154,6 +1422,7 @@ export type UserUncheckedCreateWithoutBarberOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
@@ -1162,6 +1431,7 @@ export type UserUncheckedCreateWithoutBarberOrdersInput = {
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutBarberOrdersInput = {
@@ -1181,6 +1451,7 @@ export type UserCreateWithoutCashierOrdersInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
@@ -1188,6 +1459,7 @@ export type UserCreateWithoutCashierOrdersInput = {
   BarberOrders?: Prisma.OrderCreateNestedManyWithoutBarberInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutCashierOrdersInput = {
@@ -1201,6 +1473,7 @@ export type UserUncheckedCreateWithoutCashierOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
@@ -1209,11 +1482,69 @@ export type UserUncheckedCreateWithoutCashierOrdersInput = {
   BarberOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutBarberInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
   notification?: Prisma.notificationUncheckedCreateNestedManyWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutCashierOrdersInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutCashierOrdersInput, Prisma.UserUncheckedCreateWithoutCashierOrdersInput>
+}
+
+export type UserUpsertWithoutOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+}
+
+export type UserUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fcmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
+  barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
+  cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
+  client?: Prisma.ClientUpdateOneWithoutUserNestedInput
+  BarberOrders?: Prisma.OrderUpdateManyWithoutBarberNestedInput
+  CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
+  UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
+  notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fcmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
+  barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
+  cashier?: Prisma.CashierUncheckedUpdateOneWithoutUserNestedInput
+  client?: Prisma.ClientUncheckedUpdateOneWithoutUserNestedInput
+  BarberOrders?: Prisma.OrderUncheckedUpdateManyWithoutBarberNestedInput
+  CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
+  UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
+  notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutUserOrdersInput = {
@@ -1239,6 +1570,7 @@ export type UserUpdateWithoutUserOrdersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
@@ -1246,6 +1578,7 @@ export type UserUpdateWithoutUserOrdersInput = {
   BarberOrders?: Prisma.OrderUpdateManyWithoutBarberNestedInput
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserOrdersInput = {
@@ -1259,6 +1592,7 @@ export type UserUncheckedUpdateWithoutUserOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
@@ -1267,6 +1601,7 @@ export type UserUncheckedUpdateWithoutUserOrdersInput = {
   BarberOrders?: Prisma.OrderUncheckedUpdateManyWithoutBarberNestedInput
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUpsertWithoutBarberOrdersInput = {
@@ -1292,6 +1627,7 @@ export type UserUpdateWithoutBarberOrdersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
@@ -1299,6 +1635,7 @@ export type UserUpdateWithoutBarberOrdersInput = {
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBarberOrdersInput = {
@@ -1312,6 +1649,7 @@ export type UserUncheckedUpdateWithoutBarberOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
@@ -1320,6 +1658,7 @@ export type UserUncheckedUpdateWithoutBarberOrdersInput = {
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUpsertWithoutCashierOrdersInput = {
@@ -1345,6 +1684,7 @@ export type UserUpdateWithoutCashierOrdersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
   admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
   cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
@@ -1352,6 +1692,7 @@ export type UserUpdateWithoutCashierOrdersInput = {
   BarberOrders?: Prisma.OrderUpdateManyWithoutBarberNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCashierOrdersInput = {
@@ -1365,6 +1706,7 @@ export type UserUncheckedUpdateWithoutCashierOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
   barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
@@ -1373,6 +1715,7 @@ export type UserUncheckedUpdateWithoutCashierOrdersInput = {
   BarberOrders?: Prisma.OrderUncheckedUpdateManyWithoutBarberNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
   notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
 export type UserCreateWithoutNotificationInput = {
@@ -1387,6 +1730,7 @@ export type UserCreateWithoutNotificationInput = {
   updatedAt?: Date | string
   role?: $Enums.Role
   deleted?: boolean
+  roleRef?: Prisma.RolesCreateNestedOneWithoutUsersInput
   admin?: Prisma.AdminCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberCreateNestedOneWithoutUserInput
   cashier?: Prisma.CashierCreateNestedOneWithoutUserInput
@@ -1394,6 +1738,7 @@ export type UserCreateWithoutNotificationInput = {
   BarberOrders?: Prisma.OrderCreateNestedManyWithoutBarberInput
   CashierOrders?: Prisma.OrderCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderCreateNestedManyWithoutClientInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationInput = {
@@ -1407,6 +1752,7 @@ export type UserUncheckedCreateWithoutNotificationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   role?: $Enums.Role
+  roleId?: string | null
   deleted?: boolean
   admin?: Prisma.AdminUncheckedCreateNestedOneWithoutUserInput
   barber?: Prisma.BarberUncheckedCreateNestedOneWithoutUserInput
@@ -1415,6 +1761,7 @@ export type UserUncheckedCreateWithoutNotificationInput = {
   BarberOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutBarberInput
   CashierOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutCashierInput
   UserOrders?: Prisma.OrderUncheckedCreateNestedManyWithoutClientInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCancelledByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationInput = {
@@ -1438,24 +1785,21 @@ export type UserUpdateManyWithWhereWithoutNotificationInput = {
   data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutNotificationInput>
 }
 
-export type UserScalarWhereInput = {
-  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  OR?: Prisma.UserScalarWhereInput[]
-  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.StringFilter<"User"> | string
-  firstName?: Prisma.StringFilter<"User"> | string
-  lastName?: Prisma.StringFilter<"User"> | string
-  avatar?: Prisma.StringFilter<"User"> | string
-  phone?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
-  fcmToken?: Prisma.StringNullableFilter<"User"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
-  deleted?: Prisma.BoolFilter<"User"> | boolean
+export type UserCreateManyRoleRefInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  avatar?: string
+  phone: string
+  password: string
+  fcmToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.Role
+  deleted?: boolean
 }
 
-export type UserUpdateWithoutNotificationInput = {
+export type UserUpdateWithoutRoleRefInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1474,9 +1818,11 @@ export type UserUpdateWithoutNotificationInput = {
   BarberOrders?: Prisma.OrderUpdateManyWithoutBarberNestedInput
   CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
+  notification?: Prisma.notificationUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
 }
 
-export type UserUncheckedUpdateWithoutNotificationInput = {
+export type UserUncheckedUpdateWithoutRoleRefInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1495,9 +1841,11 @@ export type UserUncheckedUpdateWithoutNotificationInput = {
   BarberOrders?: Prisma.OrderUncheckedUpdateManyWithoutBarberNestedInput
   CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
   UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
+  notification?: Prisma.notificationUncheckedUpdateManyWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
 }
 
-export type UserUncheckedUpdateManyWithoutNotificationInput = {
+export type UserUncheckedUpdateManyWithoutRoleRefInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1511,6 +1859,67 @@ export type UserUncheckedUpdateManyWithoutNotificationInput = {
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
+export type UserUpdateWithoutNotificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fcmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  roleRef?: Prisma.RolesUpdateOneWithoutUsersNestedInput
+  admin?: Prisma.AdminUpdateOneWithoutUserNestedInput
+  barber?: Prisma.BarberUpdateOneWithoutUserNestedInput
+  cashier?: Prisma.CashierUpdateOneWithoutUserNestedInput
+  client?: Prisma.ClientUpdateOneWithoutUserNestedInput
+  BarberOrders?: Prisma.OrderUpdateManyWithoutBarberNestedInput
+  CashierOrders?: Prisma.OrderUpdateManyWithoutCashierNestedInput
+  UserOrders?: Prisma.OrderUpdateManyWithoutClientNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCancelledByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fcmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  admin?: Prisma.AdminUncheckedUpdateOneWithoutUserNestedInput
+  barber?: Prisma.BarberUncheckedUpdateOneWithoutUserNestedInput
+  cashier?: Prisma.CashierUncheckedUpdateOneWithoutUserNestedInput
+  client?: Prisma.ClientUncheckedUpdateOneWithoutUserNestedInput
+  BarberOrders?: Prisma.OrderUncheckedUpdateManyWithoutBarberNestedInput
+  CashierOrders?: Prisma.OrderUncheckedUpdateManyWithoutCashierNestedInput
+  UserOrders?: Prisma.OrderUncheckedUpdateManyWithoutClientNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCancelledByNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutNotificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  fcmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
 
 /**
  * Count Type UserCountOutputType
@@ -1521,6 +1930,7 @@ export type UserCountOutputType = {
   CashierOrders: number
   UserOrders: number
   notification: number
+  orders: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1528,6 +1938,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   CashierOrders?: boolean | UserCountOutputTypeCountCashierOrdersArgs
   UserOrders?: boolean | UserCountOutputTypeCountUserOrdersArgs
   notification?: boolean | UserCountOutputTypeCountNotificationArgs
+  orders?: boolean | UserCountOutputTypeCountOrdersArgs
 }
 
 /**
@@ -1568,6 +1979,13 @@ export type UserCountOutputTypeCountNotificationArgs<ExtArgs extends runtime.Typ
   where?: Prisma.notificationWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1580,7 +1998,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   role?: boolean
+  roleId?: boolean
   deleted?: boolean
+  roleRef?: boolean | Prisma.User$roleRefArgs<ExtArgs>
   admin?: boolean | Prisma.User$adminArgs<ExtArgs>
   barber?: boolean | Prisma.User$barberArgs<ExtArgs>
   cashier?: boolean | Prisma.User$cashierArgs<ExtArgs>
@@ -1589,6 +2009,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   CashierOrders?: boolean | Prisma.User$CashierOrdersArgs<ExtArgs>
   UserOrders?: boolean | Prisma.User$UserOrdersArgs<ExtArgs>
   notification?: boolean | Prisma.User$notificationArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1603,7 +2024,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   role?: boolean
+  roleId?: boolean
   deleted?: boolean
+  roleRef?: boolean | Prisma.User$roleRefArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1617,7 +2040,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   role?: boolean
+  roleId?: boolean
   deleted?: boolean
+  roleRef?: boolean | Prisma.User$roleRefArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1631,11 +2056,13 @@ export type UserSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   role?: boolean
+  roleId?: boolean
   deleted?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "avatar" | "phone" | "password" | "fcmToken" | "createdAt" | "updatedAt" | "role" | "deleted", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "avatar" | "phone" | "password" | "fcmToken" | "createdAt" | "updatedAt" | "role" | "roleId" | "deleted", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  roleRef?: boolean | Prisma.User$roleRefArgs<ExtArgs>
   admin?: boolean | Prisma.User$adminArgs<ExtArgs>
   barber?: boolean | Prisma.User$barberArgs<ExtArgs>
   cashier?: boolean | Prisma.User$cashierArgs<ExtArgs>
@@ -1644,14 +2071,20 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   CashierOrders?: boolean | Prisma.User$CashierOrdersArgs<ExtArgs>
   UserOrders?: boolean | Prisma.User$UserOrdersArgs<ExtArgs>
   notification?: boolean | Prisma.User$notificationArgs<ExtArgs>
+  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  roleRef?: boolean | Prisma.User$roleRefArgs<ExtArgs>
+}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  roleRef?: boolean | Prisma.User$roleRefArgs<ExtArgs>
+}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    roleRef: Prisma.$RolesPayload<ExtArgs> | null
     admin: Prisma.$AdminPayload<ExtArgs> | null
     barber: Prisma.$BarberPayload<ExtArgs> | null
     cashier: Prisma.$CashierPayload<ExtArgs> | null
@@ -1660,6 +2093,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     CashierOrders: Prisma.$OrderPayload<ExtArgs>[]
     UserOrders: Prisma.$OrderPayload<ExtArgs>[]
     notification: Prisma.$notificationPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1672,6 +2106,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdAt: Date
     updatedAt: Date
     role: $Enums.Role
+    roleId: string | null
     deleted: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -2067,6 +2502,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  roleRef<T extends Prisma.User$roleRefArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roleRefArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   admin<T extends Prisma.User$adminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$adminArgs<ExtArgs>>): Prisma.Prisma__AdminClient<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   barber<T extends Prisma.User$barberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$barberArgs<ExtArgs>>): Prisma.Prisma__BarberClient<runtime.Types.Result.GetResult<Prisma.$BarberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cashier<T extends Prisma.User$cashierArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cashierArgs<ExtArgs>>): Prisma.Prisma__CashierClient<runtime.Types.Result.GetResult<Prisma.$CashierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -2075,6 +2511,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   CashierOrders<T extends Prisma.User$CashierOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$CashierOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   UserOrders<T extends Prisma.User$UserOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$UserOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notification<T extends Prisma.User$notificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2114,6 +2551,7 @@ export interface UserFieldRefs {
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly roleId: Prisma.FieldRef<"User", 'String'>
   readonly deleted: Prisma.FieldRef<"User", 'Boolean'>
 }
     
@@ -2369,6 +2807,10 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2439,6 +2881,10 @@ export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Users to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2505,6 +2951,25 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.roleRef
+ */
+export type User$roleRefArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Roles
+   */
+  select?: Prisma.RolesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Roles
+   */
+  omit?: Prisma.RolesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RolesInclude<ExtArgs> | null
+  where?: Prisma.RolesWhereInput
 }
 
 /**
@@ -2677,6 +3142,30 @@ export type User$notificationArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * User.orders
+ */
+export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
 }
 
 /**

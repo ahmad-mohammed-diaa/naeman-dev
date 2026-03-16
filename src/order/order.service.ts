@@ -74,7 +74,7 @@ export class OrderService {
             },
           },
         },
-        Translation: true,
+        translation: true,
         Order: {
           where: {
             date: {
@@ -85,7 +85,7 @@ export class OrderService {
           include: {
             branch: {
               include: {
-                Translation: true,
+                translation: true,
               },
             },
             barber: {
@@ -100,7 +100,7 @@ export class OrderService {
             client: true,
             service: {
               include: {
-                Translation: true,
+                translation: true,
               },
             },
           },
@@ -113,9 +113,9 @@ export class OrderService {
 
     const formattedOrders = branches.map((branch) => ({
       id: branch.id,
-      nameEN: branch.Translation.find((t) => t.language === 'EN')?.name,
-      nameAR: branch.Translation.find((t) => t.language === 'AR')?.name,
-      name: branch.Translation.find((t) => t.language === language)?.name,
+      nameEN: branch.translation.find((t) => t.language === 'EN')?.name,
+      nameAR: branch.translation.find((t) => t.language === 'AR')?.name,
+      name: branch.translation.find((t) => t.language === language)?.name,
       orders: branch.Order.map((order) => {
         const {
           id,
@@ -164,7 +164,7 @@ export class OrderService {
 
     const FetchedCategory = await this.prisma.category.findMany({
       include: {
-        Translation: true,
+        translation: true,
         services: {
           where: {
             id: {
@@ -172,26 +172,26 @@ export class OrderService {
             },
           },
           include: {
-            Translation: true,
+            translation: true,
           },
         },
       },
     });
 
     const category = FetchedCategory.map((category) => {
-      const { Translation, services, ...rest } = category;
+      const { translation, services, ...rest } = category;
       return {
         ...rest,
-        nameEN: Translation.find((t) => t.language === 'EN')?.name,
-        nameAR: Translation.find((t) => t.language === 'AR')?.name,
-        name: Translation.find((t) => t.language === language)?.name,
+        nameEN: translation.find((t) => t.language === 'EN')?.name,
+        nameAR: translation.find((t) => t.language === 'AR')?.name,
+        name: translation.find((t) => t.language === language)?.name,
         services: services.map((service) => {
-          const { Translation, ...rest } = service;
+          const { translation, ...rest } = service;
           return {
             ...rest,
-            nameEN: Translation.find((t) => t.language === 'EN')?.name,
-            nameAR: Translation.find((t) => t.language === 'AR')?.name,
-            name: Translation.find((t) => t.language === language)?.name,
+            nameEN: translation.find((t) => t.language === 'EN')?.name,
+            nameAR: translation.find((t) => t.language === 'AR')?.name,
+            name: translation.find((t) => t.language === language)?.name,
           };
         }),
       };
@@ -224,15 +224,15 @@ export class OrderService {
         service: {
           select: {
             id: true,
-            Translation: { where: { language: 'EN' }, select: { name: true } },
+            translation: { where: { language: 'EN' }, select: { name: true } },
             price: true,
           },
         },
-        Cashier: { select: { firstName: true, lastName: true } },
+        cashier: { select: { firstName: true, lastName: true } },
         barber: { select: { firstName: true, lastName: true } },
         branch: {
           select: {
-            Translation: { where: { language: 'EN' }, select: { name: true } },
+            translation: { where: { language: 'EN' }, select: { name: true } },
           },
         },
       },
@@ -245,7 +245,7 @@ export class OrderService {
         date,
         slot,
         barber,
-        Cashier,
+        cashier,
         client,
         total,
         type,
@@ -261,17 +261,17 @@ export class OrderService {
         subTotal: subTotal.toString(),
         discount: `${discount.toString()} ${type === 'AMOUNT' ? 'EGP' : '%'}`,
         service: service.map((service) => ({
-          name: service.Translation[0].name,
+          name: service.translation[0].name,
           price: freeService.includes(service.id)
             ? '0'
             : service.price.toString(),
         })),
-        branch: branch.Translation[0].name,
+        branch: branch.translation[0].name,
         barberName: barber
           ? `${barber.firstName} ${barber.lastName}`
           : barberName,
-        cashierName: Cashier
-          ? `${Cashier.firstName} ${Cashier.lastName}`
+        cashierName: cashier
+          ? `${cashier.firstName} ${cashier.lastName}`
           : 'N/A',
         clientName: `${client?.firstName} ${client?.lastName}`,
         day: format(new Date(date), 'EEEE'),
@@ -309,7 +309,7 @@ export class OrderService {
         client: true,
         service: {
           include: {
-            Translation: { where: { language: lang } },
+            translation: { where: { language: lang } },
           },
         },
       },
@@ -355,7 +355,7 @@ export class OrderService {
           include: {
             services: {
               include: {
-                Translation: { where: { language: lang } },
+                translation: { where: { language: lang } },
               },
             },
           },
@@ -366,7 +366,7 @@ export class OrderService {
           ...packageServices.flatMap((p) =>
             p.services.map((s) => ({
               ...s,
-              name: s.Translation[0].name,
+              name: s.translation[0].name,
               price: s.price.toString(),
             })),
           ),
@@ -377,12 +377,12 @@ export class OrderService {
           .toString();
 
         const services = service.map((s) => {
-          const { Translation, ...rest } = s;
+          const { translation, ...rest } = s;
           return {
             ...rest,
-            nameEN: Translation.find((t) => t.language === 'EN')?.name,
-            nameAR: Translation.find((t) => t.language === 'AR')?.name,
-            name: Translation.find((t) => t.language === lang)?.name,
+            nameEN: translation.find((t) => t.language === 'EN')?.name,
+            nameAR: translation.find((t) => t.language === 'AR')?.name,
+            name: translation.find((t) => t.language === lang)?.name,
           };
         });
 
@@ -424,7 +424,7 @@ export class OrderService {
       include: {
         barber: { include: { barber: { include: { user: true } } } },
         branch: { include: Translation(false, lang) },
-        service: { include: { Translation: true } },
+        service: { include: { translation: true } },
       },
     });
 
@@ -437,7 +437,7 @@ export class OrderService {
           subTotal,
           points,
           service,
-          branch: { Translation, ...branchRest },
+          branch: { translation, ...branchRest },
           booking,
           ...rest
         } = order;
@@ -474,12 +474,12 @@ export class OrderService {
           points: points.toString(),
           usedPackage: packageServices,
           service: service.map((s) => {
-            const { Translation, ...serviceRest } = s;
+            const { translation, ...serviceRest } = s;
             return {
               ...serviceRest,
-              nameEN: Translation.find((t) => t.language === 'EN').name,
-              nameAR: Translation.find((t) => t.language === 'AR').name,
-              name: Translation.find((t) => t.language === lang).name,
+              nameEN: translation.find((t) => t.language === 'EN').name,
+              nameAR: translation.find((t) => t.language === 'AR').name,
+              name: translation.find((t) => t.language === lang).name,
             };
           }),
           branch: {
@@ -530,7 +530,7 @@ export class OrderService {
           subTotal,
           points,
           service,
-          branch: { Translation, ...branchRest },
+          branch: { translation, ...branchRest },
           booking,
           ...rest
         } = order;
@@ -569,7 +569,7 @@ export class OrderService {
           service,
           branch: {
             ...branchRest,
-            name: Translation[0].name,
+            name: translation[0].name,
           },
         };
       }),
@@ -601,7 +601,7 @@ export class OrderService {
       include: {
         barber: { include: { barber: { include: { user: true } } } },
         branch: { include: Translation(false) },
-        service: { include: { Translation: true } },
+        service: { include: { translation: true } },
         client: { select: { firstName: true, lastName: true, phone: true } },
       },
     });
@@ -615,7 +615,7 @@ export class OrderService {
           subTotal,
           points,
           service,
-          branch: { Translation, ...branchRest },
+          branch: { translation, ...branchRest },
           booking,
           client,
           ...rest
@@ -642,12 +642,12 @@ export class OrderService {
           .toString();
 
         const services = service.map((s) => {
-          const { Translation, ...rest } = s;
+          const { translation, ...rest } = s;
           return {
             ...rest,
-            nameEN: Translation.find((t) => t.language === 'EN')?.name,
-            nameAR: Translation.find((t) => t.language === 'AR')?.name,
-            name: Translation.find((t) => t.language === language)?.name,
+            nameEN: translation.find((t) => t.language === 'EN')?.name,
+            nameAR: translation.find((t) => t.language === 'AR')?.name,
+            name: translation.find((t) => t.language === language)?.name,
           };
         });
 
@@ -665,9 +665,9 @@ export class OrderService {
           services,
           branch: {
             ...branchRest,
-            nameEN: Translation.find((t) => t.language === 'EN')?.name,
-            nameAR: Translation.find((t) => t.language === 'AR')?.name,
-            name: Translation.find((t) => t.language === language)?.name,
+            nameEN: translation.find((t) => t.language === 'EN')?.name,
+            nameAR: translation.find((t) => t.language === 'AR')?.name,
+            name: translation.find((t) => t.language === language)?.name,
           },
           userName: `${client?.firstName}${client?.lastName}`,
           userPhone: client?.phone,
@@ -798,7 +798,7 @@ export class OrderService {
         where: {
           clientId: userId,
           packageService: {
-            some: { isActive: true, remainingCount: { gt: 0 } },
+            some: { isActive: true, quantity: { gt: 0 } },
           },
         },
         select: {
@@ -1102,7 +1102,7 @@ export class OrderService {
     const clientPackages = await this.prisma.clientPackages.findMany({
       where: {
         clientId: userId,
-        packageService: { some: { isActive: true, remainingCount: { gt: 0 } } },
+        packageService: { some: { isActive: true, quantity: { gt: 0 } } },
       },
       select: {
         id: true,
@@ -1218,7 +1218,7 @@ export class OrderService {
         include: {
           service: {
             include: {
-              PackagesServices: {
+              packagesServices: {
                 select: {
                   id: true,
                 },
@@ -1236,7 +1236,7 @@ export class OrderService {
         const packageService = await prisma.packagesServices.findMany({
           where: {
             id: { in: packageServiceIds },
-            ClientPackages: { clientId: order.userId, type: 'SINGLE' },
+            clientPackages: { clientId: order.userId, type: 'SINGLE' },
             isActive: true,
           },
         });
@@ -1247,15 +1247,15 @@ export class OrderService {
           await prisma.packagesServices.updateMany({
             where: {
               id: { in: pkgServiceIds },
-              ClientPackages: { clientId: order.userId, type: 'SINGLE' },
+              clientPackages: { clientId: order.userId, type: 'SINGLE' },
               isActive: true,
             },
             data: {
-              ...(packageService[0].remainingCount < 1 && {
+              ...(packageService[0].quantity < 1 && {
                 isActive: false,
               }),
               usedAt: new Date(),
-              remainingCount: {
+              quantity: {
                 decrement: 1,
               },
             },
@@ -1317,7 +1317,7 @@ export class OrderService {
         include: {
           service: {
             include: {
-              PackagesServices: {
+              packagesServices: {
                 select: {
                   id: true,
                 },
@@ -1390,7 +1390,7 @@ export class OrderService {
       select: {
         client: {
           select: {
-            ClientPackages: {
+            clientPackages: {
               include: {
                 packageService: true,
               },
@@ -1408,7 +1408,7 @@ export class OrderService {
       throw new BadRequestException('Service already added');
     }
 
-    const clientPackages = user.client?.ClientPackages ?? [];
+    const clientPackages = user.client?.clientPackages ?? [];
 
     const singlePackages = clientPackages.filter(
       (pkg) => pkg.type === 'SINGLE',
@@ -1425,12 +1425,12 @@ export class OrderService {
 
       if (singlePackageService) {
         if (
-          singlePackageService.remainingCount &&
-          singlePackageService.remainingCount > 0
+          singlePackageService.quantity &&
+          singlePackageService.quantity > 0
         ) {
           await this.prisma.packagesServices.update({
             where: { id: singlePackageService.id },
-            data: { remainingCount: singlePackageService.remainingCount - 1 },
+            data: { quantity: singlePackageService.quantity - 1 },
           });
         } else {
           const service = await this.prisma.service.findUnique({
@@ -1455,14 +1455,14 @@ export class OrderService {
 
       if (singlePackageService) {
         if (
-          singlePackageService.remainingCount === 0 ||
+          singlePackageService.quantity === 0 ||
           !singlePackageService.isActive
         ) {
           await this.prisma.packagesServices.update({
             where: { id: singlePackageService.id },
             data: {
               isActive: true,
-              remainingCount: (singlePackageService.remainingCount || 0) + 1,
+              quantity: (singlePackageService.quantity || 0) + 1,
             },
           });
           const service = await this.prisma.service.findUnique({
@@ -1474,7 +1474,7 @@ export class OrderService {
         } else {
           await this.prisma.packagesServices.update({
             where: { id: singlePackageService.id },
-            data: { remainingCount: singlePackageService.remainingCount + 1 },
+            data: { quantity: singlePackageService.quantity + 1 },
           });
           const service = await this.prisma.service.findUnique({
             where: { id: singlePackageService.serviceId },
@@ -1661,7 +1661,7 @@ export class OrderService {
       include: {
         service: {
           include: {
-            PackagesServices: {
+            packagesServices: {
               select: {
                 id: true,
               },
@@ -1706,7 +1706,7 @@ export class OrderService {
     }
 
     const packageServiceIds = updatedOrder.service.flatMap((s) =>
-      s.PackagesServices.map((ps) => ps.id),
+      s.packagesServices.map((ps) => ps.id),
     );
 
     await this.prisma.$transaction(async (prisma) => {
@@ -1714,12 +1714,12 @@ export class OrderService {
         await prisma.packagesServices.updateMany({
           where: {
             id: { in: packageServiceIds },
-            ClientPackages: { clientId: updatedOrder.userId, type: 'SINGLE' },
+            clientPackages: { clientId: updatedOrder.userId, type: 'SINGLE' },
           },
           data: {
             isActive: true,
             usedAt: null,
-            remainingCount: {
+            quantity: {
               increment: 1,
             },
           },
@@ -1792,7 +1792,7 @@ export class OrderService {
         include: {
           service: {
             include: {
-              PackagesServices: {
+              packagesServices: {
                 select: {
                   id: true,
                 },
@@ -1803,16 +1803,16 @@ export class OrderService {
       });
 
       const packageServiceIds = updatedOrder.service.flatMap((s) =>
-        s.PackagesServices.map((ps) => ps.id),
+        s.packagesServices.map((ps) => ps.id),
       );
       if (packageServiceIds.length > 0 && updatedOrder.userId) {
         await this.prisma.packagesServices.deleteMany({
           where: {
             id: { in: packageServiceIds },
-            ClientPackages: {
+            clientPackages: {
               clientId: updatedOrder?.userId,
             },
-            remainingCount: { lt: 1 },
+            quantity: { lt: 1 },
           },
         });
       }
@@ -1997,7 +1997,7 @@ export class OrderService {
           id: barberId,
         },
         select: {
-          Slot: {
+          slot: {
             select: { slot: true, updatedSlot: true, effectiveSlotDate: true },
           },
         },
@@ -2012,7 +2012,7 @@ export class OrderService {
       throw new ConflictException('No slots found in the database.');
     }
 
-    if (!allSlotsData.Slot) {
+    if (!allSlotsData.slot) {
       console.log('No slot configuration found for barber');
       return new AppSuccess(
         { slots: [] },
@@ -2023,7 +2023,7 @@ export class OrderService {
     const todayInEgypt = toZonedTime(new Date(), EGYPT_TIMEZONE)
       .toISOString()
       .split('T')[0];
-    const { effectiveSlotDate, updatedSlot, slot } = allSlotsData.Slot;
+    const { effectiveSlotDate, updatedSlot, slot } = allSlotsData.slot;
 
     console.log('Slot data:', {
       slot: slot?.length || 0,

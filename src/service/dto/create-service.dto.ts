@@ -48,5 +48,5 @@ export class CreateServiceDto {
   available: boolean;
 
   @IsArray()
-  Translation: translationDto[];
+  translation: translationDto[];
 }

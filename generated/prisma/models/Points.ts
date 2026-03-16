@@ -220,8 +220,8 @@ export type PointsWhereInput = {
   price?: Prisma.IntFilter<"Points"> | number
   points?: Prisma.IntFilter<"Points"> | number
   expiresAt?: Prisma.DateTimeFilter<"Points"> | Date | string
-  Offers?: Prisma.XOR<Prisma.OffersScalarRelationFilter, Prisma.OffersWhereInput>
-  Translation?: Prisma.TranslationDesListRelationFilter
+  offers?: Prisma.XOR<Prisma.OffersScalarRelationFilter, Prisma.OffersWhereInput>
+  translation?: Prisma.TranslationDesListRelationFilter
 }
 
 export type PointsOrderByWithRelationInput = {
@@ -230,8 +230,8 @@ export type PointsOrderByWithRelationInput = {
   price?: Prisma.SortOrder
   points?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
-  Offers?: Prisma.OffersOrderByWithRelationInput
-  Translation?: Prisma.TranslationDesOrderByRelationAggregateInput
+  offers?: Prisma.OffersOrderByWithRelationInput
+  translation?: Prisma.TranslationDesOrderByRelationAggregateInput
 }
 
 export type PointsWhereUniqueInput = Prisma.AtLeast<{
@@ -243,8 +243,8 @@ export type PointsWhereUniqueInput = Prisma.AtLeast<{
   price?: Prisma.IntFilter<"Points"> | number
   points?: Prisma.IntFilter<"Points"> | number
   expiresAt?: Prisma.DateTimeFilter<"Points"> | Date | string
-  Offers?: Prisma.XOR<Prisma.OffersScalarRelationFilter, Prisma.OffersWhereInput>
-  Translation?: Prisma.TranslationDesListRelationFilter
+  offers?: Prisma.XOR<Prisma.OffersScalarRelationFilter, Prisma.OffersWhereInput>
+  translation?: Prisma.TranslationDesListRelationFilter
 }, "id">
 
 export type PointsOrderByWithAggregationInput = {
@@ -276,8 +276,8 @@ export type PointsCreateInput = {
   price: number
   points: number
   expiresAt: Date | string
-  Offers: Prisma.OffersCreateNestedOneWithoutPointsInput
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutPointsInput
+  offers: Prisma.OffersCreateNestedOneWithoutPointsInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutPointsInput
 }
 
 export type PointsUncheckedCreateInput = {
@@ -286,7 +286,7 @@ export type PointsUncheckedCreateInput = {
   price: number
   points: number
   expiresAt: Date | string
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPointsInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPointsInput
 }
 
 export type PointsUpdateInput = {
@@ -294,8 +294,8 @@ export type PointsUpdateInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   points?: Prisma.IntFieldUpdateOperationsInput | number
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Offers?: Prisma.OffersUpdateOneRequiredWithoutPointsNestedInput
-  Translation?: Prisma.TranslationDesUpdateManyWithoutPointsNestedInput
+  offers?: Prisma.OffersUpdateOneRequiredWithoutPointsNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutPointsNestedInput
 }
 
 export type PointsUncheckedUpdateInput = {
@@ -304,7 +304,7 @@ export type PointsUncheckedUpdateInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   points?: Prisma.IntFieldUpdateOperationsInput | number
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPointsNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPointsNestedInput
 }
 
 export type PointsCreateManyInput = {
@@ -422,7 +422,7 @@ export type PointsCreateWithoutTranslationInput = {
   price: number
   points: number
   expiresAt: Date | string
-  Offers: Prisma.OffersCreateNestedOneWithoutPointsInput
+  offers: Prisma.OffersCreateNestedOneWithoutPointsInput
 }
 
 export type PointsUncheckedCreateWithoutTranslationInput = {
@@ -454,7 +454,7 @@ export type PointsUpdateWithoutTranslationInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   points?: Prisma.IntFieldUpdateOperationsInput | number
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Offers?: Prisma.OffersUpdateOneRequiredWithoutPointsNestedInput
+  offers?: Prisma.OffersUpdateOneRequiredWithoutPointsNestedInput
 }
 
 export type PointsUncheckedUpdateWithoutTranslationInput = {
@@ -470,7 +470,7 @@ export type PointsCreateWithoutOffersInput = {
   price: number
   points: number
   expiresAt: Date | string
-  Translation?: Prisma.TranslationDesCreateNestedManyWithoutPointsInput
+  translation?: Prisma.TranslationDesCreateNestedManyWithoutPointsInput
 }
 
 export type PointsUncheckedCreateWithoutOffersInput = {
@@ -478,7 +478,7 @@ export type PointsUncheckedCreateWithoutOffersInput = {
   price: number
   points: number
   expiresAt: Date | string
-  Translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPointsInput
+  translation?: Prisma.TranslationDesUncheckedCreateNestedManyWithoutPointsInput
 }
 
 export type PointsCreateOrConnectWithoutOffersInput = {
@@ -502,7 +502,7 @@ export type PointsUpdateWithoutOffersInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   points?: Prisma.IntFieldUpdateOperationsInput | number
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Translation?: Prisma.TranslationDesUpdateManyWithoutPointsNestedInput
+  translation?: Prisma.TranslationDesUpdateManyWithoutPointsNestedInput
 }
 
 export type PointsUncheckedUpdateWithoutOffersInput = {
@@ -510,7 +510,7 @@ export type PointsUncheckedUpdateWithoutOffersInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   points?: Prisma.IntFieldUpdateOperationsInput | number
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPointsNestedInput
+  translation?: Prisma.TranslationDesUncheckedUpdateManyWithoutPointsNestedInput
 }
 
 
@@ -519,11 +519,11 @@ export type PointsUncheckedUpdateWithoutOffersInput = {
  */
 
 export type PointsCountOutputType = {
-  Translation: number
+  translation: number
 }
 
 export type PointsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Translation?: boolean | PointsCountOutputTypeCountTranslationArgs
+  translation?: boolean | PointsCountOutputTypeCountTranslationArgs
 }
 
 /**
@@ -550,8 +550,8 @@ export type PointsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   price?: boolean
   points?: boolean
   expiresAt?: boolean
-  Offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
-  Translation?: boolean | Prisma.Points$TranslationArgs<ExtArgs>
+  offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
+  translation?: boolean | Prisma.Points$translationArgs<ExtArgs>
   _count?: boolean | Prisma.PointsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["points"]>
 
@@ -561,7 +561,7 @@ export type PointsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   price?: boolean
   points?: boolean
   expiresAt?: boolean
-  Offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
+  offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["points"]>
 
 export type PointsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -570,7 +570,7 @@ export type PointsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   price?: boolean
   points?: boolean
   expiresAt?: boolean
-  Offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
+  offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["points"]>
 
 export type PointsSelectScalar = {
@@ -583,22 +583,22 @@ export type PointsSelectScalar = {
 
 export type PointsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "image" | "price" | "points" | "expiresAt", ExtArgs["result"]["points"]>
 export type PointsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
-  Translation?: boolean | Prisma.Points$TranslationArgs<ExtArgs>
+  offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
+  translation?: boolean | Prisma.Points$translationArgs<ExtArgs>
   _count?: boolean | Prisma.PointsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PointsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
+  offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
 }
 export type PointsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
+  offers?: boolean | Prisma.OffersDefaultArgs<ExtArgs>
 }
 
 export type $PointsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Points"
   objects: {
-    Offers: Prisma.$OffersPayload<ExtArgs>
-    Translation: Prisma.$TranslationDesPayload<ExtArgs>[]
+    offers: Prisma.$OffersPayload<ExtArgs>
+    translation: Prisma.$TranslationDesPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1000,8 +1000,8 @@ readonly fields: PointsFieldRefs;
  */
 export interface Prisma__PointsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Offers<T extends Prisma.OffersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffersDefaultArgs<ExtArgs>>): Prisma.Prisma__OffersClient<runtime.Types.Result.GetResult<Prisma.$OffersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  Translation<T extends Prisma.Points$TranslationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Points$TranslationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationDesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  offers<T extends Prisma.OffersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OffersDefaultArgs<ExtArgs>>): Prisma.Prisma__OffersClient<runtime.Types.Result.GetResult<Prisma.$OffersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  translation<T extends Prisma.Points$translationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Points$translationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranslationDesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1437,9 +1437,9 @@ export type PointsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Points.Translation
+ * Points.translation
  */
-export type Points$TranslationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Points$translationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the TranslationDes
    */

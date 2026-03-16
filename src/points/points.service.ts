@@ -61,7 +61,7 @@ export class PointsService {
       data: {
         points: {
           create: {
-            Translation: createTranslation(createPointDto),
+            translation: createTranslation(createPointDto),
             price,
             points,
             expiresAt: new Date(),
@@ -70,18 +70,18 @@ export class PointsService {
         },
       },
       include: {
-        points: { include: { Translation: true } },
+        points: { include: { translation: true } },
       },
     });
 
     const {
-      points: { Translation },
+      points: { translation },
       ...rest
     } = updatePoint;
 
     const point = {
       ...rest,
-      name: Translation[0]?.name,
+      name: translation[0]?.name,
     };
 
     return new AppSuccess(point, 'Point created successfully');
@@ -93,11 +93,11 @@ export class PointsService {
     });
 
     const points = fetchedPoints.map((point) => {
-      const { Translation, ...rest } = point;
+      const { translation, ...rest } = point;
       return {
         ...rest,
-        Translation: Translation,
-        name: Translation[0]?.name,
+        translation,
+        name: translation[0]?.name,
       };
     });
 
@@ -116,7 +116,7 @@ export class PointsService {
       include: Translation(true, lang),
     });
 
-    const { Translation: translation, ...rest } = fetchedPoint;
+    const { translation, ...rest } = fetchedPoint;
     const point = {
       ...rest,
       name: translation[0]?.name,

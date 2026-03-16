@@ -52,6 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Roles: 'Roles',
+  Permission: 'Permission',
   Client: 'Client',
   Cashier: 'Cashier',
   Barber: 'Barber',
@@ -75,12 +77,15 @@ export const ModelName = {
   Slot: 'Slot',
   PromoCode: 'PromoCode',
   Order: 'Order',
+  OrderItem: 'OrderItem',
+  IdempotencyKey: 'IdempotencyKey',
   Offers: 'Offers',
   Packages: 'Packages',
   Points: 'Points',
   PackagesServices: 'PackagesServices',
   ClientPackages: 'ClientPackages',
-  notification: 'notification'
+  notification: 'notification',
+  PointTransaction: 'PointTransaction'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -110,10 +115,28 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   role: 'role',
+  roleId: 'roleId',
   deleted: 'deleted'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const RolesScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+} as const
+
+export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof RolesScalarFieldEnum]
+
+
+export const PermissionScalarFieldEnum = {
+  id: 'id',
+  action: 'action',
+  resource: 'resource'
+} as const
+
+export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
 
 
 export const ClientScalarFieldEnum = {
@@ -130,7 +153,8 @@ export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof 
 
 export const CashierScalarFieldEnum = {
   id: 'id',
-  branchId: 'branchId'
+  branchId: 'branchId',
+  daysOff: 'daysOff'
 } as const
 
 export type CashierScalarFieldEnum = (typeof CashierScalarFieldEnum)[keyof typeof CashierScalarFieldEnum]
@@ -141,7 +165,8 @@ export const BarberScalarFieldEnum = {
   branchId: 'branchId',
   rate: 'rate',
   isAvailable: 'isAvailable',
-  type: 'type'
+  type: 'type',
+  daysOff: 'daysOff'
 } as const
 
 export type BarberScalarFieldEnum = (typeof BarberScalarFieldEnum)[keyof typeof BarberScalarFieldEnum]
@@ -203,7 +228,7 @@ export type ResetPasswordScalarFieldEnum = (typeof ResetPasswordScalarFieldEnum)
 
 export const SettingsScalarFieldEnum = {
   id: 'id',
-  PointsPercentage: 'PointsPercentage',
+  pointsPercentage: 'pointsPercentage',
   referralPoints: 'referralPoints',
   pointLimit: 'pointLimit',
   password: 'password',
@@ -246,6 +271,9 @@ export type QuestionsScalarFieldEnum = (typeof QuestionsScalarFieldEnum)[keyof t
 export const TokenScalarFieldEnum = {
   id: 'id',
   token: 'token',
+  userId: 'userId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
   expiredAt: 'expiredAt'
 } as const
 
@@ -272,6 +300,8 @@ export const BranchScalarFieldEnum = {
   latitude: 'latitude',
   branchImg: 'branchImg',
   rate: 'rate',
+  openingHour: 'openingHour',
+  closingHour: 'closingHour',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -395,12 +425,37 @@ export const OrderScalarFieldEnum = {
   shouldBeReviewedByAdmin: 'shouldBeReviewedByAdmin',
   servicesToDelete: 'servicesToDelete',
   reminderSent: 'reminderSent',
+  duration: 'duration',
   booking: 'booking',
   type: 'type',
-  status: 'status'
+  status: 'status',
+  cancelledById: 'cancelledById'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  serviceId: 'serviceId',
+  price: 'price',
+  source: 'source',
+  clientPackageId: 'clientPackageId'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+
+
+export const IdempotencyKeyScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  orderId: 'orderId',
+  expiredAt: 'expiredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type IdempotencyKeyScalarFieldEnum = (typeof IdempotencyKeyScalarFieldEnum)[keyof typeof IdempotencyKeyScalarFieldEnum]
 
 
 export const OffersScalarFieldEnum = {
@@ -443,8 +498,8 @@ export const PackagesServicesScalarFieldEnum = {
   isActive: 'isActive',
   usedAt: 'usedAt',
   createdAt: 'createdAt',
-  remainingCount: 'remainingCount',
-  ClientPackagesId: 'ClientPackagesId'
+  quantity: 'quantity',
+  clientPackagesId: 'clientPackagesId'
 } as const
 
 export type PackagesServicesScalarFieldEnum = (typeof PackagesServicesScalarFieldEnum)[keyof typeof PackagesServicesScalarFieldEnum]
@@ -474,6 +529,18 @@ export const NotificationScalarFieldEnum = {
 } as const
 
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const PointTransactionScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  orderId: 'orderId',
+  type: 'type',
+  amount: 'amount',
+  createdAt: 'createdAt'
+} as const
+
+export type PointTransactionScalarFieldEnum = (typeof PointTransactionScalarFieldEnum)[keyof typeof PointTransactionScalarFieldEnum]
 
 
 export const SortOrder = {

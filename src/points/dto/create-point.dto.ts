@@ -14,5 +14,5 @@ export class CreatePointDto {
   points: number;
 
   @IsArray()
-  Translation: translationDto[];
+  translation: translationDto[];
 }

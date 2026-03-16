@@ -45,6 +45,16 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model Roles
+ * 
+ */
+export type Roles = Prisma.RolesModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
+/**
  * Model Client
  * 
  */
@@ -160,6 +170,16 @@ export type PromoCode = Prisma.PromoCodeModel
  */
 export type Order = Prisma.OrderModel
 /**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model IdempotencyKey
+ * 
+ */
+export type IdempotencyKey = Prisma.IdempotencyKeyModel
+/**
  * Model Offers
  * 
  */
@@ -189,3 +209,8 @@ export type ClientPackages = Prisma.ClientPackagesModel
  * 
  */
 export type notification = Prisma.notificationModel
+/**
+ * Model PointTransaction
+ * 
+ */
+export type PointTransaction = Prisma.PointTransactionModel
