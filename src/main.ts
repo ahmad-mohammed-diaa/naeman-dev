@@ -42,26 +42,6 @@ async function bootstrap() {
     .setDescription('Barber booking system API')
     .setVersion('1.0')
     .addBearerAuth()
-    // .addApiKey(
-    //   {
-    //     name: 'x-api-key',
-    //     in: 'header',
-    //     description: 'API key for authentication (dev only)',
-    //     type: 'apiKey',
-    //   },
-    //   'x-api-key',
-    // )
-    // .addApiKey(
-    //   {
-    //     name: 'Accept-Language',
-    //     in: 'header',
-    //     description: 'Language for response messages (en or ar)',
-    //     type: 'apiKey',
-    //   },
-    //   'Accept-Language',
-    // )
-    // .addSecurityRequirements('Accept-Language')
-    // .addSecurityRequirements('x-api-key')
     .build();
 
   app.use((req: Request, res, next) => {
@@ -75,7 +55,7 @@ async function bootstrap() {
     customfavIcon:
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/favicon-32x32.png',
     customCssUrl:
-      'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css',
+      'https://cdn.jsdelivr.net/gh/Amoenus/SwaggerDark/SwaggerDark.css',
     customJs: [
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js',
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js',
@@ -91,3 +71,24 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+// .addApiKey(
+//   {
+//     name: 'x-api-key',
+//     in: 'header',
+//     description: 'API key for authentication (dev only)',
+//     type: 'apiKey',
+//   },
+//   'x-api-key',
+// )
+// .addApiKey(
+//   {
+//     name: 'Accept-Language',
+//     in: 'header',
+//     description: 'Language for response messages (en or ar)',
+//     type: 'apiKey',
+//   },
+//   'Accept-Language',
+// )
+// .addSecurityRequirements('Accept-Language')
+// .addSecurityRequirements('x-api-key')
