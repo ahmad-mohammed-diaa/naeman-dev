@@ -10,7 +10,7 @@ import { PromoCodeModule } from './promo-code/promo-code.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TokenService } from './token.service';
 import { ComplainModule } from './complain/complain.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PointsModule } from './points/points.module';
 import { MockModule } from './mock/mock.module';
 import { PackageModule } from './package/package.module';
@@ -42,6 +42,8 @@ import {
   UserModuleV2,
 } from './module';
 import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
+import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
+import path from 'path';
 
 @Module({
   imports: [
@@ -49,6 +51,31 @@ import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
       isGlobal: true,
     }),
     // V1 modules
+    // I18nModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: (config: ConfigService) => ({
+    //     // fallbackLanguage: 'ar',
+    //     // loader: I18nJsonLoader,
+    //     // loaderOptions: {
+    //     //   path: join(__dirname, '../', 'i18n/'),
+    //     //   watch: config.get('NODE_ENV') !== 'production',
+
+    //     // },
+    //     // resolvers: [AcceptLanguageResolver],
+    //     fallbackLanguage: 'en',
+    //     loaderOptions: {
+    //       path: path.join(__dirname, '..', 'i18n'),
+    //       filePattern: '*.json',
+    //       watch: true,
+    //     },
+    //     resolvers: [
+    //       { use: QueryResolver, options: ['lang'] },
+    //       AcceptLanguageResolver,
+    //     ],
+    //   }),
+    // }),
+    ScheduleModule.forRoot(),
     AuthModule,
     UserModule,
     PrismaModule,
@@ -86,8 +113,6 @@ import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
     ServiceModuleV2,
     SlotModuleV2,
     UserModuleV2,
-
-    //Common
     CloudinaryModule,
   ],
   controllers: [],
