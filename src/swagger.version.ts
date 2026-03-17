@@ -18,32 +18,32 @@ import { AdminModule } from './admin/admin.module';
 import { SmsModule } from './sms/sms.module';
 
 // V2 modules
-// import {
-//     AuthModuleV2,
-//   BranchModuleV2,
-//   BarberModuleV2,
-//   CategoryModuleV2,
-//   CashierModuleV2,
-//   ClientModuleV2,
-//   NotificationModuleV2,
-//   OrderModuleV2,
-//   PromoCodeModuleV2,
-//   PointsModuleV2,
-//   ProductModuleV2,
-//   SettingsModuleV2,
-//   StaticModuleV2,
-//   ServiceModuleV2,
-//   SlotModuleV2,
-//   UserModuleV2,
-// } from './module';
+import {
+  AuthModuleV2,
+  BranchModuleV2,
+  BarberModuleV2,
+  CategoryModuleV2,
+  CashierModuleV2,
+  ClientModuleV2,
+  NotificationModuleV2,
+  OrderModuleV2,
+  PromoCodeModuleV2,
+  PointsModuleV2,
+  ProductModuleV2,
+  SettingsModuleV2,
+  StaticModuleV2,
+  ServiceModuleV2,
+  SlotModuleV2,
+  UserModuleV2,
+} from './module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { INestApplication } from '@nestjs/common';
 
 const swaggerUiOptions = {
   customfavIcon:
     'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/favicon-32x32.png',
-  //   customCssUrl:
-  //     'https://cdn.jsdelivr.net/gh/Amoenus/SwaggerDark/SwaggerDark.css',
+  customCssUrl:
+    'https://cdn.jsdelivr.net/gh/Amoenus/SwaggerDark/SwaggerDark.css',
   customJs: [
     'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js',
     'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js',
@@ -88,26 +88,26 @@ export function SwaggerVersions(app: INestApplication<any>) {
     .addBearerAuth()
     .build();
 
-  //   const v2Document = SwaggerModule.createDocument(app, v2Config, {
-  //     include: [
-  //       //   AuthModuleV2,
-  //       BranchModuleV2,
-  //       BarberModuleV2,
-  //       CategoryModuleV2,
-  //       CashierModuleV2,
-  //       ClientModuleV2,
-  //       NotificationModuleV2,
-  //       OrderModuleV2,
-  //       PromoCodeModuleV2,
-  //       PointsModuleV2,
-  //       ProductModuleV2,
-  //       SettingsModuleV2,
-  //       StaticModuleV2,
-  //       ServiceModuleV2,
-  //       SlotModuleV2,
-  //       UserModuleV2,
-  //     ],
-  //   });
+  const v2Document = SwaggerModule.createDocument(app, v2Config, {
+    include: [
+      AuthModuleV2,
+      BranchModuleV2,
+      BarberModuleV2,
+      CategoryModuleV2,
+      CashierModuleV2,
+      ClientModuleV2,
+      NotificationModuleV2,
+      OrderModuleV2,
+      PromoCodeModuleV2,
+      PointsModuleV2,
+      ProductModuleV2,
+      SettingsModuleV2,
+      StaticModuleV2,
+      ServiceModuleV2,
+      SlotModuleV2,
+      UserModuleV2,
+    ],
+  });
 
   SwaggerModule.setup('api/docs', app, v1Document, {
     ...swaggerUiOptions,
@@ -129,9 +129,9 @@ export function SwaggerVersions(app: INestApplication<any>) {
   app.getHttpAdapter().get('/api/docs-json', (req, res) => {
     const version = req.query.v;
 
-    // if (version === '2') {
-    //   return res.json(v2Document);
-    // }
+    if (version === '2') {
+      return res.json(v2Document);
+    }
 
     return res.json(v1Document);
   });
