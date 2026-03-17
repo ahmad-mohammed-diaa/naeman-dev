@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { AppNotFoundException } from '@/common/exceptions/app.exception';
+import { AppNotFoundException } from '../../../common/exceptions/app.exception';
 import {
   buildPagination,
   PaginationParams,
-} from '@/common/helpers/pagination.helper';
+} from '../../../common/helpers/pagination.helper';
 
 // Flatten nested barber/cashier/client sub-objects to root level
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

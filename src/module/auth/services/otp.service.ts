@@ -7,7 +7,7 @@ import { ResetPasswordDto } from '../dto/reset-password.dto';
 import {
   AppBadRequestException,
   AppNotFoundException,
-} from '@/common/exceptions/app.exception';
+} from '../../../common/exceptions/app.exception';
 
 @Injectable()
 export class OtpService {

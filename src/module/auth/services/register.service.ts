@@ -5,8 +5,8 @@ import { RegisterDto } from '../dto/register.dto';
 import {
   AppConflictException,
   AppNotFoundException,
-} from '@/common/exceptions/app.exception';
-import { CloudinaryService } from '@/common/cloudinary/cloudinary.service';
+} from '../../../common/exceptions/app.exception';
+import { CloudinaryService } from '../../../common/cloudinary/cloudinary.service';
 import { LoginService } from './login.service';
 
 @Injectable()

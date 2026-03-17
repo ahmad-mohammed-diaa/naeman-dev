@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CancelOrderDto } from '../dto/update-order.dto';
-import { calculateEarnedPoints } from '@/common/utils/points.util';
+import { calculateEarnedPoints } from '../../../common/utils/points.util';
 import { User } from 'generated/prisma/client';
 
 @Injectable()

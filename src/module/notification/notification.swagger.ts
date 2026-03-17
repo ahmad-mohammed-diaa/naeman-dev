@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { NotificationResponseDto } from './dto/responses/notification-response.dto';
 
 export const NotificationSwagger = {

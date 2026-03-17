@@ -1,4 +1,4 @@
-// import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+// import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 // import { OfferResponseDto } from './dto/responses/offer-response.dto';
 // import { MessageResponseDto } from '../auth/dto/responses/auth-response.dto';
 

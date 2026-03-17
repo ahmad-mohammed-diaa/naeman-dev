@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { BarberUpdateOrderDto } from '../dto/update-order.dto';
-import { recalculateAfterEdit } from '@/common/utils/points.util';
+import { recalculateAfterEdit } from '../../../common/utils/points.util';
 
 @Injectable()
 export class OrderEditService {

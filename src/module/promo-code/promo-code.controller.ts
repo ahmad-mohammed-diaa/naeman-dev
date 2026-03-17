@@ -9,9 +9,9 @@ import {
 } from '@nestjs/common';
 import { PromoCodeService } from './promo-code.service';
 import { CreatePromoCodeDto } from './dto/create-promo-code.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { PromoCodeSwagger } from './promo-code.swagger';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)

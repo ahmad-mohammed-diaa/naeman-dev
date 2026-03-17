@@ -3,16 +3,16 @@
 // import { PrismaService } from '../../../prisma/prisma.service';
 // import { OffersQueryService } from './offers-query.service';
 // import { CreateOfferDto } from '../dto/create-offer.dto';
-// import { CloudinaryService } from '@/common/cloudinary/cloudinary.service';
+// import { CloudinaryService } from '../../../common/cloudinary/cloudinary.service';
 // import {
 //   AppBadRequestException,
 //   AppNotFoundException,
-// } from '@/common/exceptions/app.exception';
+// } from '../../../common/exceptions/app.exception';
 // import { OfferType, PointTransactionType } from 'generated/prisma/enums';
 // import {
 //   deepMapWithTranslation,
 //   parseLang,
-// } from '@/common/helpers/translation.helper';
+// } from '../../../common/helpers/translation.helper';
 
 // @Injectable()
 // export class OffersManageService {

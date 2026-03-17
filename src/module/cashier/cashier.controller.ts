@@ -10,9 +10,9 @@ import {
 import { CashierService } from './cashier.service';
 import { UpdateCashierDto } from './dto/update-cashier.dto';
 import { SetSlotDto } from '../barber/dto/set-slot.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { CashierSwagger } from './cashier.swagger';
 import { DateRangeDto } from '../order/dto/date-range.dto';
 

@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import {
   AppBadRequestException,
   AppNotFoundException,
-} from '@/common/exceptions/app.exception';
+} from '../../../common/exceptions/app.exception';
 
 interface ReviewPayload {
   userId: string;

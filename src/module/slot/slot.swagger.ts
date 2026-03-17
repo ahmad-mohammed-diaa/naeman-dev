@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { SlotResponseDto } from './dto/responses/slot-response.dto';
 
 export const SlotSwagger = {

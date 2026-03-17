@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { ReviewOrderDto } from './dto/review-order.dto';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { BarberUpdateOrderDto, CancelOrderDto } from './dto/update-order.dto';

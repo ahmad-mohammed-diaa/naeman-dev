@@ -8,12 +8,12 @@ import {
 } from '@nestjs/common';
 import { NotificationService } from './notification.service';
 import { CreateNotificationDto } from './dto/create-notification.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
-import { CurrentUser } from '@/common/decorators/current-user.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { NotificationSwagger } from './notification.swagger';
-import { UploadFile } from '@/common/decorators/upload.decorator';
+import { UploadFile } from '../../common/decorators/upload.decorator';
 import { type User } from 'generated/prisma/client';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)

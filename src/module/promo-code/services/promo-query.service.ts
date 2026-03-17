@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
-import { AppNotFoundException } from '@/common/exceptions/app.exception';
+import { AppNotFoundException } from '../../../common/exceptions/app.exception';
 
 @Injectable()
 export class PromoQueryService {
