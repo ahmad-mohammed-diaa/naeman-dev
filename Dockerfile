@@ -62,12 +62,16 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
+
+# Copy prisma folder so prisma generate can run
+COPY prisma ./prisma
+
 RUN npm install --legacy-peer-deps
 # Copy the rest of the source code
 COPY . .
 
 # Generate Prisma client
-RUN npx prisma generate
+# RUN npx prisma generate
 
 # Build the NestJS app
 RUN npm run build
