@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install all deps — skip postinstall (it runs prisma generate before schema exists)
+# Install all deps (including devDeps needed for build + tsc-alias)
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps --ignore-scripts
 
@@ -13,21 +13,20 @@ COPY prisma.config.ts ./
 COPY . .
 
 # Generate Prisma client
-# DATABASE_URL is read by prisma.config.ts via dotenv/env() at generate time.
-# A dummy value is enough — no real DB connection is made during code generation.
 ARG DATABASE_URL=postgresql://x:x@localhost/x
 ENV DATABASE_URL=${DATABASE_URL}
 RUN npx prisma generate
 
-# Compile TypeScript → dist/
-RUN npm run build
+# Compile TypeScript → dist/, then resolve path aliases in-place with tsc-alias
+# (replaces @/*, src/*, generated/* imports with relative paths so plain node works)
+RUN npm run build && npx tsc-alias
 
 # ─── Stage 2: Runner ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Install production deps — skip postinstall for the same reason
+# Install production deps only (tsconfig-paths NOT needed — aliases resolved at build time)
 COPY package*.json ./
 RUN npm ci --omit=dev --legacy-peer-deps --ignore-scripts
 
@@ -41,19 +40,16 @@ RUN npx prisma generate
 # Unset the dummy DATABASE_URL so runtime gets the real one from Railway
 ENV DATABASE_URL=""
 
-# Copy compiled output from builder
+# Copy compiled output (path aliases already resolved by tsc-alias)
 COPY --from=builder /app/dist ./dist
 
 # Copy custom Prisma client output (generated/prisma)
 COPY --from=builder /app/generated ./generated
 
-# Copy tsconfig (required by tsconfig-paths at runtime for path alias resolution)
-COPY tsconfig.json ./
-
-# Copy static assets used at runtime (only if they exist in the project)
+# Copy static assets
 COPY --from=builder /app/public ./public
 
 EXPOSE 3000
 
 # Run DB migrations then start the app
-CMD ["sh", "-c", "npx prisma migrate deploy && node -r tsconfig-paths/register dist/src/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main"]
