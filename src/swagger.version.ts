@@ -42,8 +42,8 @@ import { INestApplication } from '@nestjs/common';
 const swaggerUiOptions = {
   customfavIcon:
     'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/favicon-32x32.png',
-  customCssUrl:
-    'https://cdn.jsdelivr.net/gh/Amoenus/SwaggerDark/SwaggerDark.css',
+  //   customCssUrl:
+  //     'https://cdn.jsdelivr.net/gh/Amoenus/SwaggerDark/SwaggerDark.css',
   customJs: [
     'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js',
     'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js',
