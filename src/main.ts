@@ -54,9 +54,9 @@ async function bootstrap() {
   const PORT = process.env.PORT || 8080;
   console.log(PORT);
   await app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Application is running on port: ${process.env.PORT ?? 3000}`);
-    console.log(`Swagger v1: ${process.env.PORT ?? 3000}/api/docs/v1`);
-    console.log(`Swagger v2: ${process.env.PORT ?? 3000}/api/docs/v2`);
+    console.log(`Application is running on port: ${process.env.PORT ?? 8080}`);
+    console.log(`Swagger v1: ${process.env.PORT ?? 8080}/api/docs/v1`);
+    console.log(`Swagger v2: ${process.env.PORT ?? 8080}/api/docs/v2`);
   });
 }
 
