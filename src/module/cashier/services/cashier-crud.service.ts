@@ -5,7 +5,7 @@ import {
   CASHIER_SELECT,
   flattenUser,
   getCashier,
-} from '@/common/helpers/user.helper';
+} from '../../../common/helpers/user.helper';
 
 export { CASHIER_SELECT };
 

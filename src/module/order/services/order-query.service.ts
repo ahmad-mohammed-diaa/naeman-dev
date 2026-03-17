@@ -2,15 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { I18nContext } from 'nestjs-i18n';
 import { Prisma } from 'generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { AppNotFoundException } from '@/common/exceptions/app.exception';
+import { AppNotFoundException } from '../../../common/exceptions/app.exception';
 import {
   deepMapWithTranslation,
   parseLang,
-} from '@/common/helpers/translation.helper';
+} from '../../../common/helpers/translation.helper';
 import {
   buildPagination,
   PaginationParams,
-} from '@/common/helpers/pagination.helper';
+} from '../../../common/helpers/pagination.helper';
 import { Language } from 'generated/prisma/enums';
 import { DateRangeDto } from '../dto/date-range.dto';
 

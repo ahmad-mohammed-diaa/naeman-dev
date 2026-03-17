@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import {

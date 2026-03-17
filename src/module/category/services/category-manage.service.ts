@@ -3,7 +3,7 @@ import { I18nContext } from 'nestjs-i18n';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateCategoryDto, UpdateCategoryDto } from '../dto/create-category.dto';
 import { CategoryQueryService, CATEGORY_SELECT } from './category-query.service';
-import { deepMapWithTranslation, parseLang } from '@/common/helpers/translation.helper';
+import { deepMapWithTranslation, parseLang } from '../../../common/helpers/translation.helper';
 
 @Injectable()
 export class CategoryManageService {

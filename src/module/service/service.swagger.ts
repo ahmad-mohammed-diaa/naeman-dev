@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { CreateServiceDto, UpdateServiceDto } from './dto/create-service.dto';
 import { ServiceResponseDto } from './dto/responses/service-response.dto';
 import { MessageResponseDto } from '../auth/dto/responses/auth-response.dto';

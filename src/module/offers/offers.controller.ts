@@ -10,12 +10,12 @@
 // } from '@nestjs/common';
 // import { OffersService } from './offers.service';
 // import { CreateOfferDto } from './dto/create-offer.dto';
-// import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-// import { PermissionGuard } from '@/common/guards/permission.guard';
-// import { Permissions } from '@/common/decorators/permissions.decorator';
-// import { CurrentUser } from '@/common/decorators/current-user.decorator';
+// import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+// import { PermissionGuard } from '../../common/guards/permission.guard';
+// import { Permissions } from '../../common/decorators/permissions.decorator';
+// import { CurrentUser } from '../../common/decorators/current-user.decorator';
 // import { OffersSwagger } from './offers.swagger';
-// import { UploadFile } from '@/common/decorators/upload.decorator';
+// import { UploadFile } from '../../common/decorators/upload.decorator';
 // import { type User } from 'generated/prisma/client';
 
 // @Controller('offers')

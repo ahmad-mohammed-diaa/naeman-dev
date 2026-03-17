@@ -1,11 +1,11 @@
 // import { Injectable } from '@nestjs/common';
 // import { I18nContext } from 'nestjs-i18n';
 // import { PrismaService } from '../../../prisma/prisma.service';
-// import { AppNotFoundException } from '@/common/exceptions/app.exception';
+// import { AppNotFoundException } from '../../../common/exceptions/app.exception';
 // import {
 //   deepMapWithTranslation,
 //   parseLang,
-// } from '@/common/helpers/translation.helper';
+// } from '../../../common/helpers/translation.helper';
 
 // @Injectable()
 // export class OffersQueryService {

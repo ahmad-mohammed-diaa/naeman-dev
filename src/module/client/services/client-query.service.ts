@@ -4,11 +4,11 @@ import {
   CLIENT_SELECT,
   flattenUser,
   getClient,
-} from '@/common/helpers/user.helper';
+} from '../../../common/helpers/user.helper';
 import {
   buildPagination,
   PaginationParams,
-} from '@/common/helpers/pagination.helper';
+} from '../../../common/helpers/pagination.helper';
 
 @Injectable()
 export class ClientQueryService {

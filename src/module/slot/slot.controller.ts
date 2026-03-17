@@ -1,8 +1,8 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { SlotService } from './slot.service';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { SlotSwagger } from './slot.swagger';
 import { AvailableSlotQuery } from './dto/available-slot-query.dto';
 

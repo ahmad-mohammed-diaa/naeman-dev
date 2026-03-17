@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { UpdateCashierDto } from './dto/update-cashier.dto';
 import { SetSlotDto } from '../barber/dto/set-slot.dto';
 import { CashierResponseDto } from './dto/responses/cashier-response.dto';

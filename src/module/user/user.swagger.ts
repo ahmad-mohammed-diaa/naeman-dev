@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import {
   UserResponseDto,

@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { UpdateBarberDto } from './dto/create-barber.dto';
 import { SetSlotDto } from './dto/set-slot.dto';
 import { RateBarberDto } from './dto/rate-barber.dto';

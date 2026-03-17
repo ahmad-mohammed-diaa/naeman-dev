@@ -7,7 +7,7 @@ import {
   BARBER_SELECT,
   flattenUser,
   getBarber,
-} from '@/common/helpers/user.helper';
+} from '../../../common/helpers/user.helper';
 
 export { BARBER_SELECT };
 

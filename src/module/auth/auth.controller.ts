@@ -14,8 +14,8 @@ import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { AuthSwagger } from './auth.swagger';
-import { UploadFile } from '@/common/decorators/upload.decorator';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { UploadFile } from '../../common/decorators/upload.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @Controller('v2/auth')
 export class AuthController {

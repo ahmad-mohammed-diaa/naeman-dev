@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { CreatePromoCodeDto } from './dto/create-promo-code.dto';
 import { PromoCodeResponseDto } from './dto/responses/promo-response.dto';
 

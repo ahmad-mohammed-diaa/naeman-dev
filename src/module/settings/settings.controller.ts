@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
 import { SettingsService } from './settings.service';
 import { UpdateSettingsDto } from './dto/update-settings.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { SettingsSwagger } from './settings.swagger';
 
 @Controller('v2/settings')

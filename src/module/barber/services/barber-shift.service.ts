@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { SetSlotDto } from '../dto/set-slot.dto';
 import { DateRangeDto } from '../../order/dto/date-range.dto';
-import { AppBadRequestException } from '@/common/exceptions/app.exception';
+import { AppBadRequestException } from '../../../common/exceptions/app.exception';
 
 function startOfToday() {
   const d = new Date();

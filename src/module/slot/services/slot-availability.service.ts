@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { generateAvailableSlots } from '@/common/utils/slot.util';
+import { generateAvailableSlots } from '../../../common/utils/slot.util';
 
 @Injectable()
 export class SlotAvailabilityService {

@@ -11,11 +11,11 @@ import {
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto, UpdateProductDto } from './dto/create-product.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { ProductSwagger } from './product.swagger';
-import { UploadFile } from '@/common/decorators/upload.decorator';
+import { UploadFile } from '../../common/decorators/upload.decorator';
 
 @Controller('v2/products')
 export class ProductController {

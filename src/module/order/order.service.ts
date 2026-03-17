@@ -7,7 +7,7 @@ import { OrderCancelService } from './services/order-cancel.service';
 import { ReviewOrderDto } from './dto/review-order.dto';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { BarberUpdateOrderDto } from './dto/update-order.dto';
-import { PaginationParams } from '@/common/helpers/pagination.helper';
+import { PaginationParams } from '../../common/helpers/pagination.helper';
 import { DateRangeDto } from './dto/date-range.dto';
 import { User } from 'generated/prisma/client';
 

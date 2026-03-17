@@ -1,4 +1,4 @@
-import { ApiDoc } from '@/common/decorators/api-doc.decorator';
+import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { UpdateStaticDto } from './dto/update-static.dto';
 import { StaticResponseDto } from './dto/responses/static-response.dto';
 

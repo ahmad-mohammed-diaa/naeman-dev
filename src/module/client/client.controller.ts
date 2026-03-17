@@ -8,9 +8,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ClientService } from './client.service';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { ClientSwagger } from './client.swagger';
 import { FindAllClientsQueryDto } from './dto/find-all-clients-query.dto';
 

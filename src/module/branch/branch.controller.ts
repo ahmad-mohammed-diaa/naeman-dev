@@ -11,11 +11,11 @@ import {
 import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { BranchSwagger } from './branch.swagger';
-import { Lang } from '@/common/decorators/lang.decorator';
+import { Lang } from '../../common/decorators/lang.decorator';
 import { Language } from 'generated/prisma/enums';
 
 @Controller('v2/branches')

@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { ReviewOrderDto } from '../dto/review-order.dto';
-import { calculateRedemption } from '@/common/utils/points.util';
-import { hasConflict, parseSlotToMinutes } from '@/common/utils/slot.util';
+import { calculateRedemption } from '../../../common/utils/points.util';
+import { hasConflict, parseSlotToMinutes } from '../../../common/utils/slot.util';
 import {
   AppBadRequestException,
   AppConflictException,
   AppNotFoundException,
-} from '@/common/exceptions/app.exception';
+} from '../../../common/exceptions/app.exception';
 
 interface PricingResult {
   subTotal: number;

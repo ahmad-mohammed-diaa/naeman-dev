@@ -13,12 +13,13 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { PermissionGuard } from '@/common/guards/permission.guard';
-import { Permissions } from '@/common/decorators/permissions.decorator';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { PermissionGuard } from '../../common/guards/permission.guard';
+import { Permissions } from '../../common/decorators/permissions.decorator';
 import { UserSwagger } from './user.swagger';
-import { UploadFile } from '@/common/decorators/upload.decorator';
+
 import { FindAllUsersQueryDto } from './dto/find-all-users-query.dto';
+import { UploadFile } from '../../common/decorators/upload.decorator';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
 @Controller('v2/users')

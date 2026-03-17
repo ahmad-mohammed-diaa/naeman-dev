@@ -3,8 +3,8 @@ import { I18nContext } from 'nestjs-i18n';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateProductDto, UpdateProductDto } from '../dto/create-product.dto';
 import { ProductQueryService } from './product-query.service';
-import { deepMapWithTranslation, parseLang } from '@/common/helpers/translation.helper';
-import { CloudinaryService } from '@/common/cloudinary/cloudinary.service';
+import { deepMapWithTranslation, parseLang } from '../../../common/helpers/translation.helper';
+import { CloudinaryService } from '../../../common/cloudinary/cloudinary.service';
 
 @Injectable()
 export class ProductManageService {

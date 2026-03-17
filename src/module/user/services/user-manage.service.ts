@@ -7,8 +7,8 @@ import { UserQueryService } from './user-query.service';
 import {
   AppConflictException,
   AppNotFoundException,
-} from '@/common/exceptions/app.exception';
-import { CloudinaryService } from '@/common/cloudinary/cloudinary.service';
+} from '../../../common/exceptions/app.exception';
+import { CloudinaryService } from '../../../common/cloudinary/cloudinary.service';
 
 @Injectable()
 export class UserManageService {

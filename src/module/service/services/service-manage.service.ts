@@ -3,7 +3,7 @@ import { I18nContext } from 'nestjs-i18n';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateServiceDto, UpdateServiceDto } from '../dto/create-service.dto';
 import { ServiceQueryService, SERVICE_SELECT } from './service-query.service';
-import { deepMapWithTranslation, parseLang } from '@/common/helpers/translation.helper';
+import { deepMapWithTranslation, parseLang } from '../../../common/helpers/translation.helper';
 
 @Injectable()
 export class ServiceManageService {
