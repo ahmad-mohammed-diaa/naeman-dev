@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ErrorKeys } from '@/common/constants/error-keys';
+import { ErrorKeys } from '../constants/error-keys';
 export class AppException extends HttpException {
   constructor(
     message: keyof typeof ErrorKeys,
