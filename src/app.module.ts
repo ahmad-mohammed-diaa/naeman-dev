@@ -42,8 +42,13 @@ import { SmsModule } from './sms/sms.module';
 //   UserModuleV2,
 // } from './module';
 import { CloudinaryModule } from './common/cloudinary/cloudinary.module';
-import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
-import path from 'path';
+import {
+  AcceptLanguageResolver,
+  I18nJsonLoader,
+  I18nModule,
+  QueryResolver,
+} from 'nestjs-i18n';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -54,26 +59,33 @@ import path from 'path';
     I18nModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        // fallbackLanguage: 'ar',
-        // loader: I18nJsonLoader,
-        // loaderOptions: {
-        //   path: join(__dirname, '../', 'i18n/'),
-        //   watch: config.get('NODE_ENV') !== 'production',
-
-        // },
-        // resolvers: [AcceptLanguageResolver],
-        fallbackLanguage: 'en',
-        loaderOptions: {
-          path: path.join(__dirname, '..', 'i18n'),
-          filePattern: '*.json',
-          watch: true,
-        },
-        resolvers: [
-          { use: QueryResolver, options: ['lang'] },
-          AcceptLanguageResolver,
-        ],
-      }),
+      useFactory: (config: ConfigService) => {
+        console.log(join(__dirname));
+        console.log(join(__filename));
+        return {
+          // fallbackLanguage: 'ar',
+          loader: I18nJsonLoader,
+          loaderOptions: {
+            path: join(__dirname, '..', 'i18n'),
+            watch: config.get('NODE_ENV') !== 'production',
+          },
+          resolvers: [
+            { use: QueryResolver, options: ['lang'] },
+            ,
+            AcceptLanguageResolver,
+          ],
+          fallbackLanguage: 'en',
+          // loaderOptions: {
+          //   path: join(__dirname, '..', 'i18n'),
+          //   filePattern: '*.json',
+          //   watch: true,
+          // },
+          // resolvers: [
+          //   { use: QueryResolver, options: ['lang'] },
+          //   AcceptLanguageResolver,
+          // ],
+        };
+      },
     }),
     ScheduleModule.forRoot(),
     AuthModule,
