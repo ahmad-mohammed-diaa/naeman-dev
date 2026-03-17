@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { LoginDto } from '../dto/login.dto';
 import { JwtPayload } from '../jwt.strategy';
-import { comparePassword } from '@/common/helpers/lib';
-import { AppUnauthorizedException } from '@/common/exceptions/app.exception';
+import { comparePassword } from '../../../common/helpers/lib';
+import { AppUnauthorizedException } from '../../../common/exceptions/app.exception';
 
 const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET ?? 'refresh_secret';
 

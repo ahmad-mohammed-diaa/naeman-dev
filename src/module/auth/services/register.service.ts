@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { hashedPassword } from '@/common/helpers/lib';
+import { hashedPassword } from '../../../common/helpers/lib';
 import { RegisterDto } from '../dto/register.dto';
 import {
   AppConflictException,
