@@ -7,8 +7,8 @@ export const AuthSwagger = {
     ApiDoc({
       extraModels: [RegisterDto],
       summary: 'Register a new user',
+      consumes: ['application/json', 'multipart/form-data'],
       body: RegisterDto,
-      consumes: 'multipart/form-data',
       res: {
         ok: undefined,
         conflict: { message: 'Phone number already registered' },

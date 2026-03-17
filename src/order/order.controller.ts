@@ -20,6 +20,13 @@ import { Lang } from 'decorators/accept.language';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { UpdateOrderServicesDto } from './dto/update-order-services.dto';
 import { OrderSwagger } from './order.swagger';
+import { DateRangeQueryDto } from './dto/date-range-query.dto';
+import { BarberOrdersQueryDto } from './dto/barber-orders-query.dto';
+import { PaidOrdersQueryDto } from './dto/paid-orders-query.dto';
+import { OrderPasswordBodyDto } from './dto/order-password-body.dto';
+import { PaidOrderBodyDto } from './dto/paid-order-body.dto';
+import { GetSlotsQueryDto } from './dto/get-slots-query.dto';
+import { GenerateSlotBodyDto } from './dto/generate-slot-body.dto';
 
 @ApiTags('Order')
 @Controller('v1/order')
@@ -40,14 +47,13 @@ export class OrderController {
   async getNewOrders(
     @Lang() lang: Language,
     @UserData('user') user: User,
-    @Query('fromDate') from: string,
-    @Query('toDate') to: string,
+    @Query() query: DateRangeQueryDto,
   ) {
     const today = new Date();
     const oneMonthBefore = new Date();
     oneMonthBefore.setMonth(today.getMonth() - 1);
-    const fromDate = new Date(from ?? oneMonthBefore);
-    const toDate = new Date(to ?? new Date());
+    const fromDate = new Date(query.fromDate ?? oneMonthBefore);
+    const toDate = new Date(query.toDate ?? new Date());
     console.log(fromDate, toDate);
     return this.orderService.getAllOrdersDateRange(
       user,
@@ -64,9 +70,9 @@ export class OrderController {
   async getBarberOrders(
     @UserData('user') user: User,
     @Lang() lang: Language,
-    @Query('orderDate') orderDate?: Date,
+    @Query() query: BarberOrdersQueryDto,
   ) {
-    return this.orderService.GetBarberOrders(user.id, lang, orderDate);
+    return this.orderService.GetBarberOrders(user.id, lang, query.orderDate ? new Date(query.orderDate) : undefined);
   }
 
   @OrderSwagger.getCategories()
@@ -83,11 +89,10 @@ export class OrderController {
   async getCashierOrders(
     @UserData('user') user: User,
     @Lang() lang: Language,
-    @Query('fromDate') from: string,
-    @Query('toDate') to: string,
+    @Query() query: DateRangeQueryDto,
   ) {
-    const DateFrom = new Date(from ?? new Date());
-    const DateTo = new Date(to ?? new Date());
+    const DateFrom = new Date(query.fromDate ?? new Date());
+    const DateTo = new Date(query.toDate ?? new Date());
     return this.orderService.getCashierOrders(user.id, lang, DateFrom, DateTo);
   }
 
@@ -95,8 +100,8 @@ export class OrderController {
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Get('/paid-orders')
-  async getPaidOrders(@Query('date') date: string) {
-    const DateFrom = new Date(date ?? new Date());
+  async getPaidOrders(@Query() query: PaidOrdersQueryDto) {
+    const DateFrom = new Date(query.date ?? new Date());
     return this.orderService.billOrders(DateFrom);
   }
 
@@ -106,9 +111,9 @@ export class OrderController {
   @Put('/delete-order-services/:id')
   async deleteOrderServices(
     @Param('id') id: string,
-    @Body('password') password: string,
+    @Body() body: OrderPasswordBodyDto,
   ) {
-    return this.orderService.deleteOrderServices(id, password);
+    return this.orderService.deleteOrderServices(id, body.password);
   }
 
   @OrderSwagger.cancelDeletedServices()
@@ -117,9 +122,9 @@ export class OrderController {
   @Put('/cancel-deleted-services/:id')
   async cancelDeletedServices(
     @Param('id') id: string,
-    @Body('password') password: string,
+    @Body() body: OrderPasswordBodyDto,
   ) {
-    return this.orderService.cancelDeletedServices(id, password);
+    return this.orderService.cancelDeletedServices(id, body.password);
   }
 
   @OrderSwagger.updateOrderServices()
@@ -140,7 +145,7 @@ export class OrderController {
   async paidOrder(
     @Param('id') id: string,
     @UserData('user') user: User,
-    @Body() body?: { discount?: number },
+    @Body() body: PaidOrderBodyDto,
   ) {
     return this.orderService.paidOrder(id, user, body);
   }
@@ -182,9 +187,7 @@ export class OrderController {
   @OrderSwagger.getSlots()
   @UseGuards(AuthGuard(false), RolesGuard)
   @Get('/slots')
-  async getSlots(
-    @Query() query: { date: string; barberId?: string; totalDuration?: number },
-  ) {
+  async getSlots(@Query() query: GetSlotsQueryDto) {
     return this.orderService.getSlots(
       query.date,
       query.barberId,
@@ -226,8 +229,7 @@ export class OrderController {
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN'])
   @Post('/generate-slot')
-  async generateSlot(@Body() body: { start: number; end: number }) {
-    const { start, end } = body;
-    return this.orderService.generateSlot(start, end);
+  async generateSlot(@Body() body: GenerateSlotBodyDto) {
+    return this.orderService.generateSlot(body.start, body.end);
   }
 }

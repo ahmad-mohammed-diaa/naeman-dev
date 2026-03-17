@@ -15,6 +15,7 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { CashierSwagger } from './cashier.swagger';
 import { DateRangeDto } from '../order/dto/date-range.dto';
+import { FindAllCashiersQueryDto } from './dto/find-all-cashiers-query.dto';
 
 @Controller('v2/cashiers')
 export class CashierController {
@@ -22,8 +23,8 @@ export class CashierController {
 
   @CashierSwagger.findAll()
   @Get()
-  findAll(@Query('branchId') branchId?: string) {
-    return this.cashierService.findAll(branchId);
+  findAll(@Query() query: FindAllCashiersQueryDto) {
+    return this.cashierService.findAll(query.branchId);
   }
 
   @CashierSwagger.findOne()

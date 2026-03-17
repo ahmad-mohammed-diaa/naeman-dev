@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { CreateStaticDto } from './create-static.dto';
 import { IsArray, IsOptional } from 'class-validator';
 

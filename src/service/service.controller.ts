@@ -23,6 +23,7 @@ import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';
 import { ServiceSwagger } from './service.swagger';
+import { UpdateServiceStatusBodyDto } from './dto/update-service-status-body.dto';
 
 @ApiTags('Service')
 @Controller('v1/service')
@@ -88,8 +89,8 @@ export class ServiceController {
   @Put(':id/status')
   public async softDeleteService(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() available: { available: boolean },
+    @Body() body: UpdateServiceStatusBodyDto,
   ) {
-    return await this.serviceService.softDeleteService(id, available);
+    return await this.serviceService.softDeleteService(id, body);
   }
 }

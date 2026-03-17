@@ -7,7 +7,7 @@ export const PackageSwagger = {
       summary: 'Create a new package',
       auth: true,
       body: CreatePackageDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   findAll: () =>
     ApiDoc({

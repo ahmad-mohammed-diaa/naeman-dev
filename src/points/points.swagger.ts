@@ -8,7 +8,7 @@ export const PointsSwagger = {
       summary: 'Create a points package',
       auth: true,
       body: CreatePointDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   findAll: () =>
     ApiDoc({

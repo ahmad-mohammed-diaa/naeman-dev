@@ -12,6 +12,7 @@ import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { ClientSwagger } from './client.swagger';
+import { FindAllClientsQueryDto } from './dto/find-all-clients-query.dto';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
 @Controller('v2/clients')
@@ -21,8 +22,8 @@ export class ClientController {
   @ClientSwagger.findAll()
   @Get()
   @Permissions('view:clients')
-  findAll(@Query('page') page?: number, @Query('limit') limit?: number) {
-    return this.clientService.findAll(page, limit);
+  findAll(@Query() query: FindAllClientsQueryDto) {
+    return this.clientService.findAll(query.page, query.limit);
   }
 
   @ClientSwagger.findOne()

@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 import { RegisterDto } from 'src/auth/dto/auth-register-dto';
 

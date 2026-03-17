@@ -5,6 +5,7 @@ import { UpdateAdminDto } from './dto/update-admin.dto';
 export const AdminSwagger = {
   create: () =>
     ApiDoc({
+      extraModels: [CreateAdminDto],
       summary: 'Create a new admin (ADMIN only)',
       auth: true,
       body: CreateAdminDto,
@@ -19,12 +20,21 @@ export const AdminSwagger = {
       summary: 'Get analytics / barber orders with counts (ADMIN, CASHIER)',
       auth: true,
       queries: [
-        { name: 'fromDate', required: false, description: 'Start date (ISO string)' },
-        { name: 'toDate', required: false, description: 'End date (ISO string)' },
+        {
+          name: 'fromDate',
+          required: false,
+          description: 'Start date (ISO string)',
+        },
+        {
+          name: 'toDate',
+          required: false,
+          description: 'End date (ISO string)',
+        },
       ],
     }),
   update: () =>
     ApiDoc({
+      extraModels: [UpdateAdminDto],
       summary: 'Update admin settings (ADMIN only)',
       auth: true,
       body: UpdateAdminDto,

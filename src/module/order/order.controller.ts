@@ -17,8 +17,8 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { CurrentUser } from '@/common/decorators/current-user.decorator';
 import { OrderSwagger } from './order.swagger';
-import { DateRangeDto } from './dto/date-range.dto';
 import { type User } from 'generated/prisma/client';
+import { OrderQueryDto } from './dto/order-query.dto';
 
 // @UseGuards(JwtAuthGuard)
 @Controller('v2/orders')
@@ -29,14 +29,10 @@ export class OrderController {
   @OrderSwagger.findAll()
   @Get()
   @Permissions('view:orders')
-  findAll(
-    @Query('page') page?: string,
-    @Query('limit') limit?: string,
-    @Query() range: DateRangeDto = {},
-  ) {
+  findAll(@Query() query: OrderQueryDto) {
     return this.orderService.findAll(
-      { page: page ? +page : undefined, limit: limit ? +limit : undefined },
-      range,
+      { page: query.page, limit: query.limit },
+      { from: query.from, to: query.to },
     );
   }
 

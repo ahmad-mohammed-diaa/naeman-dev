@@ -27,7 +27,7 @@ export const AuthSwagger = {
       extraModels: [RegisterDto, LoginResponseDto],
       summary: 'Register',
       body: RegisterDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
       res: {
         ok: LoginResponseDto,
         conflict: { message: 'Phone number already registered' },

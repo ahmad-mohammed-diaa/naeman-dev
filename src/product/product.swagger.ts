@@ -7,7 +7,7 @@ export const ProductSwagger = {
     ApiDoc({
       summary: 'Create a new product',
       body: CreateProductDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   getAllProducts: () =>
     ApiDoc({

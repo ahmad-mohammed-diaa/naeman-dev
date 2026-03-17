@@ -17,6 +17,8 @@ import { Roles } from 'decorators/roles.decorator';
 import { UserData } from 'decorators/user.decorator';
 import { User } from 'generated/prisma/client';
 import { AdminSwagger } from './admin.swagger';
+import { AnalyticsQueryDto } from './dto/analytics-query.dto';
+import { CheckPasswordBodyDto } from './dto/check-password-body.dto';
 
 @ApiTags('Admin')
 @Controller('v1/admin')
@@ -43,10 +45,10 @@ export class AdminController {
   @Get('/analytics')
   getAnalytics(
     @UserData('user') { role }: User,
-    @Query() { fromDate, toDate }: { fromDate?: string; toDate?: string },
+    @Query() query: AnalyticsQueryDto,
   ) {
-    const from = fromDate ? new Date(fromDate) : undefined;
-    const to = toDate ? new Date(toDate) : undefined;
+    const from = query.fromDate ? new Date(query.fromDate) : undefined;
+    const to = query.toDate ? new Date(query.toDate) : undefined;
     return this.adminService.getBarberOrdersWithCounts(role, from, to);
   }
 
@@ -60,7 +62,7 @@ export class AdminController {
   @AdminSwagger.checkPassword()
   @Roles(['ADMIN', 'CASHIER'])
   @Post('/check-password')
-  checkPassword(@Body() { password }: { password: string }) {
-    return this.adminService.CheckPassword(password);
+  checkPassword(@Body() body: CheckPasswordBodyDto) {
+    return this.adminService.CheckPassword(body.password);
   }
 }

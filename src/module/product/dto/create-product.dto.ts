@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsInt,
@@ -11,19 +12,23 @@ import { Transform, Type } from 'class-transformer';
 import { Language } from 'generated/prisma/enums';
 
 export class ProductTranslationDto {
+  @ApiProperty()
   @IsString()
   name: string;
 
+  @ApiProperty({ enum: Language })
   @IsEnum(Language)
   language: Language;
 }
 
 export class CreateProductDto {
+  @ApiProperty()
   @IsInt()
   @Min(1)
   @Type(() => Number)
   price: number;
 
+  @ApiProperty({ type: [ProductTranslationDto] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ProductTranslationDto)
@@ -32,12 +37,14 @@ export class CreateProductDto {
 }
 
 export class UpdateProductDto {
+  @ApiProperty({ required: false })
   @IsInt()
   @Min(1)
   @IsOptional()
   @Type(() => Number)
   price?: number;
 
+  @ApiProperty({ type: [ProductTranslationDto], required: false })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ProductTranslationDto)

@@ -20,11 +20,12 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from '../../src/config/multer.config';
 
 import { Lang } from '../../decorators/accept.language';
-import { CategoryType, Language } from 'generated/prisma/client';
+import { Language } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { RolesGuard } from 'guard/role.guard';
 import { Roles } from 'decorators/roles.decorator';
 import { BranchSwagger } from './branch.swagger';
+import { FindOneBranchQueryDto } from './dto/find-one-branch-query.dto';
 
 @ApiTags('Branch')
 @Controller('v1/branch')
@@ -56,10 +57,9 @@ export class BranchController {
   findOne(
     @Param('id', ParseUUIDPipe) id: string,
     @Lang() language: Language,
-    @Query('Date') Date: string,
-    @Query('type') type: CategoryType,
+    @Query() query: FindOneBranchQueryDto,
   ) {
-    return this.branchService.findOne(id, type, Date, language);
+    return this.branchService.findOne(id, query.type, query.Date, language);
   }
 
   @BranchSwagger.update()

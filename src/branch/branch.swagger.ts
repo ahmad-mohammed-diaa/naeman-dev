@@ -8,7 +8,7 @@ export const BranchSwagger = {
       summary: 'Create a new branch (ADMIN only)',
       auth: true,
       body: CreateBranchDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   findAll: () =>
     ApiDoc({
@@ -29,7 +29,7 @@ export const BranchSwagger = {
       auth: true,
       params: [{ name: 'id', description: 'Branch UUID' }],
       body: UpdateBranchDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   remove: () =>
     ApiDoc({

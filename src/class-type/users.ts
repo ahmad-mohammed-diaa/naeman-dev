@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { Role } from 'generated/prisma/client';
 import { User as PrismaUserType } from 'generated/prisma/client';
 

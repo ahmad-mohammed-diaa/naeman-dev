@@ -15,6 +15,8 @@ import { Language } from 'generated/prisma/client';
 import { AuthGuard } from 'guard/auth.guard';
 import { Lang } from 'decorators/accept.language';
 import { ClientPackagesSwagger } from './client-packages.swagger';
+import { CreateClientPackageQueryDto } from './dto/create-client-package-query.dto';
+import { CreateClientPackageBodyDto } from './dto/create-client-package-body.dto';
 
 @ApiTags('Client Packages')
 @UseGuards(AuthGuard())
@@ -25,11 +27,11 @@ export class ClientPackagesController {
   @ClientPackagesSwagger.create()
   @Post()
   create(
-    @Body('phone') phone: string,
-    @Query('packageId') packageId: string,
+    @Body() body: CreateClientPackageBodyDto,
+    @Query() query: CreateClientPackageQueryDto,
     @Lang() lang: Language,
   ) {
-    return this.clientPackagesService.create(packageId, phone, lang);
+    return this.clientPackagesService.create(query.packageId, body.phone, lang);
   }
 
   @ClientPackagesSwagger.findAll()

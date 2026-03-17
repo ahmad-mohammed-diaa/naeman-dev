@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
   IsArray,
@@ -10,6 +11,7 @@ import {
 import { translationDto } from '../../../src/class-type/translation';
 
 export class CreateServiceDto {
+  @ApiProperty()
   @ValidateIf(
     (obj) =>
       typeof obj.duration === 'string' || typeof obj.duration === 'number',
@@ -18,6 +20,7 @@ export class CreateServiceDto {
   @Transform(({ value }) => +value)
   price: number;
 
+  @ApiProperty()
   @ValidateIf(
     (obj) =>
       typeof obj.duration === 'string' || typeof obj.duration === 'number',
@@ -26,6 +29,7 @@ export class CreateServiceDto {
   @Transform(({ value }) => +value)
   duration: number;
 
+  @ApiProperty()
   @ValidateIf(
     (obj) =>
       typeof obj.duration === 'string' || typeof obj.duration === 'number',
@@ -38,6 +42,7 @@ export class CreateServiceDto {
   @IsNotEmpty()
   categoryId: string;
 
+  @ApiProperty({ required: false })
   @IsOptional()
   @Transform(({ value }) => {
     if (value === 'true' || value === true) return true;
@@ -47,6 +52,7 @@ export class CreateServiceDto {
   @IsBoolean()
   available: boolean;
 
+  @ApiProperty({ type: [translationDto] })
   @IsArray()
   translation: translationDto[];
 }

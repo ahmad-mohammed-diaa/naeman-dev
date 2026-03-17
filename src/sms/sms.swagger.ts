@@ -4,7 +4,7 @@ export const SmsSwagger = {
   create: () =>
     ApiDoc({
       summary: 'Send a verification SMS code',
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   resetPassword: () =>
     ApiDoc({
@@ -13,7 +13,7 @@ export const SmsSwagger = {
   verifyCode: () =>
     ApiDoc({
       summary: 'Verify a registration SMS code and complete signup',
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   verifyResetCode: () =>
     ApiDoc({

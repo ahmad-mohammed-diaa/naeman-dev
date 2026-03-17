@@ -21,14 +21,21 @@ export const ProductSwagger = {
     ApiDoc({
       summary: 'Create product',
       auth: true,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
       bodySchema: {
         type: 'object',
         required: ['image', 'price', 'translations'],
         properties: {
-          image: { type: 'string', format: 'binary', description: 'Product image file' },
+          image: {
+            type: 'string',
+            format: 'binary',
+            description: 'Product image file',
+          },
           price: { type: 'integer', minimum: 1 },
-          translations: { type: 'string', description: 'JSON string: [{name, language}]' },
+          translations: {
+            type: 'string',
+            description: 'JSON string: [{name, language}]',
+          },
         },
       },
       res: { ok: ProductResponseDto },
@@ -38,13 +45,20 @@ export const ProductSwagger = {
       summary: 'Update product',
       auth: true,
       params: [{ name: 'id' }],
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
       bodySchema: {
         type: 'object',
         properties: {
-          image: { type: 'string', format: 'binary', description: 'Product image file (optional)' },
+          image: {
+            type: 'string',
+            format: 'binary',
+            description: 'Product image file (optional)',
+          },
           price: { type: 'integer', minimum: 1 },
-          translations: { type: 'string', description: 'JSON string: [{name, language}]' },
+          translations: {
+            type: 'string',
+            description: 'JSON string: [{name, language}]',
+          },
         },
       },
       res: {

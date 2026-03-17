@@ -21,6 +21,11 @@ import { AppSuccess } from 'src/utils/AppSuccess';
 import { Roles } from 'decorators/roles.decorator';
 import { RolesGuard } from 'guard/role.guard';
 import { AuthSwagger } from './auth.swagger';
+import {
+  ChangePasswordDto,
+  ReferralCodeCheckDto,
+  ResetPasswordDto,
+} from './dto/auth.dto';
 
 @ApiTags('Auth')
 @Controller('v1/auth')
@@ -52,8 +57,8 @@ export class AuthController {
 
   @AuthSwagger.checkReferralCode()
   @Post('/referral-code')
-  checkReferralCode(@Body('referralCode') referralCode: string) {
-    const isCodeValid = this.authService.checkReferralCode(referralCode);
+  checkReferralCode(@Body() body: ReferralCodeCheckDto) {
+    const isCodeValid = this.authService.checkReferralCode(body.referralCode);
     if (!isCodeValid) {
       throw new ConflictException('Referral Code is not valid');
     }
@@ -66,15 +71,15 @@ export class AuthController {
   @AuthSwagger.changePassword()
   @UseGuards(AuthGuard())
   @Patch('/change-password/:id')
-  changePassword(@Param('id') id: string, @Body('password') password: string) {
-    return this.authService.changePassword(id, password);
+  changePassword(@Param('id') id: string, @Body() body: ChangePasswordDto) {
+    return this.authService.changePassword(id, body.password);
   }
 
   @AuthSwagger.resetPassword()
   @UseGuards(AuthGuard(), RolesGuard)
   @Roles(['ADMIN', 'CASHIER'])
   @Patch('/reset-password')
-  resetPassword(@Body('phone') phone: string) {
-    return this.authService.resetPassword(phone);
+  resetPassword(@Body() body: ResetPasswordDto) {
+    return this.authService.resetPassword(body.phone);
   }
 }

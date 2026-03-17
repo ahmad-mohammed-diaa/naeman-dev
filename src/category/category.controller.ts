@@ -14,7 +14,6 @@ import { ApiTags } from '@nestjs/swagger';
 import { CategoryService } from './category.service';
 import {
   Category,
-  CategoryType,
   Language,
   User,
 } from 'generated/prisma/client';
@@ -27,6 +26,7 @@ import { AppSuccess } from 'src/utils/AppSuccess';
 import { UserData } from 'decorators/user.decorator';
 import { Lang } from '../../decorators/accept.language';
 import { CategorySwagger } from './category.swagger';
+import { FindAllCategoriesQueryDto } from './dto/find-all-categories-query.dto';
 
 @ApiTags('Category')
 @Controller('v1/category')
@@ -39,9 +39,9 @@ export class CategoryController {
   public async findAllCategories(
     @UserData('user') user: User,
     @Lang() lang: Language,
-    @Query('type') type: CategoryType,
+    @Query() query: FindAllCategoriesQueryDto,
   ): Promise<AppSuccess<{ categories: Category[]; package: any }>> {
-    return await this.categoryService.findAllCategories(user, lang, type);
+    return await this.categoryService.findAllCategories(user, lang, query.type);
   }
 
   @CategorySwagger.findCategoryById()

@@ -1,5 +1,5 @@
 import { CreateOrderDto } from 'src/order/dto/create-order.dto';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 import { IsArray, IsOptional } from 'class-validator';
 
 export class UpdateOrderDto extends PartialType(CreateOrderDto) {

@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEnum,
   IsDateString,
@@ -13,29 +14,36 @@ import { Type, Transform } from 'class-transformer';
 import { OfferType, Language } from 'generated/prisma/enums';
 
 export class OfferTranslationDto {
+  @ApiProperty()
   @IsString()
   name: string;
 
+  @ApiProperty()
   @IsString()
   description: string;
 
+  @ApiProperty({ enum: Language })
   @IsEnum(Language)
   language: Language;
 }
 
 export class CreateOfferDto {
+  @ApiProperty({ enum: OfferType })
   @IsEnum(OfferType)
   offerType: OfferType;
 
+  @ApiProperty({ type: String, format: 'date-time' })
   @IsDateString()
   expiresAt: string;
 
+  @ApiProperty()
   @IsInt()
   @Min(1)
   @Type(() => Number)
   price: number;
 
   // ── PACKAGES only ──────────────────────────────────────────────────────────
+  @ApiProperty({ type: [String], required: false })
   @IsArray()
   @IsString({ each: true })
   @Transform(({ value }) =>
@@ -45,7 +53,7 @@ export class CreateOfferDto {
   serviceIds?: string[];
 
   // ── POINTS only ────────────────────────────────────────────────────────────
-
+  @ApiProperty({ required: false })
   @IsInt()
   @Min(1)
   @Type(() => Number)
@@ -53,6 +61,7 @@ export class CreateOfferDto {
   pointsAmount?: number;
 
   // ── Both ───────────────────────────────────────────────────────────────────
+  @ApiProperty({ type: [OfferTranslationDto] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => OfferTranslationDto)

@@ -1,0 +1,29 @@
+name: Deploy to Fly
+
+on:
+  push:
+    branches:
+      - main # or dev if you want
+
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Fly.io CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      # - name: Install dependencies
+      #   run: npm install
+
+      # - name: Build app
+      #   run: npm run build
+
+      - name: Deploy to Fly
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

@@ -37,7 +37,9 @@ export function UploadFile(fieldName = 'file') {
  */
 export function UploadFiles(fieldName = 'files', maxCount = 10) {
   return applyDecorators(
-    UseInterceptors(FilesInterceptor(fieldName, maxCount, { storage: memoryStorage() })),
+    UseInterceptors(
+      FilesInterceptor(fieldName, maxCount, { storage: memoryStorage() }),
+    ),
     ApiConsumes('multipart/form-data'),
   );
 }

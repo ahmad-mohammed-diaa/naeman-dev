@@ -18,8 +18,11 @@ import { AuthGuard } from 'guard/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UserUpdateDto } from './dto/user-update-dto';
 import { RateBarberDto } from './dto/rate-barber.dto';
+import { FindAllUsersQueryDto } from './dto/find-all-users-query.dto';
+import { FindAllClientsQueryDto } from './dto/find-all-clients-query.dto';
+import { UnbanUserDto } from './dto/unban-user.dto';
 import { UserData } from 'decorators/user.decorator';
-import { Role, User } from 'generated/prisma/client';
+import { User } from 'generated/prisma/client';
 import { multerConfig } from 'src/config/multer.config';
 import { UserSwagger } from './user.swagger';
 
@@ -31,33 +34,19 @@ export class UserController {
 
   @UserSwagger.unbanUser()
   @Put('unban')
-  unbanUser(@Body('number') number: string) {
+  unbanUser(@Body() { number }: UnbanUserDto) {
     return this.userService.unbanUser(number);
   }
 
   @UserSwagger.findAll()
   @Get()
-  findAll(
-    @Query()
-    { role, page, pageSize }: { role?: Role; page: number; pageSize: number },
-  ) {
+  findAll(@Query() { role, page, pageSize }: FindAllUsersQueryDto) {
     return this.userService.findAllUser(page, pageSize, role);
   }
 
   @UserSwagger.findAllClients()
   @Get('clients')
-  findAllClients(
-    @Query()
-    {
-      page,
-      pageSize,
-      phone,
-    }: {
-      page: number;
-      pageSize: number;
-      phone?: string;
-    },
-  ) {
+  findAllClients(@Query() { page, pageSize, phone }: FindAllClientsQueryDto) {
     return this.userService.findAllClients(page, pageSize, phone);
   }
 

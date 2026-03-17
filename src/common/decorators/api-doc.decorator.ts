@@ -38,7 +38,7 @@ export interface ApiDocOptions {
   /** Raw OpenAPI schema for multipart/form-data bodies (use instead of `body`) */
   bodySchema?: Record<string, unknown>;
   auth?: boolean;
-  consumes?: string;
+  consumes?: string[];
   extraModels?: Type<unknown>[];
   queries?: QueryParam[];
   params?: PathParam[];
@@ -80,7 +80,7 @@ export function ApiDoc(
   ];
 
   if (options.auth) decorators.push(ApiBearerAuth());
-  if (options.consumes) decorators.push(ApiConsumes(options.consumes));
+  if (options.consumes) decorators.push(ApiConsumes(...options.consumes));
   if (options.body) decorators.push(ApiBody({ type: options.body }));
   if (options.bodySchema)
     decorators.push(ApiBody({ schema: options.bodySchema as never }));

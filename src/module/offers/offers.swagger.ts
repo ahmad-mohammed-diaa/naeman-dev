@@ -18,7 +18,7 @@
 //     ApiDoc({
 //       summary: 'Create offer (PACKAGES or POINTS type)',
 //       auth: true,
-//       consumes: 'multipart/form-data',
+//       consumes: ['application/json','multipart/form-data'],
 //       bodySchema: {
 //         type: 'object',
 //         required: ['offerType', 'expiresAt', 'price', 'translations'],

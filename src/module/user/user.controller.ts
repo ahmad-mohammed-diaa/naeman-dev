@@ -18,6 +18,7 @@ import { PermissionGuard } from '@/common/guards/permission.guard';
 import { Permissions } from '@/common/decorators/permissions.decorator';
 import { UserSwagger } from './user.swagger';
 import { UploadFile } from '@/common/decorators/upload.decorator';
+import { FindAllUsersQueryDto } from './dto/find-all-users-query.dto';
 
 @UseGuards(JwtAuthGuard, PermissionGuard)
 @Controller('v2/users')
@@ -27,8 +28,8 @@ export class UserController {
   @UserSwagger.findAll()
   @Get()
   @Permissions('view:users')
-  findAll(@Query('page') page?: number, @Query('limit') limit?: number) {
-    return this.userService.findAll(page, limit);
+  findAll(@Query() query: FindAllUsersQueryDto) {
+    return this.userService.findAll(query.page, query.limit);
   }
 
   @UserSwagger.findOne()

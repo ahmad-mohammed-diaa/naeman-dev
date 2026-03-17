@@ -9,8 +9,9 @@ import { ApiTags } from '@nestjs/swagger';
 import { SmsService } from './sms.service';
 import { multerConfig } from 'src/config/multer.config';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { RegisterDto } from 'src/auth/dto/auth-register-dto';
 import { SmsSwagger } from './sms.swagger';
+import { SendSmsDto } from './dto/send-sms.dto';
+import { VerifyResetCodeBodyDto } from './dto/verify-reset-code-body.dto';
 
 @ApiTags('SMS')
 @Controller('v1/sms')
@@ -21,7 +22,7 @@ export class SmsController {
   @UseInterceptors(FileInterceptor('file', multerConfig('avatars')))
   @Post()
   create(
-    @Body() body: RegisterDto & { type?: 'register' | 'reset' },
+    @Body() body: SendSmsDto,
     @UploadedFile() file: Express.Multer.File,
   ) {
     return this.smsService.sendVerificationCode(body);
@@ -42,15 +43,7 @@ export class SmsController {
 
   @SmsSwagger.verifyResetCode()
   @Post('/verify-reset')
-  verifyResetCode(
-    @Body()
-    body: {
-      phone: string;
-      code: string;
-      password: string;
-      confirmPassword: string;
-    },
-  ) {
+  verifyResetCode(@Body() body: VerifyResetCodeBodyDto) {
     return this.smsService.verifyResetCode(body);
   }
 

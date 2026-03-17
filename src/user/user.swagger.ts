@@ -33,7 +33,7 @@ export const UserSwagger = {
       auth: true,
       params: [{ name: 'id', description: 'User UUID' }],
       body: UserUpdateDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   findOne: () =>
     ApiDoc({

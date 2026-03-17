@@ -39,11 +39,15 @@ export const UserSwagger = {
       summary: 'Update user',
       auth: true,
       params: [{ name: 'id' }],
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
       bodySchema: {
         type: 'object',
         properties: {
-          avatar: { type: 'string', format: 'binary', description: 'Avatar image file (optional)' },
+          avatar: {
+            type: 'string',
+            format: 'binary',
+            description: 'Avatar image file (optional)',
+          },
           firstName: { type: 'string' },
           lastName: { type: 'string' },
           phone: { type: 'string' },

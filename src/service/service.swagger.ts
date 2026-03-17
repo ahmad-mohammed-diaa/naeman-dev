@@ -17,7 +17,7 @@ export const ServiceSwagger = {
       summary: 'Create a service (ADMIN only)',
       auth: true,
       body: CreateServiceDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   updateService: () =>
     ApiDoc({
@@ -25,7 +25,7 @@ export const ServiceSwagger = {
       auth: true,
       params: [{ name: 'id', description: 'Service UUID' }],
       body: UpdateServiceDto,
-      consumes: 'multipart/form-data',
+      consumes: ['application/json', 'multipart/form-data'],
     }),
   softDeleteService: () =>
     ApiDoc({
