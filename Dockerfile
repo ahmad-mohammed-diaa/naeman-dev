@@ -24,7 +24,7 @@ RUN apt-get update -qq && \
 COPY package-lock.json package.json ./
 
 # Generate Prisma Client
-# COPY prisma ./prisma
+COPY prisma ./prisma
 
 RUN npm ci --include=dev
 
@@ -34,7 +34,7 @@ RUN npm ci --include=dev
 # Copy application code
 COPY . .
 # After prisma generate
-RUN mkdir -p src/generated && cp -r generated/prisma src/generated/prisma
+# RUN mkdir -p src/generated && cp -r generated/prisma src/generated/prisma
 # Build application
 # RUN npm run build
 
