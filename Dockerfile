@@ -7,11 +7,16 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps --ignore-scripts
 
-# Copy source + prisma schema
+# Copy source + prisma schema + prisma config
 COPY prisma ./prisma
+COPY prisma.config.ts ./
 COPY . .
 
-# Generate Prisma client (custom output: generated/prisma)
+# Generate Prisma client
+# DATABASE_URL is read by prisma.config.ts via dotenv/env() at generate time.
+# A dummy value is enough — no real DB connection is made during code generation.
+ARG DATABASE_URL=postgresql://x:x@localhost/x
+ENV DATABASE_URL=${DATABASE_URL}
 RUN npx prisma generate
 
 # Compile TypeScript → dist/
@@ -26,9 +31,15 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev --legacy-peer-deps --ignore-scripts
 
-# Copy prisma schema, then generate client inside prod node_modules
+# Copy prisma schema + config, then generate client inside prod node_modules
 COPY prisma ./prisma
+COPY prisma.config.ts ./
+ARG DATABASE_URL=postgresql://x:x@localhost/x
+ENV DATABASE_URL=${DATABASE_URL}
 RUN npx prisma generate
+
+# Unset the dummy DATABASE_URL so runtime gets the real one from Railway
+ENV DATABASE_URL=""
 
 # Copy compiled output from builder
 COPY --from=builder /app/dist ./dist
