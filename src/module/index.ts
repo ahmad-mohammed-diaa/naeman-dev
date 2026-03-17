@@ -1,4 +1,4 @@
-export { AuthModule as AuthModuleV2 } from './auth/auth.module';
+// export { AuthModule as AuthModuleV2 } from './auth/auth.module';
 export { BranchModule as BranchModuleV2 } from './branch/branch.module';
 export { BarberModule as BarberModuleV2 } from './barber/barber.module';
 export { CategoryModule as CategoryModuleV2 } from './category/category.module';

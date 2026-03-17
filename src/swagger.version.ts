@@ -19,7 +19,7 @@ import { SmsModule } from './sms/sms.module';
 
 // V2 modules
 import {
-  AuthModuleV2,
+  //   AuthModuleV2,
   BranchModuleV2,
   BarberModuleV2,
   CategoryModuleV2,
@@ -90,7 +90,7 @@ export function SwaggerVersions(app: INestApplication<any>) {
 
   const v2Document = SwaggerModule.createDocument(app, v2Config, {
     include: [
-      AuthModuleV2,
+      //   AuthModuleV2,
       BranchModuleV2,
       BarberModuleV2,
       CategoryModuleV2,

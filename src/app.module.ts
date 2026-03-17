@@ -24,7 +24,7 @@ import { SmsModule } from './sms/sms.module';
 
 // V2 modules
 import {
-  AuthModuleV2,
+  // AuthModuleV2,
   BranchModuleV2,
   BarberModuleV2,
   CategoryModuleV2,
@@ -97,7 +97,7 @@ import path from 'path';
     AdminModule,
     SmsModule,
     // V2 modules
-    AuthModuleV2,
+    // AuthModuleV2,
     BranchModuleV2,
     BarberModuleV2,
     CategoryModuleV2,
