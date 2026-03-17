@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as crypto from 'crypto';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { ConfigService } from '@nestjs/config';
 import {

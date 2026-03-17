@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BadRequestException } from '@nestjs/common';
 import { SlotAvailabilityService } from './slot-availability.service';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { Order } from 'generated/prisma/browser';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

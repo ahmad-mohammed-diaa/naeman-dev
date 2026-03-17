@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { OrderEditService } from './order-edit.service';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
 
@@ -73,23 +73,23 @@ describe('OrderEditService', () => {
   describe('guard checks', () => {
     it('throws NotFoundException when order does not exist', async () => {
       await build(null);
-      await expect(service.barberUpdate('order-1', 'barber-1', dto)).rejects.toThrow(
-        NotFoundException,
-      );
+      await expect(
+        service.barberUpdate('order-1', 'barber-1', dto),
+      ).rejects.toThrow(NotFoundException);
     });
 
     it('throws ForbiddenException when barber is not the order owner', async () => {
       await build(makeOrder({ barberId: 'other-barber' }));
-      await expect(service.barberUpdate('order-1', 'barber-1', dto)).rejects.toThrow(
-        ForbiddenException,
-      );
+      await expect(
+        service.barberUpdate('order-1', 'barber-1', dto),
+      ).rejects.toThrow(ForbiddenException);
     });
 
     it('throws ForbiddenException when order contains PACKAGE items', async () => {
       await build(makeOrder({ orderItems: [{ source: 'PACKAGE' }] }));
-      await expect(service.barberUpdate('order-1', 'barber-1', dto)).rejects.toThrow(
-        ForbiddenException,
-      );
+      await expect(
+        service.barberUpdate('order-1', 'barber-1', dto),
+      ).rejects.toThrow(ForbiddenException);
     });
 
     it('throws BadRequestException when order is CANCELLED', async () => {
@@ -97,9 +97,9 @@ describe('OrderEditService', () => {
         { id: 'svc-1', price: 100, duration: 30 },
         { id: 'svc-2', price: 100, duration: 30 },
       ]);
-      await expect(service.barberUpdate('order-1', 'barber-1', dto)).rejects.toThrow(
-        BadRequestException,
-      );
+      await expect(
+        service.barberUpdate('order-1', 'barber-1', dto),
+      ).rejects.toThrow(BadRequestException);
     });
 
     it('throws BadRequestException when order is COMPLETED', async () => {
@@ -107,17 +107,17 @@ describe('OrderEditService', () => {
         { id: 'svc-1', price: 100, duration: 30 },
         { id: 'svc-2', price: 100, duration: 30 },
       ]);
-      await expect(service.barberUpdate('order-1', 'barber-1', dto)).rejects.toThrow(
-        BadRequestException,
-      );
+      await expect(
+        service.barberUpdate('order-1', 'barber-1', dto),
+      ).rejects.toThrow(BadRequestException);
     });
 
     it('throws BadRequestException when a requested service is unavailable', async () => {
       // Only 1 service returned but 2 requested → mismatch
       await build(makeOrder(), [{ id: 'svc-1', price: 100, duration: 30 }]);
-      await expect(service.barberUpdate('order-1', 'barber-1', dto)).rejects.toThrow(
-        BadRequestException,
-      );
+      await expect(
+        service.barberUpdate('order-1', 'barber-1', dto),
+      ).rejects.toThrow(BadRequestException);
     });
   });
 
@@ -133,11 +133,23 @@ describe('OrderEditService', () => {
       await build(makeOrder(), services);
       await service.barberUpdate('order-1', 'barber-1', dto);
 
-      expect(prisma.orderItem.deleteMany).toHaveBeenCalledWith({ where: { orderId: 'order-1' } });
+      expect(prisma.orderItem.deleteMany).toHaveBeenCalledWith({
+        where: { orderId: 'order-1' },
+      });
       expect(prisma.orderItem.createMany).toHaveBeenCalledWith({
         data: [
-          { orderId: 'order-1', serviceId: 'svc-1', price: 80, source: 'SERVICE' },
-          { orderId: 'order-1', serviceId: 'svc-2', price: 70, source: 'SERVICE' },
+          {
+            orderId: 'order-1',
+            serviceId: 'svc-1',
+            price: 80,
+            source: 'SERVICE',
+          },
+          {
+            orderId: 'order-1',
+            serviceId: 'svc-2',
+            price: 70,
+            source: 'SERVICE',
+          },
         ],
       });
       expect(prisma.order.update).toHaveBeenCalledWith(
@@ -156,7 +168,10 @@ describe('OrderEditService', () => {
     it('refunds excess points when new total is lower than locked points cash value', async () => {
       // Order originally had 5000 points locked (= 50 SAR), new total is only 100 SAR after discount
       const order = makeOrder({ points: 5000, total: 50 });
-      const cheaperServices = [{ id: 'svc-1', price: 30, duration: 30 }, { id: 'svc-2', price: 20, duration: 30 }];
+      const cheaperServices = [
+        { id: 'svc-1', price: 30, duration: 30 },
+        { id: 'svc-2', price: 20, duration: 30 },
+      ];
       await build(order, cheaperServices);
       await service.barberUpdate('order-1', 'barber-1', dto);
 
@@ -169,7 +184,10 @@ describe('OrderEditService', () => {
     it('refunds points when new total drops below locked points cash value', async () => {
       // 200 points locked = 2 SAR cash, new total = 1 SAR → refund 100 points
       const order = makeOrder({ points: 200, total: 198 }); // original total after 2 SAR points
-      const cheapServices = [{ id: 'svc-1', price: 1, duration: 30 }, { id: 'svc-2', price: 0, duration: 30 }];
+      const cheapServices = [
+        { id: 'svc-1', price: 1, duration: 30 },
+        { id: 'svc-2', price: 0, duration: 30 },
+      ];
       await build(order, cheapServices);
       await service.barberUpdate('order-1', 'barber-1', dto);
 
@@ -191,7 +209,12 @@ describe('OrderEditService', () => {
 
     it('applies percentage promo code to new subtotal', async () => {
       const orderWithPromo = makeOrder({ promoCode: 'SAVE20' });
-      const promo = { code: 'SAVE20', active: true, type: 'PERCENTAGE', discount: 20 };
+      const promo = {
+        code: 'SAVE20',
+        active: true,
+        type: 'PERCENTAGE',
+        discount: 20,
+      };
       await build(orderWithPromo, services, promo);
       await service.barberUpdate('order-1', 'barber-1', dto);
 

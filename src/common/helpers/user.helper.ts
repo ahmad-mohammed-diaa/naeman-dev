@@ -1,4 +1,4 @@
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { AppNotFoundException } from '@/common/exceptions/app.exception';
 
 const USER_BASE_SELECT = {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { I18nContext } from 'nestjs-i18n';
 import { Prisma } from 'generated/prisma/client';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { AppNotFoundException } from '@/common/exceptions/app.exception';
 import {
   deepMapWithTranslation,

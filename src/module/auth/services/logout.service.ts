@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '@/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { RefreshTokenDto } from '../dto/refresh-token.dto';
 import { AppUnauthorizedException } from '@/common/exceptions/app.exception';
 import { LoginService } from './login.service';
