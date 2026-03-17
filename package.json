@@ -7,8 +7,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "vercel-build": "npm install --legacy-peer-deps && npm run build",
-    "build": "prisma generate && nest build",
-    "build:win": "prisma generate && nest build ",
+    "build": " nest build",
+    "build:win": " nest build ",
     "prisma-generate": "prisma generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
