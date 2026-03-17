@@ -52,14 +52,10 @@ async function bootstrap() {
 
   // --- V1 Swagger ---
 
-  await app.listen(process.env.PORT ?? 3000, () => {
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0', () => {
     console.log(`Application is running on port: ${process.env.PORT ?? 3000}`);
-    console.log(
-      `Swagger v1: http://localhost:${process.env.PORT ?? 3000}/api/docs/v1`,
-    );
-    console.log(
-      `Swagger v2: http://localhost:${process.env.PORT ?? 3000}/api/docs/v2`,
-    );
+    console.log(`Swagger v1: ${process.env.PORT ?? 3000}/api/docs/v1`);
+    console.log(`Swagger v2: ${process.env.PORT ?? 3000}/api/docs/v2`);
   });
 }
 
