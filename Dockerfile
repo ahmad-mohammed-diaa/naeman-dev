@@ -50,9 +50,8 @@ COPY --from=builder /app/generated ./generated
 # Copy tsconfig (required by tsconfig-paths at runtime for path alias resolution)
 COPY tsconfig.json ./
 
-# Copy static assets used at runtime
+# Copy static assets used at runtime (only if they exist in the project)
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/config ./config
 
 EXPOSE 3000
 
