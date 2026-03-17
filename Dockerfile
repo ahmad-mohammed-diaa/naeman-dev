@@ -3,11 +3,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install dependencies (including devDeps needed for build)
+# Install all deps — skip postinstall (it runs prisma generate before schema exists)
 COPY package*.json ./
-RUN npm ci --legacy-peer-deps
+RUN npm ci --legacy-peer-deps --ignore-scripts
 
-# Copy source
+# Copy source + prisma schema
 COPY prisma ./prisma
 COPY . .
 
@@ -22,15 +22,15 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Install production dependencies only
+# Install production deps — skip postinstall for the same reason
 COPY package*.json ./
-RUN npm ci --omit=dev --legacy-peer-deps
+RUN npm ci --omit=dev --legacy-peer-deps --ignore-scripts
 
-# Re-generate Prisma client in production node_modules
+# Copy prisma schema, then generate client inside prod node_modules
 COPY prisma ./prisma
 RUN npx prisma generate
 
-# Copy compiled output
+# Copy compiled output from builder
 COPY --from=builder /app/dist ./dist
 
 # Copy custom Prisma client output (generated/prisma)
@@ -45,5 +45,5 @@ COPY --from=builder /app/config ./config
 
 EXPOSE 3000
 
-# Run migrations then start the app
+# Run DB migrations then start the app
 CMD ["sh", "-c", "npx prisma migrate deploy && node -r tsconfig-paths/register dist/src/main"]
