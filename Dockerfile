@@ -36,7 +36,7 @@ COPY . .
 # After prisma generate
 # RUN mkdir -p src/generated && cp -r generated/prisma src/generated/prisma
 # Build application
-# RUN npm run build
+RUN npm run build
 
 
 # Final stage for app image
@@ -52,6 +52,8 @@ COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 8080
+
+# CMD ["sleep", "infinity"]
 
 CMD [ "node", "dist/src/main" ]
 # CMD [ "npm", "run", "nest start" ]

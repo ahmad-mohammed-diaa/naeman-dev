@@ -1,7 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { config } from 'dotenv';
-import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import {
+  BadRequestException,
+  ValidationPipe,
+  VersioningType,
+} from '@nestjs/common';
 import { PrismaService } from './prisma/prisma.service';
 import * as express from 'express';
 import { join } from 'path';
@@ -35,9 +39,9 @@ async function bootstrap() {
     }),
   );
 
-  // app.enableVersioning({
-  //   type: 'URI',
-  // });
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
   SwaggerVersions(app);
 
   const isDev = process.env.NODE_ENV === 'development';
@@ -55,8 +59,8 @@ async function bootstrap() {
   console.log(PORT);
   await app.listen(PORT, '0.0.0.0', () => {
     console.log(`Application is running on port: ${process.env.PORT ?? 3000}`);
-    console.log(`Swagger v1: ${process.env.PORT ?? 3000}/api/docs/v1`);
-    console.log(`Swagger v2: ${process.env.PORT ?? 3000}/api/docs/v2`);
+    console.log(`Swagger v1: ${process.env.PORT ?? 3000}/api/docs`);
+    // console.log(`Swagger v2: ${process.env.PORT ?? 3000}/api/docs/v2`);
   });
 }
 
