@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { AppUnauthorizedException } from '@/common/exceptions/app.exception';
+import { AppUnauthorizedException } from '../exceptions/app.exception';
 
 export const SALT = 10;
 
