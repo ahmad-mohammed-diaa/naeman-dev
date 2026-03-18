@@ -236,7 +236,7 @@ export class AuthService {
     });
 
     const token = await this.generateToken(user.id);
-
+    console.log(token);
     return {
       data: userWithoutPassword,
       token,

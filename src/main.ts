@@ -29,7 +29,7 @@ async function bootstrap() {
   await prismaService.onModuleInit();
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new FirstErrorOnlyFilter());
-  app.useGlobalInterceptors(new ResponseInterceptor());
+  // app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
