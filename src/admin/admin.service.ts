@@ -307,9 +307,9 @@ export class AdminService {
     const settings = await this.prisma.settings.findFirst({
       select: { password: true },
     });
-    if (!password || !(await comparePassword(password, settings.password))) {
-      return false;
-    }
+    if (!password) return false;
+    const valid = await comparePassword(password, settings.password);
+    if (!valid) return false;
     return true;
   }
 }
