@@ -82,6 +82,7 @@ const ALL_PERMISSIONS: { action: string; resource: string }[] = [
   { action: 'delete', resource: 'users' },
   // static
   { action: 'view', resource: 'static' },
+  { action: 'create', resource: 'static' },
   { action: 'edit', resource: 'static' },
 ];
 

@@ -17,4 +17,8 @@ export class NotificationService {
   getUserNotifications(userId: string) {
     return this.query.getUserNotifications(userId);
   }
+
+  setFcmToken(userId: string, fcmToken: string) {
+    return this.query.setFcmToken(userId, fcmToken);
+  }
 }

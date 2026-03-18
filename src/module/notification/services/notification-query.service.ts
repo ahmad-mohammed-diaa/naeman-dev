@@ -11,4 +11,9 @@ export class NotificationQueryService {
       orderBy: { createdAt: 'desc' },
     });
   }
+
+  async setFcmToken(userId: string, fcmToken: string) {
+    await this.prisma.user.update({ where: { id: userId }, data: { fcmToken } });
+    return { message: 'FCM token updated' };
+  }
 }

@@ -19,8 +19,8 @@ export class StaticController {
   @StaticSwagger.update()
   @Patch()
   @UseGuards(JwtAuthGuard, PermissionGuard)
-  @Permissions('edit:static')
+  @Permissions('edit:static', 'create:static')
   update(@Body() dto: UpdateStaticDto) {
-    return this.staticService.update(dto);
+    return this.staticService.CreateUpdateStatic(dto);
   }
 }

@@ -8,7 +8,7 @@ import { OrderModule } from './order/order.module';
 import { BranchModule } from './branch/branch.module';
 import { PromoCodeModule } from './promo-code/promo-code.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { TokenService } from './token.service';
+// import { TokenService } from './token.service';
 import { ComplainModule } from './complain/complain.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PointsModule } from './points/points.module';
@@ -24,12 +24,14 @@ import { SmsModule } from './sms/sms.module';
 
 // V2 modules
 import {
+  AnalyticsModuleV2,
   AuthModuleV2,
   BranchModuleV2,
   BarberModuleV2,
   CategoryModuleV2,
   CashierModuleV2,
   ClientModuleV2,
+  ComplainModuleV2,
   NotificationModuleV2,
   OrderModuleV2,
   PromoCodeModuleV2,
@@ -49,6 +51,9 @@ import {
   QueryResolver,
 } from 'nestjs-i18n';
 import { join } from 'path';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 @Module({
   imports: [
@@ -67,6 +72,7 @@ import { join } from 'path';
           loader: I18nJsonLoader,
           loaderOptions: {
             path: join(__dirname, '..', 'i18n'),
+            filePattern: '*.json',
             watch: config.get('NODE_ENV') !== 'production',
           },
           resolvers: [
@@ -75,15 +81,6 @@ import { join } from 'path';
             AcceptLanguageResolver,
           ],
           fallbackLanguage: 'en',
-          // loaderOptions: {
-          //   path: join(__dirname, '..', 'i18n'),
-          //   filePattern: '*.json',
-          //   watch: true,
-          // },
-          // resolvers: [
-          //   { use: QueryResolver, options: ['lang'] },
-          //   AcceptLanguageResolver,
-          // ],
         };
       },
     }),
@@ -109,7 +106,9 @@ import { join } from 'path';
     AdminModule,
     SmsModule,
     // V2 modules
+    AnalyticsModuleV2,
     AuthModuleV2,
+    ComplainModuleV2,
     BranchModuleV2,
     BarberModuleV2,
     CategoryModuleV2,
@@ -128,6 +127,9 @@ import { join } from 'path';
     CloudinaryModule,
   ],
   controllers: [],
-  providers: [TokenService],
+  providers: [
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
+    { provide: APP_FILTER, useClass: HttpExceptionFilter },
+  ],
 })
 export class AppModule {}

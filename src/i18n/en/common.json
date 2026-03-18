@@ -69,5 +69,9 @@
   },
   "static": {
     "notFound": "Static content not found"
+  },
+  "complain": {
+    "notFound": "Complain not found",
+    "alreadyResolved": "Complain is already resolved"
   }
 }

@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { I18nContext } from 'nestjs-i18n';
 import { PrismaService } from '../../../prisma/prisma.service';
-import { AppNotFoundException } from '../../../common/exceptions/app.exception';
-import { deepMapWithTranslation, parseLang } from '../../../common/helpers/translation.helper';
+import { AppNotFoundException } from '@/common/exceptions/app.exception';
+import {
+  deepMapWithTranslation,
+  parseLang,
+} from '@/common/helpers/translation.helper';
 
 export const CATEGORY_SELECT = {
   id: true,
@@ -27,7 +30,10 @@ export class CategoryQueryService {
 
   async findOne(id: string) {
     const lang = parseLang(I18nContext.current()?.lang);
-    const cat = await this.prisma.category.findUnique({ where: { id }, select: CATEGORY_SELECT });
+    const cat = await this.prisma.category.findUnique({
+      where: { id },
+      select: CATEGORY_SELECT,
+    });
     if (!cat) throw new AppNotFoundException('NOT_FOUND_CATEGORY');
     return deepMapWithTranslation(cat, lang);
   }

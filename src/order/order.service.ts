@@ -1855,7 +1855,7 @@ export class OrderService {
       select: { subTotal: true, total: true },
     });
     if (!currentOrder) {
-      throw new ConflictException('Order is either PAID or cancelleded');
+      throw new ConflictException('Order is either PAID or cancelled');
     }
     let code: PromoCode;
     if (body && body.discount) {
@@ -1863,7 +1863,7 @@ export class OrderService {
         .createPromoCode({
           code: undefined,
           discount: body.discount,
-          type: 'AMOUNT',
+          type: 'PERCENTAGE',
           expiredAt: new Date(Date.now() + 60 * 1000), // 1 minute from now
         })
         .then((res) => res.data);
@@ -1879,9 +1879,10 @@ export class OrderService {
         ...(code && {
           promoCode: code.code,
           discount: code.discount,
-          type: 'AMOUNT',
+          type: 'PERCENTAGE',
           subTotal: currentOrder.subTotal,
-          total: currentOrder.total - code.discount,
+          total:
+            currentOrder.total - (currentOrder.subTotal * code.discount) / 100,
         }),
       },
       include: {

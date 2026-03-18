@@ -13,6 +13,7 @@ export class UserService {
 
   findAll(page?: number, limit?: number) { return this.query.findAll({ page, limit }); }
   findOne(id: string) { return this.query.findOne(id); }
+  findMe(id: string) { return this.query.findOne(id); }
   create(dto: CreateUserDto) { return this.manage.create(dto); }
   update(id: string, dto: UpdateUserDto, file?: Express.Multer.File) { return this.manage.update(id, dto, file); }
   remove(id: string) { return this.manage.remove(id); }

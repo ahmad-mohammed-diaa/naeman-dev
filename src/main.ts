@@ -11,6 +11,7 @@ import * as express from 'express';
 import { join } from 'path';
 import { FirstErrorOnlyFilter } from '../filters/validation-fields-only.filter';
 import { SwaggerVersions } from './swagger.version';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 
 // V1 modules
 
@@ -28,6 +29,7 @@ async function bootstrap() {
   await prismaService.onModuleInit();
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new FirstErrorOnlyFilter());
+  app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

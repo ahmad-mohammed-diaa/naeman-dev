@@ -1,5 +1,7 @@
 import { ApiDoc } from '../../common/decorators/api-doc.decorator';
 import { NotificationResponseDto } from './dto/responses/notification-response.dto';
+import { SetFcmTokenDto } from './dto/set-fcm-token.dto';
+import { MessageResponseDto } from '../auth/dto/responses/auth-response.dto';
 
 export const NotificationSwagger = {
   myNotifications: () =>
@@ -32,5 +34,12 @@ export const NotificationSwagger = {
         },
       },
       res: { ok: NotificationResponseDto },
+    }),
+  setFcmToken: () =>
+    ApiDoc({
+      summary: 'Register device FCM token for push notifications',
+      auth: true,
+      body: SetFcmTokenDto,
+      res: { ok: MessageResponseDto },
     }),
 };

@@ -10,6 +10,10 @@ export class StaticService {
     private readonly updateSvc: StaticUpdateService,
   ) {}
 
-  get() { return this.query.get(); }
-  update(dto: UpdateStaticDto) { return this.updateSvc.update(dto); }
+  get() {
+    return this.query.get();
+  }
+  CreateUpdateStatic(dto: UpdateStaticDto) {
+    return this.updateSvc.CreateUpdateStatic(dto);
+  }
 }

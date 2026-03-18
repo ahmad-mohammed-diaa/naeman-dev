@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 
 @Injectable()
@@ -6,10 +10,16 @@ export class StaticQueryService {
   constructor(private readonly prisma: PrismaService) {}
 
   async get() {
-    let page = await this.prisma.static.findFirst({ include: { about: true, questions: true } });
-    if (!page) {
-      page = await this.prisma.static.create({ data: {}, include: { about: true, questions: true } });
+    try {
+      const AboutApp = await this.prisma.static.findFirst({
+        include: { about: true, questions: true },
+      });
+      if (!AboutApp) {
+        throw new NotFoundException('Static page not found');
+      }
+      return { static: AboutApp };
+    } catch (err) {
+      throw new InternalServerErrorException('Static page not found', err);
     }
-    return page;
   }
 }

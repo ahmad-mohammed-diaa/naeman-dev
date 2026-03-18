@@ -27,4 +27,5 @@ export class AuthService {
   verifyOtp(dto: VerifyOtpDto) { return this.otpService.verifyOtp(dto); }
   sendResetOtp(dto: SendOtpDto) { return this.otpService.sendResetOtp(dto); }
   resetPassword(dto: ResetPasswordDto) { return this.otpService.resetPassword(dto); }
+  checkReferralCode(code: string) { return this.registerService.checkReferralCode(code); }
 }

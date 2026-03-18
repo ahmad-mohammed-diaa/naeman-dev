@@ -52,6 +52,10 @@ export const ErrorKeys = {
   NOT_FOUND_PRODUCT: 'product.notFound',
   NOT_FOUND_SETTINGS: 'settings.notFound',
   NOT_FOUND_STATIC: 'static.notFound',
+
+  // complain
+  NOT_FOUND_COMPLAIN: 'complain.notFound',
+  COMPLAIN_ALREADY_RESOLVED: 'complain.alreadyResolved',
 } as const;
 
 export type ErrorKey = (typeof ErrorKeys)[keyof typeof ErrorKeys];

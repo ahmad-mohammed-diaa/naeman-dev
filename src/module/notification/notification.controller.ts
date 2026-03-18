@@ -2,12 +2,14 @@ import {
   Body,
   Controller,
   Get,
+  Patch,
   Post,
   UploadedFile,
   UseGuards,
 } from '@nestjs/common';
 import { NotificationService } from './notification.service';
 import { CreateNotificationDto } from './dto/create-notification.dto';
+import { SetFcmTokenDto } from './dto/set-fcm-token.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionGuard } from '../../common/guards/permission.guard';
 import { Permissions } from '../../common/decorators/permissions.decorator';
@@ -37,5 +39,12 @@ export class NotificationController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     return this.notificationService.create(dto, file);
+  }
+
+  @NotificationSwagger.setFcmToken()
+  @Patch('fcm-token')
+  @Permissions('view:notifications')
+  setFcmToken(@CurrentUser() user: User, @Body() dto: SetFcmTokenDto) {
+    return this.notificationService.setFcmToken(user.id, dto.fcmToken);
   }
 }

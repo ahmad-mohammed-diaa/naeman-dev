@@ -5,6 +5,7 @@ import { SendOtpDto } from './dto/send-otp.dto';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { ReferralCodeDto } from './dto/referral-code.dto';
 import {
   LoginResponseDto,
   OtpResponseDto,
@@ -82,5 +83,11 @@ export const AuthSwagger = {
         ok: MessageResponseDto,
         badRequest: { message: 'Invalid or expired reset token' },
       },
+    }),
+  referralCode: () =>
+    ApiDoc({
+      summary: 'Validate a referral code',
+      body: ReferralCodeDto,
+      res: { ok: MessageResponseDto },
     }),
 };

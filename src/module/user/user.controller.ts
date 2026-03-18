@@ -17,7 +17,7 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionGuard } from '../../common/guards/permission.guard';
 import { Permissions } from '../../common/decorators/permissions.decorator';
 import { UserSwagger } from './user.swagger';
-
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { FindAllUsersQueryDto } from './dto/find-all-users-query.dto';
 import { UploadFile } from '../../common/decorators/upload.decorator';
 
@@ -31,6 +31,13 @@ export class UserController {
   @Permissions('view:users')
   findAll(@Query() query: FindAllUsersQueryDto) {
     return this.userService.findAll(query.page, query.limit);
+  }
+
+  @UserSwagger.me()
+  @Get('me')
+  @Permissions('view:users')
+  me(@CurrentUser() user: { id: string }) {
+    return this.userService.findMe(user.id);
   }
 
   @UserSwagger.findOne()

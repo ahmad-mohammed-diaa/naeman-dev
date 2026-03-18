@@ -97,6 +97,13 @@ export class RegisterService {
     }
   }
 
+  async checkReferralCode(code: string) {
+    const client = await this.prisma.client.findUnique({
+      where: { referralCode: code },
+    });
+    return { valid: !!client };
+  }
+
   private generateReferralCode(): string {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   }

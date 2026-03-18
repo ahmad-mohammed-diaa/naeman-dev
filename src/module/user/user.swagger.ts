@@ -17,6 +17,12 @@ export const UserSwagger = {
       ],
       res: { ok: UserListResponseDto },
     }),
+  me: () =>
+    ApiDoc({
+      summary: 'Get current user profile',
+      auth: true,
+      res: { ok: UserResponseDto, notFound: { message: 'User not found' } },
+    }),
   findOne: () =>
     ApiDoc({
       summary: 'Get user by ID',

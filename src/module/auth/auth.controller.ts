@@ -13,6 +13,7 @@ import { SendOtpDto } from './dto/send-otp.dto';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { ReferralCodeDto } from './dto/referral-code.dto';
 import { AuthSwagger } from './auth.swagger';
 import { UploadFile } from '../../common/decorators/upload.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -70,5 +71,11 @@ export class AuthController {
   @Post('reset-password')
   resetPassword(@Body() dto: ResetPasswordDto) {
     return this.authService.resetPassword(dto);
+  }
+
+  @AuthSwagger.referralCode()
+  @Post('referral-code')
+  checkReferralCode(@Body() dto: ReferralCodeDto) {
+    return this.authService.checkReferralCode(dto.referralCode);
   }
 }
