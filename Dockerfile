@@ -51,7 +51,7 @@ RUN apt-get update -qq && \
 COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
+EXPOSE 8080
 
 # CMD ["sleep", "infinity"]
 
