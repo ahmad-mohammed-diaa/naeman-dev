@@ -29,7 +29,7 @@ async function bootstrap() {
   await prismaService.onModuleInit();
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new FirstErrorOnlyFilter());
-  // app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
@@ -41,9 +41,7 @@ async function bootstrap() {
     }),
   );
 
-  app.enableVersioning({
-    type: VersioningType.URI,
-  });
+  app.enableVersioning({ type: VersioningType.URI });
   SwaggerVersions(app);
 
   const isDev = process.env.NODE_ENV === 'development';
@@ -51,8 +49,9 @@ async function bootstrap() {
     isDev && Buffer.from(process.env.API_KEY || '').toString('base64');
 
   app.use((req: Request, res, next) => {
+    req.headers['Accept-Language'] = 'ar';
+    console.log(req.headers);
     if (!isDev) req.headers['x-api-key'] = devApiKey;
-    req.headers['Accept-Language'] = 'en';
     next();
   });
 

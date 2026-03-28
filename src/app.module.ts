@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
@@ -54,6 +54,7 @@ import { join } from 'path';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { ApiKeyMiddleware } from './common/middleware/api-key.middleware';
 
 @Module({
   imports: [
@@ -132,4 +133,9 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
     { provide: APP_FILTER, useClass: HttpExceptionFilter },
   ],
 })
+// export class AppModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(ApiKeyMiddleware).forRoutes('*');
+//   }
+// }
 export class AppModule {}
